@@ -34,8 +34,8 @@ class ViewController: UIViewController {
         recipesBtn.backgroundColor = .quaternarySystemFill
         startBtn.setTitleColor(UIColor.black, for: .normal)
         resetBtn.setTitleColor(UIColor.black, for: .normal)
+    
     }
-
     
     @objc func tabMlText(_ sender: Any) {
         var textFMl = UITextField()
@@ -167,6 +167,6 @@ class ViewController: UIViewController {
         ratioTF.resignFirstResponder()
     }
     
-    
 }
+
 
