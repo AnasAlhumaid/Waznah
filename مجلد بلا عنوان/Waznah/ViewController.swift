@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationConfigure()
         mlTextF.addTarget(self, action: #selector(tabMlText(_:)), for: .touchDown)
         grTextF.addTarget(self, action: #selector(tabGrText(_:)), for: .touchDown)
         startBtn.setTitleColor(UIColor.green, for: .normal)
@@ -34,7 +35,13 @@ class ViewController: UIViewController {
         recipesBtn.backgroundColor = .quaternarySystemFill
         startBtn.setTitleColor(UIColor.black, for: .normal)
         resetBtn.setTitleColor(UIColor.black, for: .normal)
+    }
     
+    private func navigationConfigure(){
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.backward")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.backward")
+        navigationController?.navigationBar.tintColor = .black
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     @objc func tabMlText(_ sender: Any) {
@@ -106,20 +113,12 @@ class ViewController: UIViewController {
     
     
     @IBAction func resetBtnAction(_ sender: Any) {
-        
-        let alert = UIAlertController(title: "Reset Timer ?", message: "Are you sure to reset timer ?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { REset in
-            self.count = 0
-            self.timer.invalidate()
-            self.timerLabel.text = self.makeStringTimer(hours: 0, minutes: 0, second: 0)
-            self.startBtn.setTitle("START", for: .normal)
-            self.startBtn.setTitleColor(UIColor.black, for: .normal)
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
-        
-        
+       
+        count = 0
+        timer.invalidate()
+        timerLabel.text = self.makeStringTimer(hours: 0, minutes: 0, second: 0)
+        startBtn.setTitle("START", for: .normal)
+        startBtn.setTitleColor(UIColor.black, for: .normal)
     }
     
     
