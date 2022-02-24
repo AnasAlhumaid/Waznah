@@ -22,12 +22,15 @@ class ViewController: UIViewController {
     var count : Int = 0
     var timerCounting : Bool = false
     
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationConfigure()
         mlTextF.addTarget(self, action: #selector(tabMlText(_:)), for: .touchDown)
         grTextF.addTarget(self, action: #selector(tabGrText(_:)), for: .touchDown)
         startBtn.setTitleColor(UIColor.green, for: .normal)
+        resetBtn.layer.cornerRadius = 12
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissTap))
         view.addGestureRecognizer(tap)
         
@@ -35,7 +38,11 @@ class ViewController: UIViewController {
         recipesBtn.backgroundColor = .quaternarySystemFill
         startBtn.setTitleColor(UIColor.black, for: .normal)
         resetBtn.setTitleColor(UIColor.black, for: .normal)
+        
+      
     }
+    
+  
     
     private func navigationConfigure(){
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.backward")
@@ -109,7 +116,6 @@ class ViewController: UIViewController {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
         }
     }
-    
     
     
     @IBAction func resetBtnAction(_ sender: Any) {

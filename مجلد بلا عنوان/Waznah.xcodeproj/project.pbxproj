@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8335D4A27C62A5B002998D2 /* DetailRecepis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8335D4927C62A5A002998D2 /* DetailRecepis.swift */; };
+		D845613627C5FD34007CD9CE /* RecepisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D845613527C5FD34007CD9CE /* RecepisController.swift */; };
+		D8634C0127C1472D00DC2E2A /* Tableview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8634C0027C1472D00DC2E2A /* Tableview.swift */; };
+		D86D471627C6138C00EE85DD /* RecepisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D471527C6138C00EE85DD /* RecepisCell.swift */; };
 		D8A46EF0279879B20074E62E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A46EEF279879B20074E62E /* AppDelegate.swift */; };
 		D8A46EF2279879B20074E62E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A46EF1279879B20074E62E /* SceneDelegate.swift */; };
 		D8A46EF4279879B20074E62E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A46EF3279879B20074E62E /* ViewController.swift */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8335D4927C62A5A002998D2 /* DetailRecepis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecepis.swift; sourceTree = "<group>"; };
+		D845613527C5FD34007CD9CE /* RecepisController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepisController.swift; sourceTree = "<group>"; };
+		D8634C0027C1472D00DC2E2A /* Tableview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tableview.swift; sourceTree = "<group>"; };
+		D86D471527C6138C00EE85DD /* RecepisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepisCell.swift; sourceTree = "<group>"; };
 		D8A46EEC279879B20074E62E /* Waznah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waznah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A46EEF279879B20074E62E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8A46EF1279879B20074E62E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +76,10 @@
 				D8A46EFD279879B80074E62E /* LaunchScreen.storyboard */,
 				D8A46F00279879B80074E62E /* Info.plist */,
 				D8A46EF8279879B20074E62E /* Waznah.xcdatamodeld */,
+				D8634C0027C1472D00DC2E2A /* Tableview.swift */,
+				D845613527C5FD34007CD9CE /* RecepisController.swift */,
+				D86D471527C6138C00EE85DD /* RecepisCell.swift */,
+				D8335D4927C62A5A002998D2 /* DetailRecepis.swift */,
 			);
 			path = Waznah;
 			sourceTree = "<group>";
@@ -144,9 +156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A46EFA279879B20074E62E /* Waznah.xcdatamodeld in Sources */,
+				D845613627C5FD34007CD9CE /* RecepisController.swift in Sources */,
 				D8A46EF4279879B20074E62E /* ViewController.swift in Sources */,
 				D8A46EF0279879B20074E62E /* AppDelegate.swift in Sources */,
+				D8335D4A27C62A5B002998D2 /* DetailRecepis.swift in Sources */,
 				D8A46EF2279879B20074E62E /* SceneDelegate.swift in Sources */,
+				D8634C0127C1472D00DC2E2A /* Tableview.swift in Sources */,
+				D86D471627C6138C00EE85DD /* RecepisCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,12 +320,12 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -334,12 +350,12 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
