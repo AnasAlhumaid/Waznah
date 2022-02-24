@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         
         recipesBtn.setTitleColor(UIColor.systemBrown, for: .normal)
         recipesBtn.backgroundColor = .quaternarySystemFill
+        resetBtn.layer.cornerRadius = 8
         startBtn.setTitleColor(UIColor.black, for: .normal)
         resetBtn.setTitleColor(UIColor.black, for: .normal)
         
