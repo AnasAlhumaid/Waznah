@@ -75,11 +75,11 @@
 				D8A46EFB279879B80074E62E /* Assets.xcassets */,
 				D8A46EFD279879B80074E62E /* LaunchScreen.storyboard */,
 				D8A46F00279879B80074E62E /* Info.plist */,
-				D8A46EF8279879B20074E62E /* Waznah.xcdatamodeld */,
 				D8634C0027C1472D00DC2E2A /* Tableview.swift */,
 				D845613527C5FD34007CD9CE /* RecepisController.swift */,
 				D86D471527C6138C00EE85DD /* RecepisCell.swift */,
 				D8335D4927C62A5A002998D2 /* DetailRecepis.swift */,
+				D8A46EF8279879B20074E62E /* Waznah.xcdatamodeld */,
 			);
 			path = Waznah;
 			sourceTree = "<group>";
@@ -128,6 +128,8 @@
 				Base,
 			);
 			mainGroup = D8A46EE3279879B10074E62E;
+			packageReferences = (
+			);
 			productRefGroup = D8A46EED279879B20074E62E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
