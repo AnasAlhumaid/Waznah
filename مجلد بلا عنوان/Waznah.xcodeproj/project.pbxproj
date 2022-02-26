@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D8335D4A27C62A5B002998D2 /* DetailRecepis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8335D4927C62A5A002998D2 /* DetailRecepis.swift */; };
 		D845613627C5FD34007CD9CE /* RecepisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D845613527C5FD34007CD9CE /* RecepisController.swift */; };
+		D84D172A27C9BE22008CBE50 /* PDFGenerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D172927C9BE22008CBE50 /* PDFGenerate.swift */; };
 		D8634C0127C1472D00DC2E2A /* Tableview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8634C0027C1472D00DC2E2A /* Tableview.swift */; };
 		D86D471627C6138C00EE85DD /* RecepisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D471527C6138C00EE85DD /* RecepisCell.swift */; };
 		D8A46EF0279879B20074E62E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A46EEF279879B20074E62E /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		D8335D4927C62A5A002998D2 /* DetailRecepis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecepis.swift; sourceTree = "<group>"; };
 		D845613527C5FD34007CD9CE /* RecepisController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepisController.swift; sourceTree = "<group>"; };
+		D84D172927C9BE22008CBE50 /* PDFGenerate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGenerate.swift; sourceTree = "<group>"; };
 		D8634C0027C1472D00DC2E2A /* Tableview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tableview.swift; sourceTree = "<group>"; };
 		D86D471527C6138C00EE85DD /* RecepisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepisCell.swift; sourceTree = "<group>"; };
 		D8A46EEC279879B20074E62E /* Waznah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waznah.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,7 @@
 				D86D471527C6138C00EE85DD /* RecepisCell.swift */,
 				D8335D4927C62A5A002998D2 /* DetailRecepis.swift */,
 				D8A46EF8279879B20074E62E /* Waznah.xcdatamodeld */,
+				D84D172927C9BE22008CBE50 /* PDFGenerate.swift */,
 			);
 			path = Waznah;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D84D172A27C9BE22008CBE50 /* PDFGenerate.swift in Sources */,
 				D8A46EFA279879B20074E62E /* Waznah.xcdatamodeld in Sources */,
 				D845613627C5FD34007CD9CE /* RecepisController.swift in Sources */,
 				D8A46EF4279879B20074E62E /* ViewController.swift in Sources */,

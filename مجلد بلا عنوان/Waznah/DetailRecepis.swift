@@ -21,6 +21,7 @@ class DetailRecepis: UIViewController  {
     @IBOutlet var chimixBottun: UIButton!
     @IBOutlet var calitaBottun: UIButton!
     @IBOutlet var addBottun: UIButton!
+    @IBOutlet var tfRatio: UITextField!
     
    
     var isv60 = false
@@ -67,13 +68,15 @@ class DetailRecepis: UIViewController  {
 
     
     
-    func CreateData(tool: String,grain: String,roastery: String, prepartion: String,temp:String){
+    func CreateData(tool: String,grain: String,roastery: String, prepartion: String,temp:String,ratio:String){
         let newRecepie = Recepie(context: context)
         newRecepie.grain = grain
         newRecepie.tools = tool
         newRecepie.prepare = prepartion
         newRecepie.roastery = roastery
         newRecepie.temp = temp
+        newRecepie.ratio = ratio
+        
         saveData()
     }
     func saveData(){
@@ -104,7 +107,7 @@ class DetailRecepis: UIViewController  {
         if moreTools.text?.isEmpty == true || tfGrain.text?.isEmpty == true ||
             tfRoastery.text?.isEmpty == true ||
             tVPrepare.text.isEmpty == true ||
-            tFTemp.text?.isEmpty == true {
+            tFTemp.text?.isEmpty == true || tfRatio.text?.isEmpty == true {
             
             let alert = UIAlertController(title: "thire is wrong ", message: "Empety Fields ", preferredStyle: .alert)
             let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -114,8 +117,8 @@ class DetailRecepis: UIViewController  {
     
         
         
-        if let tool = moreTools.text, let grain = tfGrain.text , let tempr = tFTemp.text, let prepation = tVPrepare.text, let roastery = tfRoastery.text  {
-            CreateData(tool: tool, grain: grain, roastery: roastery, prepartion: prepation, temp: tempr)
+            if let tool = moreTools.text, let grain = tfGrain.text , let tempr = tFTemp.text, let prepation = tVPrepare.text, let roastery = tfRoastery.text, let ratio = tfRatio.text  {
+            CreateData(tool: tool, grain: grain, roastery: roastery, prepartion: prepation, temp: tempr ,ratio: ratio)
             recepie = getData()
           
             
