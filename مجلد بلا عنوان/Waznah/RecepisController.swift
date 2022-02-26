@@ -77,15 +77,20 @@ class RecepisController : UIViewController, UpdateDelegate {
             print("not finish")
             return
         }
-        collictionView.reloadData()
+        
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async { [self] in
+            recepie = getData()
+            collictionView.reloadData()
+        }
         
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        recepie = getData()
-        collictionView.reloadData()
-    }
+  
     
     
     @IBAction func addBtn(_ sender: Any) {
@@ -108,6 +113,24 @@ class RecepisController : UIViewController, UpdateDelegate {
         return recepie
     }
     
+    func delete(obj:Recepie){
+        
+        
+        context.delete(obj)
+        saveData()
+
+    }
+    func saveData(){
+        // save to DB
+        do {// save function throws error so we have to use try catch
+            try context.save()
+            print("saved")
+        } catch {
+            print("Unable to save")
+        }
+    }
+    
+    
 }
 
 extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSource {
@@ -125,14 +148,14 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
         cell.cellView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         cell.cellView.layer.shadowOpacity = 2.0
         cell.cellView.layer.masksToBounds = false
-        cell.cellView.layer.cornerRadius = 2.0
         cell.cellView.layer.cornerRadius = 8.0
-        cell.cellView.layer.cornerRadius = 8.0
+        cell.imagecell.layer.cornerRadius = 8.0
+        cell.secondView.layer.cornerRadius = 8.0
         
         switch cell.typeDrip.text {
         case "V60" :
             cell.coffeeIcon.image = UIImage(named: "v60")
-        case "Calita" :
+        case "Kalita" :
             cell.coffeeIcon.image = UIImage(named: "kalita")
         case "Chimix" :
             cell.coffeeIcon.image = UIImage(named: "chimix")
@@ -146,21 +169,47 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Choose", message: "what you will do ", preferredStyle: .actionSheet)
+        let show = UIAlertAction(title: "Preview", style: .default) { alertt in
+            let destination = self.storyboard?.instantiateViewController(withIdentifier: "PDFGenerate") as? PDFGenerate
+            
+            destination?.selectedTool = self.recepie[indexPath.row].tools
+            destination?.selectedTemp = self.recepie[indexPath.row].temp
+            destination?.selectedGrain = self.recepie[indexPath.row].grain
+            destination?.selectedRoastery = self.recepie[indexPath.row].roastery
+            destination?.selectedPrepare = self.recepie[indexPath.row].prepare
+            destination?.selectedRatio = self.recepie[indexPath.row].ratio
+            
+            self.navigationController?.pushViewController(destination!, animated: true)
+            self.present(destination!, animated: true, completion: nil)
+            
+        }
         
-        let destination = storyboard?.instantiateViewController(withIdentifier: "PDFGenerate") as? PDFGenerate
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { alll in
+            if let selectedItem = collectionView.indexPathsForSelectedItems {
+                let items = selectedItem.map{$0.item}.sorted().reversed()
+                for item in items {
+                    self.recepie.remove(at: item)
+                    self.delete(obj: self.recepie[indexPath.row])
+                    
+                }
+                collectionView.deleteItems(at: selectedItem)
+                
+            }
+            
+           
+            
+        }
+        alert.addAction(show)
+        alert.addAction(delete)
         
-        destination?.selectedTool = self.recepie[indexPath.row].tools
-        destination?.selectedTemp = self.recepie[indexPath.row].temp
-        destination?.selectedGrain = self.recepie[indexPath.row].grain
-        destination?.selectedRoastery = self.recepie[indexPath.row].roastery
-        destination?.selectedPrepare = self.recepie[indexPath.row].prepare
-        destination?.selectedRatio = self.recepie[indexPath.row].ratio
+        present(alert, animated: true, completion: nil)
         
-        self.navigationController?.pushViewController(destination!, animated: true)
-        present(destination!, animated: true, completion: nil)
+        }
         
     }
     
+
     
     
     
@@ -176,6 +225,4 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
     
     
     
-    
-    
-}
+

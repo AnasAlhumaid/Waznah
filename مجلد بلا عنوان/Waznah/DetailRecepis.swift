@@ -202,7 +202,7 @@ class DetailRecepis: UIViewController  {
 //        if calitaBottun.backgroundColor == UIColor(named: "Color-2") {
 //            calitaBottun.backgroundColor = full
 //            self.isCalita = true
-            moreTools.text = "Calita"
+            moreTools.text = "Kalita"
 //        }else{
 //            calitaBottun.backgroundColor = empety
 //            self.isCalita = false
