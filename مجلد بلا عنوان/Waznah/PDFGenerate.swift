@@ -43,12 +43,36 @@ class PDFGenerate : UIViewController{
     
     @IBAction func ShareBtn(_ sender: Any) {
         
-        
-        
-        
-        
+        let screenShot = self.view.takeScreenshot()
+        let imageShare = [ screenShot ]
+        let activityViewController = UIActivityViewController(activityItems: imageShare ,
+                                                              applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
     }
+
+}
+
+extension UIView {
     
-    
-    
+    func takeScreenshot() -> UIImage {
+        
+        let scale = UIScreen.main.scale
+        let bonds = self.bounds
+        
+        UIGraphicsBeginImageContextWithOptions(bonds.size, false, scale)
+        if let _ = UIGraphicsGetCurrentContext() {
+            
+            self.drawHierarchy(in: bonds, afterScreenUpdates: true)
+            
+            let screenshot = UIGraphicsGetImageFromCurrentImageContext()!
+            
+            UIGraphicsEndImageContext()
+            
+            return screenshot
+        }
+        
+        return UIImage()
+    }
+
 }
