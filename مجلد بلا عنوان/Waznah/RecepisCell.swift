@@ -13,5 +13,6 @@ class RecepisCell: UICollectionViewCell {
     @IBOutlet var typeCoffee: UILabel!
     @IBOutlet var typeRostary: UILabel!
     @IBOutlet var cellView: UIView!
+    @IBOutlet var coffeeIcon: UIImageView!
     
 }
