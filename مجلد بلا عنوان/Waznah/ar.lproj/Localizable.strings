@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  Waznah
+
+  Created by Anas Hamad on 26/07/1443 AH.
+  
+*/
+
+"Timer" = "مؤقت";
+"START" = "البدء";
+"RESET" = "إعادة";
+"Stop" = "توقف";
+"recipes4" = "ARrecipe";
+"pdfPrevew" = "ARpdfReviw";
+"Select Gr" = "عدد الغرامات";
+"Change Gr" = "غير القيمة";
+"Ok" = "حسناّ";
+"Select ML" = "عدد مل الماء";
+"Change ML" = "غير القيمة";
+"Puase" = "اوقف";
+"Recipes" = "الوصفات:";
+"Tool" = "آله التقطير:";
+"Grain" = "الطحنة:";
+"Temperature" = "درجة الحرارة:";
+"Roastery" ="المحمصة:";
+"Prepare" = "التحضير :";
+"Ratio" = "المعدل:";
+
+
+
+
+
+
+

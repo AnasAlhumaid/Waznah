@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet var resetBtn: UIButton!
     @IBOutlet var timerLabel: UILabel!
     @IBOutlet var recipesBtn: UIButton!
+    @IBOutlet var timerTitel: UILabel!
+    
     
     
     var timer:Timer = Timer()
@@ -39,6 +41,11 @@ class ViewController: UIViewController {
         resetBtn.layer.cornerRadius = 8
         startBtn.setTitleColor(UIColor.black, for: .normal)
         resetBtn.setTitleColor(UIColor.black, for: .normal)
+        startBtn.setTitle("START".localized, for: .normal)
+        resetBtn.setTitle("RESET".localized, for: .normal)
+        timerTitel.text = "Timer".localized
+        recipesBtn.setTitle("Recipes".localized, for: .normal)
+        
         
       
     }
@@ -55,12 +62,12 @@ class ViewController: UIViewController {
     @objc func tabMlText(_ sender: Any) {
         var textFMl = UITextField()
         textFMl.reloadInputViews()
-        let alert = UIAlertController(title: "Select Gr", message: "Change Gr", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Select Gr".localized, message: "Change Gr".localized, preferredStyle: .alert)
         alert.addTextField { textInputMode in
             textInputMode.placeholder = "gr."
             textFMl = textInputMode
         }
-        let ok = UIAlertAction(title: "Ok", style: .default) { alet in
+        let ok = UIAlertAction(title: "Ok".localized, style: .default) { alet in
             self.mlTextF.text = textFMl.text
             guard let firstNumberConv :Double = Double(self.mlTextF.text!) else {return}
             guard let secondNumberConv :Double = Double(self.ratioTF.text!) else {return}
@@ -79,13 +86,13 @@ class ViewController: UIViewController {
         
         var textFMl = UITextField()
         textFMl.reloadInputViews()
-        let alert = UIAlertController(title: "Select ML", message: "Change ML", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Select ML".localized, message: "Change ML".localized, preferredStyle: .alert)
         alert.addTextField { textInputMode in
             textInputMode.placeholder = "ml."
             textFMl = textInputMode
         }
         
-        let ok = UIAlertAction(title: "Ok", style: .default) { alet in
+        let ok = UIAlertAction(title: "Ok".localized, style: .default) { alet in
             self.grTextF.text = textFMl.text
             guard let firstNumberConv :Double = Double(self.grTextF.text!) else {return}
             guard let secondNumberConv :Double = Double(self.ratioTF.text!) else {return}
@@ -105,14 +112,14 @@ class ViewController: UIViewController {
         {
             timerCounting = false
             timer.invalidate()
-            startBtn.setTitle("START", for: .normal)
+            startBtn.setTitle("START".localized, for: .normal)
             startBtn.setTitleColor(UIColor.black, for: .normal)
         }
         else
         {
             timerCounting = true
             timer.invalidate()
-            startBtn.setTitle("Puase", for: .normal)
+            startBtn.setTitle("Puase".localized, for: .normal)
             startBtn.setTitleColor(UIColor.red, for: .normal)
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
         }
@@ -124,7 +131,7 @@ class ViewController: UIViewController {
         count = 0
         timer.invalidate()
         timerLabel.text = self.makeStringTimer(hours: 0, minutes: 0, second: 0)
-        startBtn.setTitle("START", for: .normal)
+        startBtn.setTitle("START".localized, for: .normal)
         startBtn.setTitleColor(UIColor.black, for: .normal)
     }
     

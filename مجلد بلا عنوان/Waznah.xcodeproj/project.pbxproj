@@ -19,6 +19,9 @@
 		D8A46EFA279879B20074E62E /* Waznah.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8A46EF8279879B20074E62E /* Waznah.xcdatamodeld */; };
 		D8A46EFC279879B80074E62E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A46EFB279879B80074E62E /* Assets.xcassets */; };
 		D8A46EFF279879B80074E62E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8A46EFD279879B80074E62E /* LaunchScreen.storyboard */; };
+		D8B08DBF27CBDD91007F4769 /* ReadyRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B08DBE27CBDD90007F4769 /* ReadyRecipe.swift */; };
+		D8B08DC127CBDDFB007F4769 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B08DC027CBDDFB007F4769 /* Extentions.swift */; };
+		D8B08DC227CBE016007F4769 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8B08DC427CBE016007F4769 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,12 @@
 		D8A46EFB279879B80074E62E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8A46EFE279879B80074E62E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8A46F00279879B80074E62E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8B08DBA27CBD668007F4769 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		D8B08DBB27CBD668007F4769 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D8B08DBE27CBDD90007F4769 /* ReadyRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyRecipe.swift; sourceTree = "<group>"; };
+		D8B08DC027CBDDFB007F4769 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		D8B08DC327CBE016007F4769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D8B08DC527CBE018007F4769 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D8E98CE227B72013008DF014 /* Waznah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waznah.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +81,7 @@
 				D8E98CE227B72013008DF014 /* Waznah.entitlements */,
 				D8A46EEF279879B20074E62E /* AppDelegate.swift */,
 				D8A46EF1279879B20074E62E /* SceneDelegate.swift */,
+				D8B08DBE27CBDD90007F4769 /* ReadyRecipe.swift */,
 				D8A46EF3279879B20074E62E /* ViewController.swift */,
 				D8A46EF5279879B20074E62E /* Main.storyboard */,
 				D8A46EFB279879B80074E62E /* Assets.xcassets */,
@@ -83,6 +93,8 @@
 				D8335D4927C62A5A002998D2 /* DetailRecepis.swift */,
 				D8A46EF8279879B20074E62E /* Waznah.xcdatamodeld */,
 				D84D172927C9BE22008CBE50 /* PDFGenerate.swift */,
+				D8B08DC427CBE016007F4769 /* Localizable.strings */,
+				D8B08DC027CBDDFB007F4769 /* Extentions.swift */,
 			);
 			path = Waznah;
 			sourceTree = "<group>";
@@ -129,6 +141,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = D8A46EE3279879B10074E62E;
 			packageReferences = (
@@ -148,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A46EFF279879B80074E62E /* LaunchScreen.storyboard in Resources */,
+				D8B08DC227CBE016007F4769 /* Localizable.strings in Resources */,
 				D8A46EFC279879B80074E62E /* Assets.xcassets in Resources */,
 				D8A46EF7279879B20074E62E /* Main.storyboard in Resources */,
 			);
@@ -163,8 +177,10 @@
 				D84D172A27C9BE22008CBE50 /* PDFGenerate.swift in Sources */,
 				D8A46EFA279879B20074E62E /* Waznah.xcdatamodeld in Sources */,
 				D845613627C5FD34007CD9CE /* RecepisController.swift in Sources */,
+				D8B08DC127CBDDFB007F4769 /* Extentions.swift in Sources */,
 				D8A46EF4279879B20074E62E /* ViewController.swift in Sources */,
 				D8A46EF0279879B20074E62E /* AppDelegate.swift in Sources */,
+				D8B08DBF27CBDD91007F4769 /* ReadyRecipe.swift in Sources */,
 				D8335D4A27C62A5B002998D2 /* DetailRecepis.swift in Sources */,
 				D8A46EF2279879B20074E62E /* SceneDelegate.swift in Sources */,
 				D8634C0127C1472D00DC2E2A /* Tableview.swift in Sources */,
@@ -179,6 +195,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D8A46EF6279879B20074E62E /* Base */,
+				D8B08DBA27CBD668007F4769 /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -187,8 +204,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				D8A46EFE279879B80074E62E /* Base */,
+				D8B08DBB27CBD668007F4769 /* ar */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D8B08DC427CBE016007F4769 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8B08DC327CBE016007F4769 /* en */,
+				D8B08DC527CBE018007F4769 /* ar */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -198,6 +225,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -259,6 +287,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -321,6 +350,8 @@
 				DEVELOPMENT_TEAM = NQUCPJVZ5U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Waznah/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Used for save recipe image on camera roll";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Used for save recipe image on camera roll";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -351,6 +382,8 @@
 				DEVELOPMENT_TEAM = NQUCPJVZ5U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Waznah/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Used for save recipe image on camera roll";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Used for save recipe image on camera roll";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
