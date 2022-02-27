@@ -14,7 +14,7 @@ protocol UpdateDelegate {
     func didFinishUpdates(finished: Bool)
 }
 
-class RecepisController : UIViewController, UpdateDelegate {
+class RecepisController : UIViewController, UpdateDelegate, UITabBarControllerDelegate {
 
     
     
@@ -31,7 +31,7 @@ class RecepisController : UIViewController, UpdateDelegate {
     var selectedTemp : String?
     var selectedPrepare : String?
     var selectedRatio : String?
-    
+    var handler: (()->(Void))?
     
     
     
@@ -65,7 +65,12 @@ class RecepisController : UIViewController, UpdateDelegate {
         let updates = RecepisController()
         updates.delegate = self
         
+        DispatchQueue.main.async { [self] in
+            recepie = getData()
+            
+        }
         
+        self.tabBarController?.delegate = self
         
     }
     
@@ -73,6 +78,7 @@ class RecepisController : UIViewController, UpdateDelegate {
     
     
     func didFinishUpdates(finished: Bool) {
+        collictionView.reloadData()
         guard finished else {
             print("not finish")
             return
@@ -82,11 +88,28 @@ class RecepisController : UIViewController, UpdateDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print("viewddddddddfffffffddddd")
+      
+       
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         DispatchQueue.main.async { [self] in
-            recepie = getData()
+            print(recepie.count)
             collictionView.reloadData()
         }
+        print("viewddddddddfffffffdd7777777ddd")
         
+        self.tabBarController?.delegate = self
+      
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("llllllllrrruuruurhrh")
     }
     
     
@@ -95,9 +118,8 @@ class RecepisController : UIViewController, UpdateDelegate {
     
     @IBAction func addBtn(_ sender: Any) {
         
+
         performSegue(withIdentifier: "addRecipes", sender: self)
-        
-        
     }
     
     func getData()->[Recepie]{
@@ -189,8 +211,10 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
             if let selectedItem = collectionView.indexPathsForSelectedItems {
                 let items = selectedItem.map{$0.item}.sorted().reversed()
                 for item in items {
-                    self.recepie.remove(at: item)
+                    
                     self.delete(obj: self.recepie[indexPath.row])
+                    self.recepie.remove(at: item)
+                    
                     
                 }
                 collectionView.deleteItems(at: selectedItem)

@@ -9,8 +9,8 @@ import UIKit
 import CoreData
 
 class DetailRecepis: UIViewController  {
-
-
+    
+    
     @IBOutlet var imageBackgraund: UIImageView!
     @IBOutlet var moreTools: UITextField!
     @IBOutlet var tfGrain: UITextField!
@@ -23,7 +23,9 @@ class DetailRecepis: UIViewController  {
     @IBOutlet var addBottun: UIButton!
     @IBOutlet var tfRatio: UITextField!
     
-   
+    
+    
+    
     var isv60 = false
     var isChimix = false
     var isCalita = false
@@ -41,9 +43,9 @@ class DetailRecepis: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-
+        
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissTap))
         view.addGestureRecognizer(tap)
         
@@ -60,12 +62,12 @@ class DetailRecepis: UIViewController  {
         
         
         
-       
-     
+        
+        
         
     }
     
-
+    
     
     
     func CreateData(tool: String,grain: String,roastery: String, prepartion: String,temp:String,ratio:String){
@@ -89,7 +91,7 @@ class DetailRecepis: UIViewController  {
         }
     }
     func getData()->[Recepie]{
-
+        
         let request: NSFetchRequest<Recepie> = Recepie.fetchRequest()
         var recepie : [Recepie] = []
         do{
@@ -114,24 +116,27 @@ class DetailRecepis: UIViewController  {
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         }else{
-    
-        
-        
-            if let tool = moreTools.text, let grain = tfGrain.text , let tempr = tFTemp.text, let prepation = tVPrepare.text, let roastery = tfRoastery.text, let ratio = tfRatio.text  {
-            CreateData(tool: tool, grain: grain, roastery: roastery, prepartion: prepation, temp: tempr ,ratio: ratio)
-            recepie = getData()
-          
             
-        }
-        dismiss(animated: true)
+            
+            
+            if let tool = moreTools.text, let grain = tfGrain.text , let tempr = tFTemp.text, let prepation = tVPrepare.text, let roastery = tfRoastery.text, let ratio = tfRatio.text  {
+                CreateData(tool: tool, grain: grain, roastery: roastery, prepartion: prepation, temp: tempr ,ratio: ratio)
+                recepie = getData()
+            }
+            
             self.delegate?.didFinishUpdates(finished: true)
+            dismiss(animated: true){
+                
+                
+            }
         }
     }
-  
+    
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-       
+        
     }
     
     @objc func dismissTap() {
@@ -144,75 +149,75 @@ class DetailRecepis: UIViewController  {
     
     @objc func keyboardWillShow(notifcation:NSNotification){
         
-               if let scrollView = backgroundSV, let userInfo = notifcation.userInfo, let endValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey], let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey], let curveValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] {
-                   
-                   // Transform the keyboard's frame into our view's coordinate system
-                   let endRect = view.convert((endValue as AnyObject).cgRectValue, from: view.window)
-                   
-                   // Find out how much the keyboard overlaps our scroll view
-                   let keyboardOverlap = scrollView.frame.maxY - endRect.origin.y
-                   
-                   // Set the scroll view's content inset & scroll indicator to avoid the keyboard
-                   scrollView.contentInset.bottom = keyboardOverlap
-//                   scrollView.scrollIndicatorInsets.bottom = keyboardOverlap
-                   
-                   let duration = (durationValue as AnyObject).doubleValue
-                   let options = UIView.AnimationOptions(rawValue: UInt((curveValue as AnyObject).integerValue << 16))
-                   UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
-                       self.view.layoutIfNeeded()
-                   }, completion: nil)
-               }
+        if let scrollView = backgroundSV, let userInfo = notifcation.userInfo, let endValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey], let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey], let curveValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] {
+            
+            // Transform the keyboard's frame into our view's coordinate system
+            let endRect = view.convert((endValue as AnyObject).cgRectValue, from: view.window)
+            
+            // Find out how much the keyboard overlaps our scroll view
+            let keyboardOverlap = scrollView.frame.maxY - endRect.origin.y
+            
+            // Set the scroll view's content inset & scroll indicator to avoid the keyboard
+            scrollView.contentInset.bottom = keyboardOverlap
+            //                   scrollView.scrollIndicatorInsets.bottom = keyboardOverlap
+            
+            let duration = (durationValue as AnyObject).doubleValue
+            let options = UIView.AnimationOptions(rawValue: UInt((curveValue as AnyObject).integerValue << 16))
+            UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
     }
     
-
+    
     
     @IBAction func v60Btn(_ sender: UIButton) {
-//        let empety = UIColor.systemBrown
-//        let full = UIColor.systemBrown
-//        if v60Bottun.backgroundColor == UIColor(named: "Color-2") {
-//            v60Bottun.backgroundColor = full
-//            self.isv60 = true
-            moreTools.text = "V60"
-//        }else{
-//            v60Bottun.backgroundColor = empety
-//            self.isv60 = false
-//
-//        }
+        //        let empety = UIColor.systemBrown
+        //        let full = UIColor.systemBrown
+        //        if v60Bottun.backgroundColor == UIColor(named: "Color-2") {
+        //            v60Bottun.backgroundColor = full
+        //            self.isv60 = true
+        moreTools.text = "V60"
+        //        }else{
+        //            v60Bottun.backgroundColor = empety
+        //            self.isv60 = false
+        //
+        //        }
     }
     
     
     @IBAction func chimixBtn(_ sender: Any) {
-//        let empety = UIColor(named:"Color-2" )
-//        let full = UIColor.systemBrown
-//        if chimixBottun.backgroundColor == UIColor(named: "Color-2") {
-//            chimixBottun.backgroundColor = full
-//            self.isChimix = true
-            moreTools.text = "Chimix"
-//        }else{
-//            chimixBottun.backgroundColor = empety
-//            self.isChimix = false
-//
-//        }
+        //        let empety = UIColor(named:"Color-2" )
+        //        let full = UIColor.systemBrown
+        //        if chimixBottun.backgroundColor == UIColor(named: "Color-2") {
+        //            chimixBottun.backgroundColor = full
+        //            self.isChimix = true
+        moreTools.text = "Chimix"
+        //        }else{
+        //            chimixBottun.backgroundColor = empety
+        //            self.isChimix = false
+        //
+        //        }
     }
     
     
     @IBAction func calitaBtn(_ sender: Any) {
-//        let empety = UIColor(named:"Color-2" )
-//        let full = UIColor.systemBrown
-//        if calitaBottun.backgroundColor == UIColor(named: "Color-2") {
-//            calitaBottun.backgroundColor = full
-//            self.isCalita = true
-            moreTools.text = "Kalita"
-//        }else{
-//            calitaBottun.backgroundColor = empety
-//            self.isCalita = false
-//
-//        }
+        //        let empety = UIColor(named:"Color-2" )
+        //        let full = UIColor.systemBrown
+        //        if calitaBottun.backgroundColor == UIColor(named: "Color-2") {
+        //            calitaBottun.backgroundColor = full
+        //            self.isCalita = true
+        moreTools.text = "Kalita"
+        //        }else{
+        //            calitaBottun.backgroundColor = empety
+        //            self.isCalita = false
+        //
+        //        }
     }
     
     
     
     
-
-
+    
+    
 }

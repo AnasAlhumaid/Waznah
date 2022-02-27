@@ -18,6 +18,15 @@ class PDFGenerate : UIViewController{
     @IBOutlet var preparetionLabel: UILabel!
     @IBOutlet var ratioLabel: UILabel!
     @IBOutlet var ShareBottun: UIButton!
+    @IBOutlet var imageView: UIImageView!
+    
+    @IBOutlet var ratioTitel: UILabel!
+    @IBOutlet var prepareTitel: UILabel!
+    @IBOutlet var roasteryTitel: UILabel!
+    @IBOutlet var tempTitel: UILabel!
+    @IBOutlet var grainTitel: UILabel!
+    @IBOutlet var toolTitel: UILabel!
+    
     var selectedTool : String!
     var selectedGrain : String!
     var selectedTemp : String!
@@ -34,6 +43,13 @@ class PDFGenerate : UIViewController{
         preparetionLabel.text = selectedPrepare
         ratioLabel.text = selectedRatio
         preparetionLabel.sizeToFit()
+        imageView.image = UIImage(named: "pdfPrevew".localized)
+        toolTitel.text = "Tool".localized
+        grainTitel.text = "Grain".localized
+        tempTitel.text = "Temperature".localized
+        roasteryTitel.text = "Roastery".localized
+        prepareTitel.text = "Prepare".localized
+        ratioTitel.text = "Ratio".localized
         
        
         
