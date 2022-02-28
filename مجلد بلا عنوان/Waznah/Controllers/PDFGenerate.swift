@@ -36,6 +36,7 @@ class PDFGenerate : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         toolLabel.text = selectedTool
         grainLabel.text = selectedGrain
         tempLabel.text = selectedTemp
@@ -45,13 +46,11 @@ class PDFGenerate : UIViewController{
         preparetionLabel.sizeToFit()
         imageView.image = UIImage(named: "pdfPrevew".localized)
         toolTitel.text = "Tool".localized
-        grainTitel.text = "Grain".localized
+        grainTitel.text = "Grind".localized
         tempTitel.text = "Temperature".localized
         roasteryTitel.text = "Roastery".localized
         prepareTitel.text = "Prepare".localized
         ratioTitel.text = "Ratio".localized
-        
-       
         
     }
     

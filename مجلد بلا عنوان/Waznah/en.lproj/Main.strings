@@ -62,11 +62,11 @@
 /* Class = "UILabel"; text = "Roastery :"; ObjectID = "ahS-aE-aKo"; */
 "ahS-aE-aKo.text" = "Roastery :";
 
-/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "bXM-gY-Dj9"; */
-"bXM-gY-Dj9.normalTitle" = "Reset";
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "bXM-gY-Dj9"; */
+"bXM-gY-Dj9.normalTitle" = "RESET";
 
 /* Class = "UITabBarItem"; title = "Recepis"; ObjectID = "e6d-SC-gqR"; */
-"e6d-SC-gqR.title" = "الوصفات";
+"e6d-SC-gqR.title" = "Recepis";
 
 /* Class = "UITextField"; placeholder = "ml."; ObjectID = "gC4-bU-3Tg"; */
 "gC4-bU-3Tg.placeholder" = "ml.";
@@ -87,7 +87,7 @@
 "mss-bB-m2w.text" = "1 /";
 
 /* Class = "UITabBarItem"; title = "Ratio"; ObjectID = "oKt-Fm-FQX"; */
-"oKt-Fm-FQX.title" = "المعدل";
+"oKt-Fm-FQX.title" = "Ratio";
 
 /* Class = "UILabel"; text = "Timer"; ObjectID = "oNZ-fd-bGQ"; */
 "oNZ-fd-bGQ.text" = "Timer";
@@ -125,8 +125,8 @@
 /* Class = "UILabel"; text = "Prepare :"; ObjectID = "zgn-rt-h6M"; */
 "zgn-rt-h6M.text" = "Prepare :";
 
-/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "zmg-gS-H9C"; */
-"zmg-gS-H9C.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+/* Class = "UITextView"; text = ".............."; ObjectID = "zmg-gS-H9C"; */
+"zmg-gS-H9C.text" = "..............";
 
-/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "znB-re-l3p"; */
-"znB-re-l3p.normalTitle" = "Start";
+/* Class = "UIButton"; normalTitle = "START"; ObjectID = "znB-re-l3p"; */
+"znB-re-l3p.normalTitle" = "START";

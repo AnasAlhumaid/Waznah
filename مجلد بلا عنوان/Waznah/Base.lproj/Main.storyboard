@@ -793,7 +793,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Mek-Jb-iPE">
                                                         <rect key="frame" x="0.0" y="0.0" width="200" height="20.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     Preparation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNq-vh-n7w">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     Preparation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNq-vh-n7w">
                                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="20.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="wnY-7w-gSr"/>
@@ -803,15 +803,17 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="iNq-vh-n7w" firstAttribute="leading" secondItem="Mek-Jb-iPE" secondAttribute="leading" id="51J-YK-s3P"/>
+                                                        </constraints>
                                                     </stackView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zmg-gS-H9C">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text=".............." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zmg-gS-H9C">
                                                         <rect key="frame" x="0.0" y="28.5" width="240" height="115"/>
                                                         <color key="backgroundColor" name="Color-1"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="240" id="LJa-1E-5v0"/>
                                                             <constraint firstAttribute="height" constant="115" id="k5G-tJ-Ful"/>
                                                         </constraints>
-                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" systemColor="labelColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -832,6 +834,7 @@
                                                                 <rect key="frame" x="0.0" y="28.5" width="148" height="33.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="148" id="Hin-cj-vtO"/>
+                                                                    <constraint firstAttribute="height" constant="33.5" id="rhj-pM-jby"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -841,6 +844,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="213.66999999999999" id="2Xa-gn-gJR"/>
+                                                    <constraint firstItem="zmg-gS-H9C" firstAttribute="top" secondItem="X5X-86-vDk" secondAttribute="top" constant="28.5" id="fKK-2R-rxj"/>
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Ratio :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwt-2N-E2V">
@@ -901,12 +905,18 @@
                         <outlet property="backgroundSV" destination="Uom-Zs-nC7" id="AX1-ae-ixH"/>
                         <outlet property="calitaBottun" destination="1Z9-D1-Hjh" id="x1i-K6-4ND"/>
                         <outlet property="chimixBottun" destination="hHH-gr-Imo" id="Kj7-1J-O4m"/>
+                        <outlet property="grainTitel" destination="jJ3-Wf-mHN" id="zmS-bU-wfV"/>
                         <outlet property="moreTools" destination="MP4-Sq-2MA" id="YQq-g8-QgM"/>
+                        <outlet property="prepareTitel" destination="iNq-vh-n7w" id="Vu4-eN-EUV"/>
+                        <outlet property="ratioTitel" destination="pwt-2N-E2V" id="xGy-LG-EOz"/>
+                        <outlet property="roasteryTitel" destination="45a-uS-hzj" id="p3b-B8-upg"/>
                         <outlet property="tFTemp" destination="sUN-3h-BTd" id="w2R-Rd-x9X"/>
                         <outlet property="tVPrepare" destination="zmg-gS-H9C" id="dBv-wz-vzb"/>
+                        <outlet property="tempTitel" destination="GMk-JV-eLj" id="p1p-2q-JA6"/>
                         <outlet property="tfGrain" destination="SKp-s7-7Ef" id="uD1-ab-BfL"/>
                         <outlet property="tfRatio" destination="zRT-ke-Nc0" id="1kf-dr-evU"/>
                         <outlet property="tfRoastery" destination="JbJ-C3-JzE" id="TwP-Vs-sSf"/>
+                        <outlet property="toolTitel" destination="hdv-9f-tsf" id="V58-Sg-tD4"/>
                         <outlet property="v60Bottun" destination="Yzz-qb-QGo" id="Izn-b0-jnS"/>
                     </connections>
                 </viewController>

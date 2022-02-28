@@ -61,6 +61,8 @@ class RecepisController : UIViewController, UpdateDelegate, UITabBarControllerDe
                                              alpha: 1)
         addRecepis.tintColor = UIColor.white
         addRecepis.layer.cornerRadius = 15
+        addRecepis.setTitle("Add".localized,
+                            for: .normal)
         
         let updates = RecepisController()
         updates.delegate = self
@@ -71,12 +73,9 @@ class RecepisController : UIViewController, UpdateDelegate, UITabBarControllerDe
         }
         
         self.tabBarController?.delegate = self
-        
+
     }
-    
-    
-    
-    
+  
     func didFinishUpdates(finished: Bool) {
         collictionView.reloadData()
         guard finished else {
@@ -86,42 +85,33 @@ class RecepisController : UIViewController, UpdateDelegate, UITabBarControllerDe
         
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("viewddddddddfffffffddddd")
-      
-       
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         DispatchQueue.main.async { [self] in
             print(recepie.count)
             collictionView.reloadData()
         }
-        print("viewddddddddfffffffdd7777777ddd")
-        
         self.tabBarController?.delegate = self
-      
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         print("llllllllrrruuruurhrh")
     }
-    
-    
-  
-    
-    
+    //add new Recipe
     @IBAction func addBtn(_ sender: Any) {
-        
-
+    
         performSegue(withIdentifier: "addRecipes", sender: self)
     }
-    
+    // get data from CoreData
     func getData()->[Recepie]{
         
         let request: NSFetchRequest<Recepie> = Recepie.fetchRequest()
@@ -134,14 +124,14 @@ class RecepisController : UIViewController, UpdateDelegate, UITabBarControllerDe
         }
         return recepie
     }
-    
+    // delet from CoreData
     func delete(obj:Recepie){
-        
         
         context.delete(obj)
         saveData()
 
     }
+    
     func saveData(){
         // save to DB
         do {// save function throws error so we have to use try catch
@@ -151,9 +141,15 @@ class RecepisController : UIViewController, UpdateDelegate, UITabBarControllerDe
             print("Unable to save")
         }
     }
+    //dismiss controllers
+    @objc func dismissTap() {
+        self.dismiss(animated: true,
+                     completion: nil)
+    }
     
     
 }
+// MARK: Colliction for showing Recipe
 
 extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -162,18 +158,20 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? RecepisCell else {return UICollectionViewCell()}
-        
+        //cell data
         cell.typeCoffee.text = recepie[indexPath.row].roastery
         cell.typeDrip.text = recepie[indexPath.row].tools
         cell.typeRostary.text = recepie[indexPath.row].grain
+        //cell design
         cell.cellView.layer.shadowColor = UIColor.gray.cgColor
-        cell.cellView.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        cell.cellView.layer.shadowOffset = CGSize(width: 2.0,
+                                                  height: 2.0)
         cell.cellView.layer.shadowOpacity = 2.0
         cell.cellView.layer.masksToBounds = false
         cell.cellView.layer.cornerRadius = 8.0
         cell.imagecell.layer.cornerRadius = 8.0
         cell.secondView.layer.cornerRadius = 8.0
-        
+        // for cell icon
         switch cell.typeDrip.text {
         case "V60" :
             cell.coffeeIcon.image = UIImage(named: "v60")
@@ -182,19 +180,22 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
         case "Chimix" :
             cell.coffeeIcon.image = UIImage(named: "chimix")
         default :
-            "none"
+            ""
         }
-        
-        
         return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Choose", message: "what you will do ", preferredStyle: .actionSheet)
-        let show = UIAlertAction(title: "Preview", style: .default) { alertt in
-            let destination = self.storyboard?.instantiateViewController(withIdentifier: "PDFGenerate") as? PDFGenerate
+        
+        //alert for Choosing
+        let alert = UIAlertController(title: "Choose".localized,
+                                      message: "what you will do ".localized, preferredStyle: .actionSheet)
+        
+        let show = UIAlertAction(title: "Preview".localized,
+                                 style: .default) { alertt in
             
+            // passing data from colliction to preview
+            let destination = self.storyboard?.instantiateViewController(withIdentifier: "PDFGenerate") as? PDFGenerate
             destination?.selectedTool = self.recepie[indexPath.row].tools
             destination?.selectedTemp = self.recepie[indexPath.row].temp
             destination?.selectedGrain = self.recepie[indexPath.row].grain
@@ -202,35 +203,43 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
             destination?.selectedPrepare = self.recepie[indexPath.row].prepare
             destination?.selectedRatio = self.recepie[indexPath.row].ratio
             
-            self.navigationController?.pushViewController(destination!, animated: true)
-            self.present(destination!, animated: true, completion: nil)
+            self.navigationController?.pushViewController(destination!,
+                                                          animated: true)
+            self.present(destination!,
+                         animated: true,
+                         completion: nil)
             
         }
         
-        let delete = UIAlertAction(title: "Delete", style: .destructive) { alll in
+        let delete = UIAlertAction(title: "Delete".localized,
+                                   style: .destructive) { alll in
             if let selectedItem = collectionView.indexPathsForSelectedItems {
                 let items = selectedItem.map{$0.item}.sorted().reversed()
                 for item in items {
                     
                     self.delete(obj: self.recepie[indexPath.row])
                     self.recepie.remove(at: item)
-                    
-                    
+            
                 }
+                
                 collectionView.deleteItems(at: selectedItem)
                 
             }
-            
-           
-            
         }
+        
+        let cancel = UIAlertAction(title: "Cancel".localized,
+                                   style: .cancel,
+                                   handler: nil)
+        
+        alert.addAction(cancel)
         alert.addAction(show)
         alert.addAction(delete)
         
-        present(alert, animated: true, completion: nil)
+     present(alert,
+             animated: true,
+             completion: nil)
         
         }
-        
     }
     
 

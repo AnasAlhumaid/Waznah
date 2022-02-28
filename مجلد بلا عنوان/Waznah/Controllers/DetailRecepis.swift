@@ -23,6 +23,12 @@ class DetailRecepis: UIViewController  {
     @IBOutlet var addBottun: UIButton!
     @IBOutlet var tfRatio: UITextField!
     
+    @IBOutlet var toolTitel: UILabel!
+    @IBOutlet var grainTitel: UILabel!
+    @IBOutlet var tempTitel: UILabel!
+    @IBOutlet var prepareTitel: UILabel!
+    @IBOutlet var roasteryTitel: UILabel!
+    @IBOutlet var ratioTitel: UILabel!
     
     
     
@@ -59,6 +65,20 @@ class DetailRecepis: UIViewController  {
         chimixBottun.layer.borderColor = CGColor(srgbRed: 0.184, green: 0.188, blue: 0.169, alpha: 1)
         calitaBottun.layer.borderColor = CGColor(srgbRed: 0.184, green: 0.188, blue: 0.169, alpha: 1)
         v60Bottun.layer.borderColor = CGColor(srgbRed: 0.184, green: 0.188, blue: 0.169, alpha: 1)
+        toolTitel.text = "   Tool".localized
+        grainTitel.text = "   Grain".localized
+        tempTitel.text = "   Temperature".localized
+        roasteryTitel.text = "   Roastery".localized
+        ratioTitel.text = "   Ratio".localized
+        prepareTitel.text = "   Preparation".localized
+        addBottun.setTitle("Add New".localized, for: .normal)
+        moreTools.placeholder = "Another".localized
+        tfGrain.placeholder = "   Grind".localized
+        tFTemp.placeholder = "   Select C".localized
+        tfRatio.placeholder = "   Ratio".localized
+        tfRoastery.placeholder = "   Roastery".localized
+        
+        
         
         
         
