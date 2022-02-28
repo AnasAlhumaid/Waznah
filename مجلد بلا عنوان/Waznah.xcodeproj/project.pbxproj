@@ -10,7 +10,6 @@
 		D8335D4A27C62A5B002998D2 /* DetailRecepis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8335D4927C62A5A002998D2 /* DetailRecepis.swift */; };
 		D845613627C5FD34007CD9CE /* RecepisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D845613527C5FD34007CD9CE /* RecepisController.swift */; };
 		D84D172A27C9BE22008CBE50 /* PDFGenerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D172927C9BE22008CBE50 /* PDFGenerate.swift */; };
-		D8634C0127C1472D00DC2E2A /* Tableview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8634C0027C1472D00DC2E2A /* Tableview.swift */; };
 		D86D471627C6138C00EE85DD /* RecepisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D471527C6138C00EE85DD /* RecepisCell.swift */; };
 		D8A46EF0279879B20074E62E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A46EEF279879B20074E62E /* AppDelegate.swift */; };
 		D8A46EF2279879B20074E62E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A46EF1279879B20074E62E /* SceneDelegate.swift */; };
@@ -28,7 +27,6 @@
 		D8335D4927C62A5A002998D2 /* DetailRecepis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecepis.swift; sourceTree = "<group>"; };
 		D845613527C5FD34007CD9CE /* RecepisController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepisController.swift; sourceTree = "<group>"; };
 		D84D172927C9BE22008CBE50 /* PDFGenerate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGenerate.swift; sourceTree = "<group>"; };
-		D8634C0027C1472D00DC2E2A /* Tableview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tableview.swift; sourceTree = "<group>"; };
 		D86D471527C6138C00EE85DD /* RecepisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepisCell.swift; sourceTree = "<group>"; };
 		D8A46EEC279879B20074E62E /* Waznah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waznah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A46EEF279879B20074E62E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +43,7 @@
 		D8B08DC027CBDDFB007F4769 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		D8B08DC327CBE016007F4769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D8B08DC527CBE018007F4769 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D8B08DCA27CD0415007F4769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		D8E98CE227B72013008DF014 /* Waznah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waznah.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,24 +78,47 @@
 			isa = PBXGroup;
 			children = (
 				D8E98CE227B72013008DF014 /* Waznah.entitlements */,
+				D8B08DC827CCFF5B007F4769 /* Cells */,
+				D8B08DC727CCFF4A007F4769 /* Models */,
+				D8B08DC627CCFF2B007F4769 /* Controllers */,
 				D8A46EEF279879B20074E62E /* AppDelegate.swift */,
 				D8A46EF1279879B20074E62E /* SceneDelegate.swift */,
-				D8B08DBE27CBDD90007F4769 /* ReadyRecipe.swift */,
-				D8A46EF3279879B20074E62E /* ViewController.swift */,
 				D8A46EF5279879B20074E62E /* Main.storyboard */,
 				D8A46EFB279879B80074E62E /* Assets.xcassets */,
 				D8A46EFD279879B80074E62E /* LaunchScreen.storyboard */,
 				D8A46F00279879B80074E62E /* Info.plist */,
-				D8634C0027C1472D00DC2E2A /* Tableview.swift */,
-				D845613527C5FD34007CD9CE /* RecepisController.swift */,
-				D86D471527C6138C00EE85DD /* RecepisCell.swift */,
-				D8335D4927C62A5A002998D2 /* DetailRecepis.swift */,
 				D8A46EF8279879B20074E62E /* Waznah.xcdatamodeld */,
-				D84D172927C9BE22008CBE50 /* PDFGenerate.swift */,
 				D8B08DC427CBE016007F4769 /* Localizable.strings */,
-				D8B08DC027CBDDFB007F4769 /* Extentions.swift */,
 			);
 			path = Waznah;
+			sourceTree = "<group>";
+		};
+		D8B08DC627CCFF2B007F4769 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D84D172927C9BE22008CBE50 /* PDFGenerate.swift */,
+				D8A46EF3279879B20074E62E /* ViewController.swift */,
+				D8B08DBE27CBDD90007F4769 /* ReadyRecipe.swift */,
+				D845613527C5FD34007CD9CE /* RecepisController.swift */,
+				D8335D4927C62A5A002998D2 /* DetailRecepis.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D8B08DC727CCFF4A007F4769 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D8B08DC027CBDDFB007F4769 /* Extentions.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D8B08DC827CCFF5B007F4769 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D86D471527C6138C00EE85DD /* RecepisCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,7 +205,6 @@
 				D8B08DBF27CBDD91007F4769 /* ReadyRecipe.swift in Sources */,
 				D8335D4A27C62A5B002998D2 /* DetailRecepis.swift in Sources */,
 				D8A46EF2279879B20074E62E /* SceneDelegate.swift in Sources */,
-				D8634C0127C1472D00DC2E2A /* Tableview.swift in Sources */,
 				D86D471627C6138C00EE85DD /* RecepisCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,6 +217,7 @@
 			children = (
 				D8A46EF6279879B20074E62E /* Base */,
 				D8B08DBA27CBD668007F4769 /* ar */,
+				D8B08DCA27CD0415007F4769 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

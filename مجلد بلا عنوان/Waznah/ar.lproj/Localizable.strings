@@ -20,11 +20,27 @@
 "Puase" = "اوقف";
 "Recipes" = "الوصفات:";
 "Tool" = "آله التقطير:";
-"Grain" = "الطحنة:";
+"Grind" = "الطحنة:";
 "Temperature" = "درجة الحرارة:";
 "Roastery" ="المحمصة:";
 "Prepare" = "التحضير :";
 "Ratio" = "المعدل:";
+"   Tool" = "   آله التقطير:";
+"   Grind" = "   الطحنة:";
+"   Temperature" = "   درجة الحرارة:";
+"   Roastery" ="   المحمصة:";
+"   Preparation" = "    التحضير :";
+"   Ratio" = "    المعدل:";
+"Another" = "أخرى";
+"   Select C" = "   الحرارة C";
+"Add New" = "أضف جديد";
+"Delete" = "حذف";
+"Preview" = "معاينه";
+"Cancel" = "إلغاء";
+"Choose" = "إختر";
+"what you will do " = "اختر التالي";
+"Add" = "أضف";
+
 
 
 
