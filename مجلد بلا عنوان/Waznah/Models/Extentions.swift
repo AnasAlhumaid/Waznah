@@ -14,3 +14,16 @@ extension String{
       }
     
 }
+
+/*
+ let currentLanguage = Locale.current.languageCode
+ 
+ let alert = UIAlertController(title: "Warning".localized, message: "The application will be restarted".localized, preferredStyle: .actionSheet)
+ alert.addAction(UIAlertAction(title: "Restart".localized, style: .default) { restart in
+     let newLanguage = currentLanguage == "en" ? "ar" : "en"
+     UserDefaults.standard.setValue([newLanguage], forKey: "AppleLanguages")
+     exit(0)
+ })
+ alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+ present(alert, animated: true)
+ */
