@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         resetBtn.setTitle("RESET".localized, for: .normal)
         timerTitel.text = "Timer".localized
         recipesBtn.setTitle("Recipes".localized, for: .normal)
+        ratioTF.keyboardType = .decimalPad
         
         
       
@@ -66,6 +67,7 @@ class ViewController: UIViewController {
         alert.addTextField { textInputMode in
             textInputMode.placeholder = "gr."
             textFMl = textInputMode
+            textInputMode.keyboardType = .decimalPad
         }
         let ok = UIAlertAction(title: "Ok".localized, style: .default) { alet in
             self.mlTextF.text = textFMl.text
@@ -90,6 +92,7 @@ class ViewController: UIViewController {
         alert.addTextField { textInputMode in
             textInputMode.placeholder = "ml."
             textFMl = textInputMode
+            textInputMode.keyboardType = .decimalPad
         }
         
         let ok = UIAlertAction(title: "Ok".localized, style: .default) { alet in
