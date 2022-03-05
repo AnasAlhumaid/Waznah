@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class DetailRecepis: UIViewController  {
+class DetailRecepis: UIViewController {
     
     
     @IBOutlet var imageBackgraund: UIImageView!
@@ -29,44 +29,33 @@ class DetailRecepis: UIViewController  {
     @IBOutlet var prepareTitel: UILabel!
     @IBOutlet var roasteryTitel: UILabel!
     @IBOutlet var ratioTitel: UILabel!
-    
-    
+    @IBOutlet var backgroundSV: UIScrollView!
     
     var isv60 = false
     var isChimix = false
     var isCalita = false
     var delegate: UpdateDelegate?
     
-    @IBOutlet var backgroundSV: UIScrollView!
-    
-    
     var recepie : [Recepie] = []
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        textAndStyle()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissTap))
         view.addGestureRecognizer(tap)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notifcation:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        v60Bottun.backgroundColor = UIColor.systemBrown
-        v60Bottun.layer.cornerRadius = 10
-        chimixBottun.backgroundColor = UIColor.systemBrown
-        chimixBottun.layer.cornerRadius = 10
-        calitaBottun.backgroundColor = UIColor.systemBrown
-        calitaBottun.layer.cornerRadius = 10
-        chimixBottun.layer.borderColor = CGColor(srgbRed: 0.184, green: 0.188, blue: 0.169, alpha: 1)
-        calitaBottun.layer.borderColor = CGColor(srgbRed: 0.184, green: 0.188, blue: 0.169, alpha: 1)
-        v60Bottun.layer.borderColor = CGColor(srgbRed: 0.184, green: 0.188, blue: 0.169, alpha: 1)
+        
+    }
+    func textAndStyle(){
+        
+        //for localizatios
         toolTitel.text = "   Tool".localized
-        grainTitel.text = "   Grain".localized
+        grainTitel.text = "   Grind".localized
         tempTitel.text = "   Temperature".localized
         roasteryTitel.text = "   Roastery".localized
         ratioTitel.text = "   Ratio".localized
@@ -78,16 +67,29 @@ class DetailRecepis: UIViewController  {
         tfRatio.placeholder = "   Ratio".localized
         tfRoastery.placeholder = "   Roastery".localized
         
+        //style View
+        v60Bottun.backgroundColor = UIColor.systemBrown
+        v60Bottun.layer.cornerRadius = 10
+        chimixBottun.backgroundColor = UIColor.systemBrown
+        chimixBottun.layer.cornerRadius = 10
+        calitaBottun.backgroundColor = UIColor.systemBrown
+        calitaBottun.layer.cornerRadius = 10
+        chimixBottun.layer.borderColor = CGColor(srgbRed: 0.184,
+                                                 green: 0.188,
+                                                 blue: 0.169,
+                                                 alpha: 1)
         
+        calitaBottun.layer.borderColor = CGColor(srgbRed: 0.184,
+                                                 green: 0.188,
+                                                 blue: 0.169,
+                                                 alpha: 1)
         
-        
-        
-        
-        
+        v60Bottun.layer.borderColor = CGColor(srgbRed: 0.184,
+                                              green: 0.188,
+                                              blue: 0.169,
+                                              alpha: 1)
         
     }
-    
-    
     
     
     func CreateData(tool: String,grain: String,roastery: String, prepartion: String,temp:String,ratio:String){
@@ -101,6 +103,7 @@ class DetailRecepis: UIViewController  {
         
         saveData()
     }
+    
     func saveData(){
         // save to DB
         do {// save function throws error so we have to use try catch
@@ -110,6 +113,7 @@ class DetailRecepis: UIViewController  {
             print("Unable to save")
         }
     }
+    
     func getData()->[Recepie]{
         
         let request: NSFetchRequest<Recepie> = Recepie.fetchRequest()
@@ -131,10 +135,16 @@ class DetailRecepis: UIViewController  {
             tVPrepare.text.isEmpty == true ||
             tFTemp.text?.isEmpty == true || tfRatio.text?.isEmpty == true {
             
-            let alert = UIAlertController(title: "thire is wrong ", message: "Empety Fields ", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            let alert = UIAlertController(title: "Thire is wrong ".localized,
+                                          message: "Empety Fields ".localized,
+                                          preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "Ok".localized,
+                                   style: .cancel,
+                                   handler: nil)
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
+            
         }else{
             
             
@@ -143,12 +153,11 @@ class DetailRecepis: UIViewController  {
                 CreateData(tool: tool, grain: grain, roastery: roastery, prepartion: prepation, temp: tempr ,ratio: ratio)
                 recepie = getData()
             }
-            
+        
             self.delegate?.didFinishUpdates(finished: true)
-            dismiss(animated: true){
+            dismiss(animated: true)
                 
-                
-            }
+            
         }
     }
     

@@ -45,6 +45,13 @@ class PDFGenerate : UIViewController{
         ratioLabel.text = selectedRatio
         preparetionLabel.sizeToFit()
         imageView.image = UIImage(named: "pdfPrevew".localized)
+        
+        //func for loclized
+        loclizablefun()
+    }
+    
+    func loclizablefun(){
+        
         toolTitel.text = "Tool".localized
         grainTitel.text = "Grind".localized
         tempTitel.text = "Temperature".localized
@@ -54,19 +61,21 @@ class PDFGenerate : UIViewController{
         
     }
     
-    
-    
     @IBAction func ShareBtn(_ sender: Any) {
         
         let screenShot = self.view.takeScreenshot()
         let imageShare = [ screenShot ]
         let activityViewController = UIActivityViewController(activityItems: imageShare ,
                                                               applicationActivities: nil)
+        
         activityViewController.popoverPresentationController?.sourceView = self.view
-        self.present(activityViewController, animated: true, completion: nil)
+        
+        self.present(activityViewController,
+                     animated: true,
+                     completion: nil)
     }
-
 }
+
 
 extension UIView {
     
@@ -78,7 +87,9 @@ extension UIView {
         UIGraphicsBeginImageContextWithOptions(bonds.size, false, scale)
         if let _ = UIGraphicsGetCurrentContext() {
             
-            self.drawHierarchy(in: bonds, afterScreenUpdates: true)
+            self.drawHierarchy(
+                in: bonds,
+                afterScreenUpdates: true)
             
             let screenshot = UIGraphicsGetImageFromCurrentImageContext()!
             
@@ -89,5 +100,5 @@ extension UIView {
         
         return UIImage()
     }
-
+    
 }

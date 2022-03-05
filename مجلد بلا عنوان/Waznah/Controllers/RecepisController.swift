@@ -10,48 +10,36 @@ import UIKit
 import CoreData
 
 
+
 protocol UpdateDelegate {
     func didFinishUpdates(finished: Bool)
 }
 
-class RecepisController : UIViewController, UpdateDelegate, UITabBarControllerDelegate {
-
+class RecepisController : UIViewController, UITabBarControllerDelegate, UpdateDelegate {
+   
     
     
     @IBOutlet var backgroungImage: UIImageView!
     @IBOutlet var cardRectangle: UIImageView!
     @IBOutlet var collictionView: UICollectionView!
     @IBOutlet var addRecepis: UIButton!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var recepie : [Recepie] = []
-    var delegate: UpdateDelegate?
+    var delegate =  DetailRecepis()
     var selectedTool : String?
     var selectedGrain : String?
     var selectedRoastery : String?
     var selectedTemp : String?
     var selectedPrepare : String?
     var selectedRatio : String?
-    var handler: (()->(Void))?
+   
     
-    
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        backgroungImage.translatesAutoresizingMaskIntoConstraints = false
-        backgroungImage.heightAnchor.constraint(equalTo: view.heightAnchor,
-                                                multiplier: 0.5).isActive = true
-        backgroungImage.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        backgroungImage.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        backgroungImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        cardRectangle.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        cardRectangle.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        cardRectangle.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
+        constraintView()
         collictionView.delegate = self
         collictionView.dataSource = self
         
@@ -64,53 +52,63 @@ class RecepisController : UIViewController, UpdateDelegate, UITabBarControllerDe
         addRecepis.setTitle("Add".localized,
                             for: .normal)
         
-        let updates = RecepisController()
-        updates.delegate = self
-        
         DispatchQueue.main.async { [self] in
+            
             recepie = getData()
             
         }
         
-        self.tabBarController?.delegate = self
-
+        delegate.delegate = self
+        
     }
-  
+    
+    func constraintView(){
+        
+        backgroungImage.translatesAutoresizingMaskIntoConstraints = false
+        backgroungImage.heightAnchor.constraint(equalTo: view.heightAnchor,
+                                                multiplier: 0.5).isActive = true
+        
+        backgroungImage.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        backgroungImage.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        backgroungImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        cardRectangle.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        cardRectangle.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        cardRectangle.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+    }
+    
     func didFinishUpdates(finished: Bool) {
-        collictionView.reloadData()
-        guard finished else {
-            print("not finish")
-            return
+        DispatchQueue.main.async {
+            self.collictionView.reloadData()
         }
-        
-        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        DispatchQueue.main.async { [self] in
+            recepie = getData()
+            collictionView.reloadData()
+        }
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        DispatchQueue.main.async { [self] in
-            print(recepie.count)
-            collictionView.reloadData()
-        }
         self.tabBarController?.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print("llllllllrrruuruurhrh")
+        
     }
     //add new Recipe
     @IBAction func addBtn(_ sender: Any) {
-    
+        
         performSegue(withIdentifier: "addRecipes", sender: self)
     }
+    
     // get data from CoreData
     func getData()->[Recepie]{
         
@@ -124,12 +122,13 @@ class RecepisController : UIViewController, UpdateDelegate, UITabBarControllerDe
         }
         return recepie
     }
+    
     // delet from CoreData
     func delete(obj:Recepie){
         
         context.delete(obj)
         saveData()
-
+        
     }
     
     func saveData(){
@@ -157,11 +156,14 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? RecepisCell else {return UICollectionViewCell()}
+        
         //cell data
         cell.typeCoffee.text = recepie[indexPath.row].roastery
         cell.typeDrip.text = recepie[indexPath.row].tools
         cell.typeRostary.text = recepie[indexPath.row].grain
+        
         //cell design
         cell.cellView.layer.shadowColor = UIColor.gray.cgColor
         cell.cellView.layer.shadowOffset = CGSize(width: 2.0,
@@ -171,6 +173,7 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
         cell.cellView.layer.cornerRadius = 8.0
         cell.imagecell.layer.cornerRadius = 8.0
         cell.secondView.layer.cornerRadius = 8.0
+        
         // for cell icon
         switch cell.typeDrip.text {
         case "V60" :
@@ -219,7 +222,7 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
                     
                     self.delete(obj: self.recepie[indexPath.row])
                     self.recepie.remove(at: item)
-            
+                    
                 }
                 
                 collectionView.deleteItems(at: selectedItem)
@@ -235,27 +238,27 @@ extension RecepisController : UICollectionViewDelegate,UICollectionViewDataSourc
         alert.addAction(show)
         alert.addAction(delete)
         
-     present(alert,
-             animated: true,
-             completion: nil)
+        present(alert,
+                animated: true,
+                completion: nil)
         
-        }
     }
-    
+}
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -13,11 +13,9 @@ class ReadyRecipe: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         imageView.image = UIImage(named: "recipes4".localized)
         
     }
     
-
-
 }

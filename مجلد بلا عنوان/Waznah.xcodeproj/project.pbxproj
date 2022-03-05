@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8222D1C27D236690032762F /* BrewSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8222D1B27D236690032762F /* BrewSteps.swift */; };
+		D8222D1E27D236EE0032762F /* TimerCyrcle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8222D1D27D236EE0032762F /* TimerCyrcle.swift */; };
 		D8335D4A27C62A5B002998D2 /* DetailRecepis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8335D4927C62A5A002998D2 /* DetailRecepis.swift */; };
 		D845613627C5FD34007CD9CE /* RecepisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D845613527C5FD34007CD9CE /* RecepisController.swift */; };
 		D84D172A27C9BE22008CBE50 /* PDFGenerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84D172927C9BE22008CBE50 /* PDFGenerate.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8222D1B27D236690032762F /* BrewSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewSteps.swift; sourceTree = "<group>"; };
+		D8222D1D27D236EE0032762F /* TimerCyrcle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCyrcle.swift; sourceTree = "<group>"; };
 		D8335D4927C62A5A002998D2 /* DetailRecepis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecepis.swift; sourceTree = "<group>"; };
 		D845613527C5FD34007CD9CE /* RecepisController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepisController.swift; sourceTree = "<group>"; };
 		D84D172927C9BE22008CBE50 /* PDFGenerate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGenerate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				D8B08DBE27CBDD90007F4769 /* ReadyRecipe.swift */,
 				D845613527C5FD34007CD9CE /* RecepisController.swift */,
 				D8335D4927C62A5A002998D2 /* DetailRecepis.swift */,
+				D8222D1B27D236690032762F /* BrewSteps.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				D8B08DC027CBDDFB007F4769 /* Extentions.swift */,
+				D8222D1D27D236EE0032762F /* TimerCyrcle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,8 +209,10 @@
 				D8A46EF4279879B20074E62E /* ViewController.swift in Sources */,
 				D8A46EF0279879B20074E62E /* AppDelegate.swift in Sources */,
 				D8B08DBF27CBDD91007F4769 /* ReadyRecipe.swift in Sources */,
+				D8222D1E27D236EE0032762F /* TimerCyrcle.swift in Sources */,
 				D8335D4A27C62A5B002998D2 /* DetailRecepis.swift in Sources */,
 				D8A46EF2279879B20074E62E /* SceneDelegate.swift in Sources */,
+				D8222D1C27D236690032762F /* BrewSteps.swift in Sources */,
 				D86D471627C6138C00EE85DD /* RecepisCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,7 +392,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -416,7 +424,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
