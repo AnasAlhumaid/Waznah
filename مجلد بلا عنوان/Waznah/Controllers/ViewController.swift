@@ -184,8 +184,7 @@ class ViewController: UIViewController {
         
         count = 0
         timer.invalidate()
-        timerLabel.text = self.makeStringTimer(hours: 0,
-                                               minutes: 0,
+        timerLabel.text = self.makeStringTimer(minutes: 0,
                                                second: 0)
         startBtn.setTitle("START".localized,
                           for: .normal)
@@ -197,26 +196,23 @@ class ViewController: UIViewController {
         
         count = count + 1
         let time = secondToMenutisToSecond(second: count)
-        let timeString = makeStringTimer(hours: time.0,
-                                         minutes: time.1,
-                                         second: time.2)
+        let timeString = makeStringTimer(minutes: time.0,
+                                         second: time.1)
         timerLabel.text = timeString
         
     }
     
-    func secondToMenutisToSecond (second:Int) -> (Int,Int,Int){
+    func secondToMenutisToSecond (second:Int) -> (Int,Int){
         
-        return ((second / 3600 ),
-                ((second % 3600) / 60),
+        return (((second % 3600) / 60),
                 ((second % 3600 ) % 60))
         
     }
     
-    func makeStringTimer (hours:Int,minutes:Int,second:Int) -> String{
+    func makeStringTimer (minutes:Int,second:Int) -> String{
         
         var timeString = ""
-        timeString += String(format: "%02d", hours)
-        timeString += ":"
+      
         timeString += String(format: "%02d", minutes)
         timeString += ":"
         timeString += String(format: "%02d", second)
