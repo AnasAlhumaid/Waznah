@@ -2,8 +2,8 @@
 /* Class = "UIButton"; normalTitle = "Kalita"; ObjectID = "1Z9-D1-Hjh"; */
 "1Z9-D1-Hjh.normalTitle" = "Kalita";
 
-/* Class = "UILabel"; text = "00:00:00"; ObjectID = "3dJ-Qy-fkI"; */
-"3dJ-Qy-fkI.text" = "00:00:00";
+/* Class = "UILabel"; text = "00:00"; ObjectID = "3dJ-Qy-fkI"; */
+"3dJ-Qy-fkI.text" = "00:00";
 
 /* Class = "UILabel"; text = "    Roastery"; ObjectID = "45a-uS-hzj"; */
 "45a-uS-hzj.text" = "    Roastery";
@@ -47,8 +47,8 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "PZZ-Kr-KNf"; */
 "PZZ-Kr-KNf.text" = "Label";
 
-/* Class = "UILabel"; text = "khvjkcukgcucugcjgcjgcjgcjgcjgcjgcjgcjgcjgcjcjgcjgcjgcjgcjgcjgcjgcjgcjgc"; ObjectID = "QN0-DC-xgl"; */
-"QN0-DC-xgl.text" = "khvjkcukgcucugcjgcjgcjgcjgcjgcjgcjgcjgcjgcjcjgcjgcjgcjgcjgcjgcjgcjgcjgc";
+/* Class = "UILabel"; text = "   ..................."; ObjectID = "QN0-DC-xgl"; */
+"QN0-DC-xgl.text" = "   ...................";
 
 /* Class = "UITextField"; placeholder = "   Grain"; ObjectID = "SKp-s7-7Ef"; */
 "SKp-s7-7Ef.placeholder" = "   Grain";
@@ -56,17 +56,23 @@
 /* Class = "UILabel"; text = "/"; ObjectID = "SsE-p6-qrs"; */
 "SsE-p6-qrs.text" = "/";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "Yqq-RG-pJO"; */
+"Yqq-RG-pJO.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "V60"; ObjectID = "Yzz-qb-QGo"; */
 "Yzz-qb-QGo.normalTitle" = "V60";
 
 /* Class = "UILabel"; text = "Roastery :"; ObjectID = "ahS-aE-aKo"; */
 "ahS-aE-aKo.text" = "Roastery :";
 
-/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "bXM-gY-Dj9"; */
-"bXM-gY-Dj9.normalTitle" = "Reset";
+/* Class = "UINavigationItem"; title = "Make a Coffee"; ObjectID = "bDf-la-ohH"; */
+"bDf-la-ohH.title" = "Make a Coffee";
+
+/* Class = "UIButton"; normalTitle = "RESET"; ObjectID = "bXM-gY-Dj9"; */
+"bXM-gY-Dj9.normalTitle" = "RESET";
 
 /* Class = "UITabBarItem"; title = "Recepis"; ObjectID = "e6d-SC-gqR"; */
-"e6d-SC-gqR.title" = "الوصفات";
+"e6d-SC-gqR.title" = "Recepis";
 
 /* Class = "UITextField"; placeholder = "ml."; ObjectID = "gC4-bU-3Tg"; */
 "gC4-bU-3Tg.placeholder" = "ml.";
@@ -87,7 +93,7 @@
 "mss-bB-m2w.text" = "1 /";
 
 /* Class = "UITabBarItem"; title = "Ratio"; ObjectID = "oKt-Fm-FQX"; */
-"oKt-Fm-FQX.title" = "المعدل";
+"oKt-Fm-FQX.title" = "Ratio";
 
 /* Class = "UILabel"; text = "Timer"; ObjectID = "oNZ-fd-bGQ"; */
 "oNZ-fd-bGQ.text" = "Timer";
@@ -107,6 +113,9 @@
 /* Class = "UITextField"; placeholder = "    Select C"; ObjectID = "sUN-3h-BTd"; */
 "sUN-3h-BTd.placeholder" = "    Select C";
 
+/* Class = "UITabBarItem"; title = "Brew"; ObjectID = "tKV-Va-4la"; */
+"tKV-Va-4la.title" = "إصنع قهوتك";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "tee-1L-FPX"; */
 "tee-1L-FPX.text" = "Label";
 
@@ -125,8 +134,8 @@
 /* Class = "UILabel"; text = "Prepare :"; ObjectID = "zgn-rt-h6M"; */
 "zgn-rt-h6M.text" = "Prepare :";
 
-/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "zmg-gS-H9C"; */
-"zmg-gS-H9C.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+/* Class = "UITextView"; text = ".............."; ObjectID = "zmg-gS-H9C"; */
+"zmg-gS-H9C.text" = "..............";
 
-/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "znB-re-l3p"; */
-"znB-re-l3p.normalTitle" = "Start";
+/* Class = "UIButton"; normalTitle = "START"; ObjectID = "znB-re-l3p"; */
+"znB-re-l3p.normalTitle" = "START";

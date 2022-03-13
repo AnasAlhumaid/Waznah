@@ -42,6 +42,17 @@
 "Add" = "أضف";
 "Thire is wrong " = "خطأ";
 "Empety Fields " = "املا الخانات الفارغة";
+"Hello" = "مرحباً";
+"Ready for make a coffee ?" = "جاهز لصنع القهوة؟";
+"*This for One cup of coffee and 18 Gram" = "هذة التعليمات لصنع كوب واحد و ١٨ قرام قهوة";
+"get ready" = "نبدأ ؟";
+"pour 40 ml of water" = "ضع ٤٠ مل من الماء وانتظر";
+"pour 80 ml and wait to drain" = "ضع ٨٠ مل من الماء وانتظر";
+"pour 90 ml and wait" = "ضع ٩٠ مل من الماء وانتظر";
+"wait to drain all coffee" = "انتظر نزول كل القهوة";
+"done!" = "جاهز للتقديم";
+"Make a coffee" = "إصنع قهوتك";
+
 
 
 

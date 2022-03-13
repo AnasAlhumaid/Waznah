@@ -23,6 +23,8 @@ class CeffeeSelection: UIViewController {
         labelCoffee.textColor = UIColor.black
         viewBotton.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         viewBotton.layer.cornerRadius = 13
+        
+        navigationItem.title = "Make a coffee".localized
     }
     
     @IBAction func bottunAction(_ sender: UITapGestureRecognizer) {

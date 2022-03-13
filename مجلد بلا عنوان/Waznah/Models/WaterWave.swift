@@ -104,7 +104,7 @@ extension WaterWave {
     func presentLabel(){
         
         let animation = CABasicAnimation(keyPath: "opacity")
-        animation.duration = 1.5
+        animation.duration = 0.2
         animation.fromValue = 0.0
         animation.toValue = 1.0
         animation.repeatCount = .infinity
@@ -116,7 +116,6 @@ extension WaterWave {
    func setupProgress(_ pr: CGFloat){
         prograss = pr
 
-       presentageLabel.text = String(format: "%ld%%",NSNumber(value: Float(pr*100)).intValue)
         let top :CGFloat =   pr * bounds.size.height
        firstLayer.setValue(width - top, forKeyPath: "position.y")
         secondLayer.setValue(width - top, forKeyPath: "position.y")
@@ -179,43 +178,44 @@ extension WaterWave {
         firstLayer.add(animation, forKey: nil)
         
         
-        if !showSingleWave {
-            let bizer = UIBezierPath()
-            
-            
-            let startOfsetY = waveHeight * CGFloat(sinf(Float(offset * towr / w)))
-            var originOfset :CGFloat = 0.0
-            
-            
-            bizer.move(to: CGPoint(x: 0.0, y: startOfsetY))
-            
-            
-            for i in stride(from: 0.0, to: w*1000, by: 1){
-                
-                originOfset = waveHeight * CGFloat(cosf(Float(towr / w * i + offset * towr / w )))
-                bizer.addLine(to: CGPoint(x: i, y: originOfset))
-                
-                
-            }
-            
-            bizer.addLine(to: CGPoint(x: w*1000, y: originOfset))
-            bizer.addLine(to: CGPoint(x: w*1000, y: h))
-            bizer.addLine(to: CGPoint(x: 0.0, y: h))
-            bizer.addLine(to: CGPoint(x: 0.0, y: startOfsetY))
-            bizer.close()
-            
-            
-            
-            secondLayer.fillColor = secondColor.cgColor
-            secondLayer.path = bizer.cgPath
-            secondLayer.add(animation, forKey: nil)
-        }
-        
-    }
+//        if !showSingleWave {
+//            let bizer = UIBezierPath()
+//
+//
+//            let startOfsetY = waveHeight * CGFloat(sinf(Float(offset * towr / w)))
+//            var originOfset :CGFloat = 0.0
+//
+//
+//            bizer.move(to: CGPoint(x: 0.0, y: startOfsetY))
+//
+//
+//            for i in stride(from: 0.0, to: w*1000, by: 1){
+//
+//                originOfset = waveHeight * CGFloat(cosf(Float(towr / w * i + offset * towr / w )))
+//                bizer.addLine(to: CGPoint(x: i, y: originOfset))
+//
+//
+//            }
+//
+//            bizer.addLine(to: CGPoint(x: w*1000, y: originOfset))
+//            bizer.addLine(to: CGPoint(x: w*1000, y: h))
+//            bizer.addLine(to: CGPoint(x: 0.0, y: h))
+//            bizer.addLine(to: CGPoint(x: 0.0, y: startOfsetY))
+//            bizer.close()
+//
+//
+//
+//            secondLayer.fillColor = secondColor.cgColor
+//            secondLayer.path = bizer.cgPath
+//            secondLayer.add(animation, forKey: nil)
+//        }
+//
+//    }
     
     
     
     
     
     
+}
 }

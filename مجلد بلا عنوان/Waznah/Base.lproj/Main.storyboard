@@ -943,16 +943,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ARpdfReviw" translatesAutoresizingMaskIntoConstraints="NO" id="fs6-jH-qt9">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ARpdfReviw" translatesAutoresizingMaskIntoConstraints="NO" id="fs6-jH-qt9">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pra-M3-AVb">
-                                <rect key="frame" x="96" y="355" width="223" height="186"/>
+                                <rect key="frame" x="96" y="355" width="222" height="186"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="v60" translatesAutoresizingMaskIntoConstraints="NO" id="pef-RK-4yi">
-                                <rect key="frame" x="159" y="384" width="96" height="128"/>
+                                <rect key="frame" x="22" y="363" width="370" height="170"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -960,7 +960,7 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqq-RG-pJO">
-                                <rect key="frame" x="186" y="520" width="42" height="21"/>
+                                <rect key="frame" x="186" y="520.5" width="42" height="20.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -981,7 +981,7 @@
                         <outlet property="labelCoffee" destination="Yqq-RG-pJO" id="cZg-JX-mpR"/>
                         <outlet property="selectedImage" destination="pef-RK-4yi" id="Dho-tG-qXu"/>
                         <outlet property="viewBotton" destination="Pra-M3-AVb" id="BaP-P7-03g"/>
-                        <segue destination="CNh-Dc-8JT" kind="show" identifier="Steps" id="sQ3-EM-T3i"/>
+                        <segue destination="CNh-Dc-8JT" kind="showDetail" identifier="Steps" id="sQ3-EM-T3i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EK5-42-WB8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -996,12 +996,25 @@
         <!--Steps Timer-->
         <scene sceneID="Kck-aV-Djj">
             <objects>
-                <viewController id="CNh-Dc-8JT" customClass="StepsTimer" customModule="Waznah" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="CNh-Dc-8JT" customClass="StepsTimer" customModule="Waznah" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yQ9-Fg-beA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ae-hP-90g">
+                                <rect key="frame" x="348" y="44" width="30" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="closeBtn:" destination="CNh-Dc-8JT" eventType="touchUpInside" id="okE-5s-xNR"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="HVP-4n-gAE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HVP-4n-gAE" firstAttribute="trailing" secondItem="3Ae-hP-90g" secondAttribute="trailing" constant="36" id="ILI-Fj-XkI"/>
+                            <constraint firstItem="3Ae-hP-90g" firstAttribute="top" secondItem="HVP-4n-gAE" secondAttribute="top" id="vJr-jK-0cL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wl9-ir-S0u"/>
                 </viewController>
@@ -1013,7 +1026,7 @@
         <scene sceneID="DWX-Y1-P6B">
             <objects>
                 <tabBarController id="SfW-t4-HuB" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rjb-th-2Oe">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rjb-th-2Oe" propertyAccessControl="localizable">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1052,11 +1065,13 @@
             </objects>
             <point key="canvasLocation" x="34.5703125" y="97.510980966325036"/>
         </scene>
-        <!--Item-->
+        <!--Brew-->
         <scene sceneID="Z09-iJ-2Yw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a8N-DR-84z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="tKV-Va-4la"/>
+                    <tabBarItem key="tabBarItem" title="Brew" image="heart.text.square.fill" catalog="system" id="tKV-Va-4la">
+                        <color key="badgeColor" red="0.18572769089999999" green="0.17000965100000001" blue="0.1277739853" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Wgs-kd-8BU">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -1088,6 +1103,7 @@
         <image name="beans" width="5464" height="8192"/>
         <image name="coffee" width="375" height="775"/>
         <image name="command" catalog="system" width="128" height="115"/>
+        <image name="heart.text.square.fill" catalog="system" width="128" height="114"/>
         <image name="pdfPrevew" width="775" height="1677"/>
         <image name="pencil.and.outline" catalog="system" width="128" height="128"/>
         <image name="recipes4" width="783" height="1687"/>
