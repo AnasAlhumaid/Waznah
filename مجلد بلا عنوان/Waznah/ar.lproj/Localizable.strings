@@ -2,62 +2,31 @@
   Localizable.strings
   Waznah
 
-  Created by Anas Hamad on 26/07/1443 AH.
+  Created by Anas Hamad on 10/10/23.
   
 */
+"Water Calcuate" = "حساب الماء";
+"Coffee Clculate" = "حساب القهوة";
+"Ratio" = "المعدل";
+"of Woter"="من الماء";
+"of Coffee" = "من القهوة";
+"Stop" = "ايقاف";
+"Pause" = "استئناف";
+"Start" = "ابدأ";
+"Select Timer" = "اختر الوقت";
+"Coffee Origin : " = "منشأ القهوة:";
+"Grind size :" = "حجم الطحنة : ";
+"Temperature:" = "درجة الحرارة:";
+"Ratio:" = "المعدل:";
+"Water:" = "كمية الماء:";
+"Choose Brew Type:" = "طريقة التحضير:";
+"Save" = "حفظ";
+" Coffee g" = "قرامات القهوة";
+" Water ml" = "قرامات الماء";
 
-"Timer" = "مؤقت";
-"START" = "البدء";
-"RESET" = "إعادة";
-"Stop" = "توقف";
-"recipes4" = "ARrecipe";
-"pdfPrevew" = "ARpdfReviw";
-"Select Gr" = "عدد الغرامات";
-"Change Gr" = "غير القيمة";
-"Ok" = "حسناّ";
-"Select ML" = "عدد مل الماء";
-"Change ML" = "غير القيمة";
-"Puase" = "اوقف";
-"Recipes" = "الوصفات:";
-"Tool" = "آله التقطير:";
-"Grind" = "الطحنة:";
-"Temperature" = "درجة الحرارة:";
-"Roastery" ="المحمصة:";
-"Prepare" = "التحضير :";
-"Ratio" = "المعدل:";
-"   Tool" = "   آله التقطير:";
-"   Grind" = "   الطحنة:";
-"   Temperature" = "   درجة الحرارة:";
-"   Roastery" ="   المحمصة:";
-"   Preparation" = "    التحضير :";
-"   Ratio" = "    المعدل:";
-"Another" = "أخرى";
-"   Select C" = "   الحرارة C";
-"Add New" = "أضف جديد";
-"Delete" = "حذف";
-"Preview" = "معاينه";
-"Cancel" = "إلغاء";
-"Choose" = "إختر";
-"what you will do " = "اختر التالي";
-"Add" = "أضف";
-"Thire is wrong " = "خطأ";
-"Empety Fields " = "املا الخانات الفارغة";
-"Hello" = "مرحباً";
-"Ready for make a coffee ?" = "جاهز لصنع القهوة؟";
-"*This for One cup of coffee and 18 Gram" = "هذة التعليمات لصنع كوب واحد و ١٨ قرام قهوة";
-"get ready" = "نبدأ ؟";
-"pour 40 ml of water" = "ضع ٤٠ مل من الماء وانتظر";
-"pour 80 ml and wait to drain" = "ضع ٨٠ مل من الماء وانتظر";
-"pour 90 ml and wait" = "ضع ٩٠ مل من الماء وانتظر";
-"wait to drain all coffee" = "انتظر نزول كل القهوة";
-"done!" = "جاهز للتقديم";
-"Make a coffee" = "إصنع قهوتك";
-
-
-
-
-
-
-
-
+"The ratio of ground coffee to water differs greatly between brew methods and personal taste. The ratios on this page are based on a mixture of consensus and official sources." = "تختلف نسبة البن المطحون إلى الماء اختلافًا كبيرًا بين طرق التحضير والذوق الشخصي. وتعتمد النسب الموجودة في هذه الصفحة على مزيج من الإجماع والمصادر الرسمية.";
+"But, there is no right way—so long as you enjoy your coffee and aren't consuming a dangerous amount!" = "لكن، لا توجد طريقة صحيحة، طالما أنك تستمتع بقهوتك ولا تستهلك كمية خطيرة!";
+"More info:" = "معلومات اضافية:";
+"Recipes" = "الوصفات";
+"Waznah" = "وزنة";
 
