@@ -1,0 +1,81 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isRecipeOwner() {
+      return isSignedIn() && resource.data.ownerUid == request.auth.uid;
+    }
+
+    function createsOwnPublicRecipe() {
+      return isSignedIn()
+        && request.resource.data.keys().hasOnly([
+          "id",
+          "ownerUid",
+          "visibility",
+          "likeCount",
+          "rostery",
+          "grain",
+          "waterGrams",
+          "coffeeGrams",
+          "ratio",
+          "temp",
+          "tool",
+          "field3",
+          "searchKeywords",
+          "localRecipeId",
+          "createdAt",
+          "updatedAt"
+        ])
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.visibility == "public"
+        && request.resource.data.likeCount == 0;
+    }
+
+    function onlyChangesLikeCount() {
+      return isSignedIn()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["likeCount"])
+        && request.resource.data.likeCount >= 0
+        && (
+          request.resource.data.likeCount == resource.data.likeCount + 1
+          || request.resource.data.likeCount == resource.data.likeCount - 1
+        );
+    }
+
+    match /users/{uid} {
+      allow read, create, update: if isOwner(uid);
+      allow delete: if false;
+
+      match /recipes/{recipeId} {
+        allow read, create, update, delete: if isOwner(uid);
+      }
+    }
+
+    function createsOwnLike(uid) {
+      return isOwner(uid)
+        && request.resource.data.keys().hasOnly(["uid", "createdAt"])
+        && request.resource.data.uid == request.auth.uid;
+    }
+
+    match /recipes/{recipeId} {
+      allow read: if isSignedIn();
+      allow create: if createsOwnPublicRecipe();
+      allow update: if onlyChangesLikeCount();
+      allow delete: if isRecipeOwner();
+
+      match /likes/{uid} {
+        allow read: if isSignedIn();
+        allow create: if createsOwnLike(uid);
+        allow delete: if isOwner(uid);
+        allow update: if false;
+      }
+    }
+  }
+}

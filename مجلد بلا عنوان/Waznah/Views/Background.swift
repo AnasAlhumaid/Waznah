@@ -36,14 +36,15 @@ struct Background: View {
                         
                         Blur(radius: 20, opaque: true)
                         ScrollView{
-                            VStack{
+                            VStack(spacing: 18){
                                 CalculateScreen()
-                                    .shadow(color: .black.opacity(0.25), radius:5, x:5,y: 8)
                                 
                                 
                                 TimerView()
-                                    .shadow(color: .black.opacity(0.25), radius:5, x:5,y: 8)
                             }
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 8)
+                            .padding(.bottom, 120)
                             
                         }
                        

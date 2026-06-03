@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
 
 
 
 @main
 struct WaznahApp: App {
-    
+    init(){
+        FirebaseApp.configure()
+    }
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var pomodoroModel: PomodoroModel = .init()
     // MARK: Scene Phase
@@ -22,8 +26,6 @@ struct WaznahApp: App {
     var body: some Scene {
        
         WindowGroup {
-//            ContantView()
-//                .environmentObject(pomodoroModel)
             ContantView()
                 .environment(\.managedObjectContext, CoreDataProvider.shared.viewContext)
                 

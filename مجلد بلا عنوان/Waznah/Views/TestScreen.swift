@@ -9,7 +9,25 @@ import SwiftUI
 
 struct TestScreen: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        HStack{
+            VStack{
+                Text("step")
+            }
+            Spacer()
+            VStack{
+                Text("time")
+            }
+            
+            Spacer()
+            VStack{
+                Text("gram")
+            }
+        }
+        .padding()
+        .frame(width: size.width - 40)
+        .background(.thinMaterial)
+        .cornerRadius(10)
     }
 }
 

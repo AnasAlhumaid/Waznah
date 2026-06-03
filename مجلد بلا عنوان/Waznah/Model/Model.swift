@@ -31,3 +31,11 @@ extension Model where Self: NSManagedObject {
     }
     
 }
+
+
+// MARK: - FreelancerAuthModelNew
+struct RecepeiApi: Codable {
+    let grain, more, roastery,tool: String
+    let water, ration,temp: String
+    var id = UUID()
+}

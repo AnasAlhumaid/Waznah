@@ -5,3 +5,36 @@
   Created by Anas Hamad on 12/16/23.
   
 */
+
+" Coffee g" = "قرام القهوة";
+"Waznah" = "وزنة";
+"The ratio of ground coffee to water differs greatly between brew methods and personal taste. The ratios on this page are based on a mixture of consensus and official sources." = "تختلف نسبة البن المطحون إلى الماء اختلافًا كبيرًا بين طرق التحضير والذوق الشخصي. وتعتمد النسب الموجودة في هذه الصفحة على مزيج من الإجماع والمصادر الرسمية.";
+"But, there is no right way—so long as you enjoy your coffee and aren't consuming a dangerous amount!" = "لكن، لا توجد طريقة صحيحة، طالما أنك تستمتع بقهوتك ولا تستهلك كمية خطيرة!";
+" Water ml" = "";
+"Water Calcuate" = "حساب الماء";
+"Coffee Clculate" = "حساب القهوة";
+"Ratio" = "المعدل";
+"of Coffee" = "من القهوة";
+"of Water" = "من الماء";
+"Start" = "ابدا";
+"Pause" = "استئناف";
+"Stop" = "ايقاف";
+"Select Timer" = "اختر الوقت";
+"Recipes" = "الوصفات";
+"Coffe Grams:" = "قرام القهوة :";
+"Temperature:" = "درجة الحرارة :";
+"Coffee Origin:" = "مكان القهوة :";
+"Ratio:" = "المعدل :";
+"More info:" = "معلومات اخرى :";
+"Choose Brew Type:" = "اختر الأداة :";
+"Save" = "حفظ";
+"Grams Bean:" =  "قرام البن :";
+ "Water:" = "الماء :";
+"Ratio:" = "المعدل :";
+"Temp:" = "الحرارة :";
+"Steps" = "الخطوات";
+"Time" = "الوقت";
+"Gram" = "القرامات";
+"Suggested recipes" = "الوصفات المقترحة";
+"sec" = "ث";
+"Loading..." = "تحميل ...";

@@ -20,6 +20,10 @@ class CoreDataProvider {
     private init() {
 
         persistentContainer = NSPersistentContainer(name: "Waznah")
+        if let description = persistentContainer.persistentStoreDescriptions.first {
+            description.shouldMigrateStoreAutomatically = true
+            description.shouldInferMappingModelAutomatically = true
+        }
         persistentContainer.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Unable to initialize model \(error)")
