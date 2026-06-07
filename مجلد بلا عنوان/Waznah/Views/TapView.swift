@@ -8,38 +8,38 @@
 import SwiftUI
 
 struct TapViewHome: View {
-    
-    @State private var selected : Tab = .house
-    
-    var body: some View{
-        ZStack{
+    @StateObject private var firestoreManager = FirestoreManager()
+    @State private var selected: Tab = .house
+
+    var body: some View {
+        ZStack {
             Group {
                 selectedView
             }
-            .overlay (
-                VStack{
+            .background(Color.clear)
+            .overlay(
+                VStack {
                     Spacer()
                     CustomTabView(selectedTab: $selected)
-                }
-                ,alignment:.bottom
+                },
+                alignment: .bottom
             )
             .ignoresSafeArea(.keyboard)
-       
+        }
+        .waznahScreenBackdrop()
     }
-    }
-    
+
     @ViewBuilder
     private var selectedView: some View {
         switch selected {
         case .house:
             Background()
         case .leaf:
-            RecepeiScreen()
+            RecepeiScreen(cloudManager: firestoreManager)
         case .bag:
-            RecepeiScreenApi( vm: FirestoreManager())
+            RecepeiScreenApi(firestore: firestoreManager)
         }
     }
-
 }
 
 struct TapView_Previews: PreviewProvider {
@@ -48,35 +48,28 @@ struct TapView_Previews: PreviewProvider {
     }
 }
 
-
-enum Tab : String,CaseIterable{
+enum Tab: String, CaseIterable {
     case house
     case leaf
     case bag
-    
+
     var title: String {
         switch self {
-        case .house:
-            return "Brew".localized()
-        case .leaf:
-            return "My Recipes".localized()
-        case .bag:
-            return "Community".localized()
+        case .house: return "Brew".localized()
+        case .leaf: return "My Recipes".localized()
+        case .bag: return "Community".localized()
         }
     }
-    
 }
 
-struct CustomTabView : View{
+struct CustomTabView: View {
+    @Environment(\.colorScheme) private var colorScheme
     @Binding var selectedTab: Tab
-    private var fillimage : String{
-        selectedTab.rawValue + ".fill"
-    }
+
     var body: some View {
-        VStack{
-            HStack(spacing: 0){
-                
-                ForEach(Tab.allCases, id: \.rawValue){ tab in
+        VStack {
+            HStack(spacing: 0) {
+                ForEach(Tab.allCases, id: \.rawValue) { tab in
                     Button {
                         withAnimation(.spring(response: 0.25, dampingFraction: 0.8)) {
                             selectedTab = tab
@@ -85,25 +78,45 @@ struct CustomTabView : View{
                         VStack(spacing: 4) {
                             Image(systemName: selectedTab == tab ? tab.rawValue + ".fill" : tab.rawValue)
                                 .font(.system(size: 22, weight: .semibold))
-                            
+
                             Text(tab.title)
                                 .font(.caption2.weight(.semibold))
                                 .lineLimit(1)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
-                        .foregroundColor(selectedTab == tab ? Color(hex: "#86373E") : .gray)
+                        .foregroundColor(
+                            selectedTab == tab
+                                ? WaznahBrandColors.accent(for: colorScheme)
+                                : (colorScheme == .dark ? Color.white.opacity(0.45) : .gray)
+                        )
                     }
                     .buttonStyle(.plain)
                 }
-                
             }
-            .frame(height: 68)
-            .background(.thinMaterial)
+            .frame(height: WaznahTabBarLayout.barHeight)
+            .background {
+                if colorScheme == .dark {
+                    RoundedRectangle(cornerRadius: 22, style: .continuous)
+                        .fill(Color(hex: "#1A1216").opacity(0.88))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 22, style: .continuous)
+                                .stroke(Color(hex: "#BF8A6E").opacity(0.18), lineWidth: 1)
+                        )
+                } else {
+                    RoundedRectangle(cornerRadius: 22, style: .continuous)
+                        .fill(.thinMaterial)
+                }
+            }
             .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-            .shadow(color: .black.opacity(0.12), radius: 12, x: 0, y: 6)
-            .padding(.horizontal)
-            .padding(.bottom, 8)
+            .shadow(
+                color: colorScheme == .dark ? Color.black.opacity(0.35) : Color.black.opacity(0.12),
+                radius: 12,
+                x: 0,
+                y: 6
+            )
+            .padding(.horizontal, WaznahTabBarLayout.horizontalPadding)
+            .padding(.bottom, WaznahTabBarLayout.bottomPadding)
         }
     }
 }

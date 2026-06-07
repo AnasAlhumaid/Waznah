@@ -7,58 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D83C6F6C2B1C37D2008E0FAE /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83C6F6B2B1C37D1008E0FAE /* TestScreen.swift */; };
-		D84A680E2AF7565C0060AED0 /* RecepeiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A680D2AF7565C0060AED0 /* RecepeiView.swift */; };
-		D84A68102AF75F070060AED0 /* ApiRecepeiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A680F2AF75F070060AED0 /* ApiRecepeiView.swift */; };
 		D84A68132AF766340060AED0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D84A68122AF766340060AED0 /* Lottie */; };
 		D84A68152AF766930060AED0 /* LottieAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A68142AF766930060AED0 /* LottieAnimation.swift */; };
 		D8728B552AFFB663004876CF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D8728B542AFFB663004876CF /* FirebaseAuth */; };
 		D8728B5B2AFFB663004876CF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D8728B5A2AFFB663004876CF /* FirebaseFirestore */; };
-		D8728B652AFFB950004876CF /* EditRecepie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8728B642AFFB950004876CF /* EditRecepie.swift */; };
-		D8728B672AFFE7C1004876CF /* RecepeiScreenApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8728B662AFFE7C1004876CF /* RecepeiScreenApi.swift */; };
 		D88A18972A70A1AC00D5CE6E /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A18962A70A1AC00D5CE6E /* ButtonStyle.swift */; };
 		D88A18992A70C63700D5CE6E /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A18982A70C63700D5CE6E /* HalfSheet.swift */; };
 		D88A189B2A71C8BF00D5CE6E /* TapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A189A2A71C8BF00D5CE6E /* TapView.swift */; };
-		D88A189D2A71C98500D5CE6E /* RecepeiScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A189C2A71C98500D5CE6E /* RecepeiScreen.swift */; };
-		D88A189F2A71EB2C00D5CE6E /* RecepieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A189E2A71EB2C00D5CE6E /* RecepieDetail.swift */; };
 		D88F0E252FCEA73000F02674 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D88F0E242FCEA73000F02674 /* GoogleService-Info.plist */; };
+		D89553BB2FD5A9BA00C2E6EE /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = D8UPD072FCEA73400F02674 /* FirebaseRemoteConfig */; };
 		D89D22342A71FA0900C49742 /* CoreDataProvidor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89D22332A71FA0900C49742 /* CoreDataProvidor.swift */; };
 		D89D22362A71FAF600C49742 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89D22352A71FAF600C49742 /* Model.swift */; };
 		D89D22392A71FBA900C49742 /* Model+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89D22382A71FBA900C49742 /* Model+Extention.swift */; };
 		D8A46EFA279879B20074E62E /* Waznah.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8A46EF8279879B20074E62E /* Waznah.xcdatamodeld */; };
 		D8A46EFC279879B80074E62E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A46EFB279879B80074E62E /* Assets.xcassets */; };
-		D8BF222D29A1871F0051611C /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BF222C29A1871F0051611C /* Test.swift */; };
+		D8BREW022FCEA73800F02674 /* BrewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BREW012FCEA73800F02674 /* BrewTab.swift */; };
+		D8COMM022FCEA73800F02674 /* CommunityTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8COMM012FCEA73800F02674 /* CommunityTab.swift */; };
 		D8DCBB3E2B2D81170082DC6F /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DCBB3D2B2D81170082DC6F /* Alerts.swift */; };
 		D8E96BE62B54D88600E93590 /* AlertCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E96BE52B54D88500E93590 /* AlertCustom.swift */; };
-		D8ECBB59297B34D600A7C2C4 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ECBB58297B34D600A7C2C4 /* TimerView.swift */; };
 		D8F7C4A32B2D60B900ED9348 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8F7C4A52B2D60B900ED9348 /* Localizable.strings */; };
-		D8FBC57B28EC2B8300D871AA /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC57A28EC2B8300D871AA /* Background.swift */; };
 		D8FBC57D28EC358700D871AA /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC57C28EC358700D871AA /* BlurView.swift */; };
 		D8FBC57F28EC491900D871AA /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC57E28EC491900D871AA /* Main.swift */; };
 		D8FBC58128EC4CCE00D871AA /* ContantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC58028EC4CCE00D871AA /* ContantView.swift */; };
 		D8FBC58328EC4F8C00D871AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8FBC58228EC4F8C00D871AA /* LaunchScreen.storyboard */; };
 		D8FBC58528EC5FCD00D871AA /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC58428EC5FCD00D871AA /* TimerModel.swift */; };
 		D8FBC58928EC60F000D871AA /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC58828EC60F000D871AA /* Home.swift */; };
-		D8FBC58B28EC69BA00D871AA /* CalculateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC58A28EC69BA00D871AA /* CalculateScreen.swift */; };
-		D8AUTH022FCEA73100F02674 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AUTH012FCEA73100F02674 /* AuthService.swift */; };
-		D8AUTH042FCEA73100F02674 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AUTH032FCEA73100F02674 /* AuthViewModel.swift */; };
-		D8AUTH062FCEA73100F02674 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AUTH052FCEA73100F02674 /* AuthView.swift */; };
-		D8AUTH082FCEA73100F02674 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AUTH072FCEA73100F02674 /* RootView.swift */; };
+		D8FIRE022FCEA73800F02674 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FIRE012FCEA73800F02674 /* FirestoreManager.swift */; };
+		D8LANG022FCEA73500F02674 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8LANG012FCEA73500F02674 /* AppLanguage.swift */; };
+		D8MYRC022FCEA73800F02674 /* MyRecipesTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8MYRC012FCEA73800F02674 /* MyRecipesTab.swift */; };
+		D8PDF022FCEA73600F02674 /* RecipeShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8PDF012FCEA73600F02674 /* RecipeShareData.swift */; };
+		D8PDF042FCEA73600F02674 /* RecipePDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8PDF032FCEA73600F02674 /* RecipePDFExporter.swift */; };
+		D8PDF062FCEA73600F02674 /* RecipePDFDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8PDF052FCEA73600F02674 /* RecipePDFDocumentView.swift */; };
+		D8PDF082FCEA73600F02674 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8PDF072FCEA73600F02674 /* ShareSheet.swift */; };
+		D8RCMD022FCEA73800F02674 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8RCMD012FCEA73800F02674 /* RecipeModels.swift */; };
 		D8SYNC022FCEA73200F02674 /* LocalRecipeSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8SYNC012FCEA73200F02674 /* LocalRecipeSyncManager.swift */; };
+		D8TIME022FCEA73700F02674 /* AppTimeAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8TIME012FCEA73700F02674 /* AppTimeAppearance.swift */; };
+		D8UPD022FCEA73400F02674 /* AppUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8UPD012FCEA73400F02674 /* AppUpdateManager.swift */; };
+		D8UPD042FCEA73400F02674 /* AppUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8UPD032FCEA73400F02674 /* AppUpdateViewModel.swift */; };
+		D8UPD062FCEA73400F02674 /* AppUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8UPD052FCEA73400F02674 /* AppUpdateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D83C6F6B2B1C37D1008E0FAE /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
-		D84A680D2AF7565C0060AED0 /* RecepeiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepeiView.swift; sourceTree = "<group>"; };
-		D84A680F2AF75F070060AED0 /* ApiRecepeiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRecepeiView.swift; sourceTree = "<group>"; };
 		D84A68142AF766930060AED0 /* LottieAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimation.swift; sourceTree = "<group>"; };
-		D8728B642AFFB950004876CF /* EditRecepie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecepie.swift; sourceTree = "<group>"; };
-		D8728B662AFFE7C1004876CF /* RecepeiScreenApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepeiScreenApi.swift; sourceTree = "<group>"; };
 		D88A18962A70A1AC00D5CE6E /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		D88A18982A70C63700D5CE6E /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
 		D88A189A2A71C8BF00D5CE6E /* TapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapView.swift; sourceTree = "<group>"; };
-		D88A189C2A71C98500D5CE6E /* RecepeiScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepeiScreen.swift; sourceTree = "<group>"; };
-		D88A189E2A71EB2C00D5CE6E /* RecepieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecepieDetail.swift; sourceTree = "<group>"; };
 		D88F0E242FCEA73000F02674 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D89D22332A71FA0900C49742 /* CoreDataProvidor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvidor.swift; sourceTree = "<group>"; };
 		D89D22352A71FAF600C49742 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -67,25 +61,34 @@
 		D8A46EF9279879B20074E62E /* Waznah.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Waznah.xcdatamodel; sourceTree = "<group>"; };
 		D8A46EFB279879B80074E62E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8A46F00279879B80074E62E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8ARLOC2FCEA73500F02674 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D8BF222C29A1871F0051611C /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		D8BREW012FCEA73800F02674 /* BrewTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewTab.swift; sourceTree = "<group>"; };
+		D8COMM012FCEA73800F02674 /* CommunityTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTab.swift; sourceTree = "<group>"; };
 		D8DCBB3D2B2D81170082DC6F /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		D8E96BE52B54D88500E93590 /* AlertCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCustom.swift; sourceTree = "<group>"; };
 		D8E98CE227B72013008DF014 /* Waznah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waznah.entitlements; sourceTree = "<group>"; };
-		D8ECBB58297B34D600A7C2C4 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		D8ENLOC2FCEA73500F02674 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D8F7C4A42B2D60B900ED9348 /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D8FBC57A28EC2B8300D871AA /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		D8FBC57C28EC358700D871AA /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		D8FBC57E28EC491900D871AA /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		D8FBC58028EC4CCE00D871AA /* ContantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContantView.swift; sourceTree = "<group>"; };
 		D8FBC58228EC4F8C00D871AA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8FBC58428EC5FCD00D871AA /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
 		D8FBC58828EC60F000D871AA /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		D8FBC58A28EC69BA00D871AA /* CalculateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateScreen.swift; sourceTree = "<group>"; };
-		D8AUTH012FCEA73100F02674 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		D8AUTH032FCEA73100F02674 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		D8AUTH052FCEA73100F02674 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
-		D8AUTH072FCEA73100F02674 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		D8FIRE012FCEA73800F02674 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		D8LANG012FCEA73500F02674 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		D8MYRC012FCEA73800F02674 /* MyRecipesTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesTab.swift; sourceTree = "<group>"; };
+		D8PDF012FCEA73600F02674 /* RecipeShareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeShareData.swift; sourceTree = "<group>"; };
+		D8PDF032FCEA73600F02674 /* RecipePDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePDFExporter.swift; sourceTree = "<group>"; };
+		D8PDF052FCEA73600F02674 /* RecipePDFDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePDFDocumentView.swift; sourceTree = "<group>"; };
+		D8PDF072FCEA73600F02674 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		D8RCMD012FCEA73800F02674 /* RecipeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModels.swift; sourceTree = "<group>"; };
 		D8SYNC012FCEA73200F02674 /* LocalRecipeSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecipeSyncManager.swift; sourceTree = "<group>"; };
+		D8TIME012FCEA73700F02674 /* AppTimeAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTimeAppearance.swift; sourceTree = "<group>"; };
+		D8UPD012FCEA73400F02674 /* AppUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateManager.swift; sourceTree = "<group>"; };
+		D8UPD032FCEA73400F02674 /* AppUpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateViewModel.swift; sourceTree = "<group>"; };
+		D8UPD052FCEA73400F02674 /* AppUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D89553BB2FD5A9BA00C2E6EE /* FirebaseRemoteConfig in Frameworks */,
 				D8728B552AFFB663004876CF /* FirebaseAuth in Frameworks */,
 				D8728B5B2AFFB663004876CF /* FirebaseFirestore in Frameworks */,
 				D84A68132AF766340060AED0 /* Lottie in Frameworks */,
@@ -108,6 +112,7 @@
 				D89D22332A71FA0900C49742 /* CoreDataProvidor.swift */,
 				D89D22352A71FAF600C49742 /* Model.swift */,
 				D89D22382A71FBA900C49742 /* Model+Extention.swift */,
+				D8RCMD012FCEA73800F02674 /* RecipeModels.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 			children = (
 				D8DCBB3C2B2D81070082DC6F /* Custums */,
 				D89D22372A71FB8D00C49742 /* Model */,
+				D8LANG092FCEA73500F02674 /* Utilities */,
 				D8AUTH092FCEA73100F02674 /* Services */,
 				D8E98CE227B72013008DF014 /* Waznah.entitlements */,
 				D8FBC57E28EC491900D871AA /* Main.swift */,
@@ -150,6 +156,18 @@
 			path = Waznah;
 			sourceTree = "<group>";
 		};
+		D8AUTH092FCEA73100F02674 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D8SYNC012FCEA73200F02674 /* LocalRecipeSyncManager.swift */,
+				D8UPD012FCEA73400F02674 /* AppUpdateManager.swift */,
+				D8PDF012FCEA73600F02674 /* RecipeShareData.swift */,
+				D8PDF032FCEA73600F02674 /* RecipePDFExporter.swift */,
+				D8FIRE012FCEA73800F02674 /* FirestoreManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		D8DCBB3C2B2D81070082DC6F /* Custums */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,44 +180,47 @@
 			isa = PBXGroup;
 			children = (
 				D8FBC58428EC5FCD00D871AA /* TimerModel.swift */,
-				D8AUTH032FCEA73100F02674 /* AuthViewModel.swift */,
+				D8UPD032FCEA73400F02674 /* AppUpdateViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D8AUTH092FCEA73100F02674 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				D8AUTH012FCEA73100F02674 /* AuthService.swift */,
-				D8SYNC012FCEA73200F02674 /* LocalRecipeSyncManager.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		D8FBC58728EC5FFD00D871AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D8AUTH052FCEA73100F02674 /* AuthView.swift */,
-				D8AUTH072FCEA73100F02674 /* RootView.swift */,
-				D8FBC57A28EC2B8300D871AA /* Background.swift */,
+				D8FEAT012FCEA73800F02674 /* Features */,
+				D8UPD052FCEA73400F02674 /* AppUpdateView.swift */,
+				D8PDF052FCEA73600F02674 /* RecipePDFDocumentView.swift */,
+				D8PDF072FCEA73600F02674 /* ShareSheet.swift */,
 				D8FBC57C28EC358700D871AA /* BlurView.swift */,
 				D8FBC58828EC60F000D871AA /* Home.swift */,
-				D8FBC58A28EC69BA00D871AA /* CalculateScreen.swift */,
-				D8ECBB58297B34D600A7C2C4 /* TimerView.swift */,
 				D88A18962A70A1AC00D5CE6E /* ButtonStyle.swift */,
 				D88A18982A70C63700D5CE6E /* HalfSheet.swift */,
 				D88A189A2A71C8BF00D5CE6E /* TapView.swift */,
-				D88A189C2A71C98500D5CE6E /* RecepeiScreen.swift */,
-				D88A189E2A71EB2C00D5CE6E /* RecepieDetail.swift */,
-				D84A680D2AF7565C0060AED0 /* RecepeiView.swift */,
-				D84A680F2AF75F070060AED0 /* ApiRecepeiView.swift */,
 				D84A68142AF766930060AED0 /* LottieAnimation.swift */,
-				D8728B642AFFB950004876CF /* EditRecepie.swift */,
-				D8728B662AFFE7C1004876CF /* RecepeiScreenApi.swift */,
 				D83C6F6B2B1C37D1008E0FAE /* TestScreen.swift */,
 				D8E96BE52B54D88500E93590 /* AlertCustom.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D8FEAT012FCEA73800F02674 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				D8BREW012FCEA73800F02674 /* BrewTab.swift */,
+				D8MYRC012FCEA73800F02674 /* MyRecipesTab.swift */,
+				D8COMM012FCEA73800F02674 /* CommunityTab.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		D8LANG092FCEA73500F02674 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D8LANG012FCEA73500F02674 /* AppLanguage.swift */,
+				D8TIME012FCEA73700F02674 /* AppTimeAppearance.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +244,7 @@
 				D84A68122AF766340060AED0 /* Lottie */,
 				D8728B542AFFB663004876CF /* FirebaseAuth */,
 				D8728B5A2AFFB663004876CF /* FirebaseFirestore */,
+				D8UPD072FCEA73400F02674 /* FirebaseRemoteConfig */,
 			);
 			productName = Waznah;
 			productReference = D8A46EEC279879B20074E62E /* Waznah.app */;
@@ -250,6 +272,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 				"ar-SA",
 			);
 			mainGroup = D8A46EE3279879B10074E62E;
@@ -280,47 +303,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXSourcesBuildPhase section */
-		D8A46EE8279879B10074E62E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D88A189B2A71C8BF00D5CE6E /* TapView.swift in Sources */,
-				D88A189D2A71C98500D5CE6E /* RecepeiScreen.swift in Sources */,
-				D8ECBB59297B34D600A7C2C4 /* TimerView.swift in Sources */,
-				D83C6F6C2B1C37D2008E0FAE /* TestScreen.swift in Sources */,
-				D8A46EFA279879B20074E62E /* Waznah.xcdatamodeld in Sources */,
-				D88A189F2A71EB2C00D5CE6E /* RecepieDetail.swift in Sources */,
-				D8728B652AFFB950004876CF /* EditRecepie.swift in Sources */,
-				D84A68152AF766930060AED0 /* LottieAnimation.swift in Sources */,
-				D8FBC57F28EC491900D871AA /* Main.swift in Sources */,
-				D8FBC57D28EC358700D871AA /* BlurView.swift in Sources */,
-				D8FBC58528EC5FCD00D871AA /* TimerModel.swift in Sources */,
-				D8DCBB3E2B2D81170082DC6F /* Alerts.swift in Sources */,
-				D8FBC58128EC4CCE00D871AA /* ContantView.swift in Sources */,
-				D89D22342A71FA0900C49742 /* CoreDataProvidor.swift in Sources */,
-				D89D22362A71FAF600C49742 /* Model.swift in Sources */,
-				D88A18992A70C63700D5CE6E /* HalfSheet.swift in Sources */,
-				D8FBC57B28EC2B8300D871AA /* Background.swift in Sources */,
-				D8E96BE62B54D88600E93590 /* AlertCustom.swift in Sources */,
-				D8BF222D29A1871F0051611C /* Test.swift in Sources */,
-				D89D22392A71FBA900C49742 /* Model+Extention.swift in Sources */,
-				D8FBC58B28EC69BA00D871AA /* CalculateScreen.swift in Sources */,
-				D84A68102AF75F070060AED0 /* ApiRecepeiView.swift in Sources */,
-				D8728B672AFFE7C1004876CF /* RecepeiScreenApi.swift in Sources */,
-				D84A680E2AF7565C0060AED0 /* RecepeiView.swift in Sources */,
-				D88A18972A70A1AC00D5CE6E /* ButtonStyle.swift in Sources */,
-				D8FBC58928EC60F000D871AA /* Home.swift in Sources */,
-				D8AUTH022FCEA73100F02674 /* AuthService.swift in Sources */,
-				D8AUTH042FCEA73100F02674 /* AuthViewModel.swift in Sources */,
-				D8AUTH062FCEA73100F02674 /* AuthView.swift in Sources */,
-				D8AUTH082FCEA73100F02674 /* RootView.swift in Sources */,
-				D8SYNC022FCEA73200F02674 /* LocalRecipeSyncManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
 /* Begin PBXShellScriptBuildPhase section */
 		D8GRPCFIX2AFFE7C1004876CF /* Fix Firebase gRPC Bundle IDs */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -339,11 +321,53 @@
 		};
 /* End PBXShellScriptBuildPhase section */
 
+/* Begin PBXSourcesBuildPhase section */
+		D8A46EE8279879B10074E62E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D88A189B2A71C8BF00D5CE6E /* TapView.swift in Sources */,
+				D8BREW022FCEA73800F02674 /* BrewTab.swift in Sources */,
+				D8MYRC022FCEA73800F02674 /* MyRecipesTab.swift in Sources */,
+				D8COMM022FCEA73800F02674 /* CommunityTab.swift in Sources */,
+				D8FIRE022FCEA73800F02674 /* FirestoreManager.swift in Sources */,
+				D8RCMD022FCEA73800F02674 /* RecipeModels.swift in Sources */,
+				D84A68152AF766930060AED0 /* LottieAnimation.swift in Sources */,
+				D8FBC57F28EC491900D871AA /* Main.swift in Sources */,
+				D8FBC57D28EC358700D871AA /* BlurView.swift in Sources */,
+				D8FBC58528EC5FCD00D871AA /* TimerModel.swift in Sources */,
+				D8DCBB3E2B2D81170082DC6F /* Alerts.swift in Sources */,
+				D8FBC58128EC4CCE00D871AA /* ContantView.swift in Sources */,
+				D89D22342A71FA0900C49742 /* CoreDataProvidor.swift in Sources */,
+				D89D22362A71FAF600C49742 /* Model.swift in Sources */,
+				D88A18992A70C63700D5CE6E /* HalfSheet.swift in Sources */,
+				D8A46EFA279879B20074E62E /* Waznah.xcdatamodeld in Sources */,
+				D8E96BE62B54D88600E93590 /* AlertCustom.swift in Sources */,
+				D89D22392A71FBA900C49742 /* Model+Extention.swift in Sources */,
+				D88A18972A70A1AC00D5CE6E /* ButtonStyle.swift in Sources */,
+				D8FBC58928EC60F000D871AA /* Home.swift in Sources */,
+				D8SYNC022FCEA73200F02674 /* LocalRecipeSyncManager.swift in Sources */,
+				D8UPD022FCEA73400F02674 /* AppUpdateManager.swift in Sources */,
+				D8UPD042FCEA73400F02674 /* AppUpdateViewModel.swift in Sources */,
+				D8UPD062FCEA73400F02674 /* AppUpdateView.swift in Sources */,
+				D8LANG022FCEA73500F02674 /* AppLanguage.swift in Sources */,
+				D8TIME022FCEA73700F02674 /* AppTimeAppearance.swift in Sources */,
+				D8PDF022FCEA73600F02674 /* RecipeShareData.swift in Sources */,
+				D8PDF042FCEA73600F02674 /* RecipePDFExporter.swift in Sources */,
+				D8PDF062FCEA73600F02674 /* RecipePDFDocumentView.swift in Sources */,
+				D8PDF082FCEA73600F02674 /* ShareSheet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
 /* Begin PBXVariantGroup section */
 		D8F7C4A52B2D60B900ED9348 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D8F7C4A42B2D60B900ED9348 /* ar-SA */,
+				D8ARLOC2FCEA73500F02674 /* ar */,
+				D8ENLOC2FCEA73500F02674 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -355,10 +379,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_EXPLICIT_MODULES = NO;
@@ -484,13 +508,11 @@
 				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = Waznah/Waznah.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = NQUCPJVZ5U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Waznah/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Used for save recipe image on camera roll";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Used for save recipe image on camera roll";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -520,13 +542,11 @@
 				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = Waznah/Waznah.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = NQUCPJVZ5U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Waznah/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Used for save recipe image on camera roll";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Used for save recipe image on camera roll";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -604,6 +624,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D8728B4F2AFFB663004876CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		D8UPD072FCEA73400F02674 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8728B4F2AFFB663004876CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 /* End XCSwiftPackageProductDependency section */
 

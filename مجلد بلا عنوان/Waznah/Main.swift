@@ -17,16 +17,11 @@ struct WaznahApp: App {
         FirebaseApp.configure()
     }
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject var pomodoroModel: PomodoroModel = .init()
-    // MARK: Scene Phase
-    @Environment(\.scenePhase) var phase
-    // MARK: Storing Last Time Stamp
-    @State var lastActiveTimeStamp: Date = Date()
     
     var body: some Scene {
        
         WindowGroup {
-            ContantView()
+            AppLaunchView()
                 .environment(\.managedObjectContext, CoreDataProvider.shared.viewContext)
                 
         }
@@ -35,8 +30,7 @@ struct WaznahApp: App {
 }
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        print(">> your code here !!")
-        return true
+        true
     }
 }
 

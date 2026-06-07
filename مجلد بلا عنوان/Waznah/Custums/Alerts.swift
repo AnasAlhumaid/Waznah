@@ -18,7 +18,7 @@ struct LoadingAlert: View {
                     .progressViewStyle(CircularProgressViewStyle(tint: .black))
                     .scaleEffect(2.0) // Adjust the scale as needed
 
-                Text("Loading...")
+                Text("Loading...".localized())
                     .foregroundColor(.black)
                     .padding(.top, 8)
             }

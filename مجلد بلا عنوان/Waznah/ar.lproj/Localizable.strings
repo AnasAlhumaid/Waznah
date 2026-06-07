@@ -1,32 +1,234 @@
-/* 
-  Localizable.strings
-  Waznah
+/* Waznah — Arabic (fallback, same as ar-SA) */
 
-  Created by Anas Hamad on 10/10/23.
-  
-*/
+/* App & tabs */
+"Waznah" = "وزنة";
+"Brew" = "التحضير";
+"My Recipes" = "وصفاتي";
+"Community" = "المجتمع";
+"Recipes" = "وصفاتي";
+
+/* Update */
+"Update required" = "يتطلب التحديث";
+"Please update Waznah to continue using the app." = "يرجى تحديث تطبيق وزنة لمتابعة الاستخدام.";
+"Your version: %@ • Required: %@" = "إصدارك: %@ • المطلوب: %@";
+"Update Now" = "حدّث الآن";
+"Checking for updates..." = "جاري التحقق من التحديثات...";
+
+/* Brew & calculator */
+"Brew Calculator" = "حاسبة التحضير";
+"Calculate coffee or water by ratio." = "احسب القهوة أو الماء حسب النسبة.";
+"current ratio" = "النسبة الحالية";
+"Ratio Presets" = "نسب جاهزة";
+"Need Water" = "أحتاج ماء";
+"Need Coffee" = "أحتاج قهوة";
+"Coffee" = "قهوة";
+"Water" = "ماء";
+"Water needed" = "الماء المطلوب";
+"Coffee needed" = "القهوة المطلوبة";
+"ml water" = "مل ماء";
+"g coffee" = "غ قهوة";
+"Ratio" = "النسبة";
+"Temp" = "الحرارة";
+"Grind" = "الطحنة";
+
+/* Timer */
+"Brew Timer" = "مؤقت التحضير";
+"Timer is running" = "المؤقت يعمل";
+"Ready when you are" = "جاهز عندما تكون أنت جاهزاً";
+"Select Timer" = "اختر الوقت";
+"Set Time" = "ضبط الوقت";
+"Changing time resets the current timer." = "تغيير الوقت يعيد ضبط المؤقت الحالي.";
+"Start" = "ابدأ";
+"Pause" = "إيقاف مؤقت";
+"Stop" = "إيقاف";
+
+/* Info */
+"The ratio of ground coffee to water differs greatly between brew methods and personal taste. The ratios on this page are based on a mixture of consensus and official sources." = "تختلف نسبة البن المطحون إلى الماء كثيراً بين طرق التحضير والذوق الشخصي. النسب في هذه الصفحة مبنية على إجماع ومصادر رسمية.";
+"But, there is no right way—so long as you enjoy your coffee and aren't consuming a dangerous amount!" = "لا توجد طريقة واحدة صحيحة — المهم أن تستمتع بقهوتك دون إفراط!";
+"A Good Cup of Coffee" = "فنجان قهوة جيد";
+"Small habits that make every brew better." = "عادات بسيطة تجعل كل تحضيرة أفضل.";
+"Start with fresh beans and grind right before you brew." = "ابدأ بحبوب طازجة واطحنها مباشرة قبل التحضير.";
+"Use clean water at the right temperature for your method." = "استخدم ماءً نظيفاً بدرجة حرارة مناسبة لطريقة تحضيرك.";
+"Weigh your coffee and water — a steady ratio keeps every cup balanced." = "زِن القهوة والماء — نسبة ثابتة تعطيك فنجاناً متوازناً.";
+"Pour with care, then slow down and enjoy the moment." = "صبّ بتمهّل، ثم خذ لحظة واستمتع.";
+"Developer" = "المطوّر";
+"Water not divided in steps" = "الماء غير موزّع على الخطوات";
+"You entered %@ ml of water, but it is not divided across brew steps. Add steps that total %@ ml." = "أدخلت %@ مل من الماء، لكنه غير موزّع على خطوات التحضير. أضف خطوات مجموع مائها %@ مل.";
+"Your brew steps total %@ ml, but the recipe water is %@ ml. Divide all %@ ml across the steps." = "مجموع ماء خطوات التحضير %@ مل، بينما ماء الوصفة %@ مل. وزّع %@ مل على الخطوات.";
+"Remaining: %@ ml" = "متبقٍ: %@ مل";
+"Over by %@ ml" = "زيادة %@ مل";
+"Total: %@ ml" = "الإجمالي: %@ مل";
+"Left to divide: %@ ml" = "متبقٍ للتوزيع: %@ مل";
+
+"Community Guidelines" = "إرشادات المجتمع";
+"Share coffee recipes only. Do not post offensive, misleading, or unrelated content. Report recipes that violate these guidelines." = "شارك وصفات القهوة فقط. لا تنشر محتوى مسيئاً أو مضللاً أو غير ذي صلة. بلّغ عن الوصفات التي تخالف هذه الإرشادات.";
+"Legal" = "قانوني";
+"Privacy Policy" = "سياسة الخصوصية";
+"Account" = "الحساب";
+"Delete Account" = "حذف الحساب";
+"Delete account?" = "حذف الحساب؟";
+"This permanently deletes your cloud account, shared Community recipes, and synced data. Local recipes stay on this device but are unlinked from Community." = "يحذف هذا حسابك السحابي ووصفات المجتمع المشتركة والبيانات المتزامنة نهائياً. تبقى الوصفات المحلية على هذا الجهاز لكنها تُفصل عن المجتمع.";
+"Account deleted" = "تم حذف الحساب";
+"Your cloud account and shared data were removed." = "تمت إزالة حسابك السحابي والبيانات المشتركة.";
+"Account action failed" = "فشل إجراء الحساب";
+"Removes your Firebase account and all shared Community data." = "يزيل حسابك السحابي على خوادمنا وجميع بيانات المجتمع المشتركة.";
+"Report this recipe?" = "الإبلاغ عن هذه الوصفة؟";
+"Report" = "إبلاغ";
+"This sends the recipe to the developer for review. Misuse may lead to removal from Community." = "يرسل هذا الوصفة إلى المطوّر للمراجعة. قد يؤدي سوء الاستخدام إلى الإزالة من المجتمع.";
+"Report submitted" = "تم إرسال البلاغ";
+"Thank you. The developer will review this recipe." = "شكراً لك. سيراجع المطوّر هذه الوصفة.";
+"Could not report recipe" = "تعذّر الإبلاغ عن الوصفة";
+"Report Recipe" = "الإبلاغ عن الوصفة";
+"Tell us why you are reporting this recipe." = "أخبرنا لماذا تبلّغ عن هذه الوصفة.";
+"At least %d characters required" = "مطلوب %d حرفاً على الأقل";
+"%d / 500" = "%d / 500";
+"Each account can report a recipe only once." = "يمكن لكل حساب الإبلاغ عن الوصفة مرة واحدة فقط.";
+"Submit" = "إرسال";
+"Already reported" = "تم الإبلاغ مسبقاً";
+"You already reported this recipe. Each user can report a recipe only once." = "لقد أبلغت عن هذه الوصفة مسبقاً. يمكن لكل مستخدم الإبلاغ مرة واحدة فقط.";
+"You already reported this recipe." = "لقد أبلغت عن هذه الوصفة مسبقاً.";
+"Please write at least 10 characters explaining why you are reporting this recipe." = "اكتب 10 أحرف على الأقل توضّح سبب الإبلاغ عن هذه الوصفة.";
+"Report reason must be 500 characters or less." = "يجب ألا يتجاوز سبب الإبلاغ 500 حرف.";
+"Checking report..." = "جاري التحقق من البلاغ...";
+"Firestore rules blocked this report. Publish the latest firestore.rules in Firebase Console." = "تعذّر إرسال البلاغ إلى خوادمنا. يُرجى المحاولة لاحقاً.";
+
+/* Local recipes */
+"No saved recipes" = "لا توجد وصفات محفوظة";
+"Save your favorite brew recipes here for quick access." = "احفظ وصفاتك المفضلة هنا للوصول السريع.";
+"Add Recipe" = "إضافة وصفة";
+"Could not delete recipe" = "تعذّر حذف الوصفة";
+"Add Local Recipe" = "إضافة وصفة محلية";
+"Save a recipe on this device for quick access." = "احفظ وصفة على هذا الجهاز للوصول السريع.";
+"Recipe Info" = "معلومات الوصفة";
+"Roastery / Origin" = "المحمصة / المنشأ";
+"Example: Ethiopia Guji" = "مثال: إثيوبيا غوجي";
+"Coffee (g)" = "قهوة (غ)";
+"Water (ml)" = "ماء (مل)";
+"Temp (°C)" = "الحرارة (°م)";
+"Brew Method" = "طريقة التحضير";
+"Notes" = "ملاحظات";
+"Optional tasting notes, method details..." = "ملاحظات التذوق أو تفاصيل الطريقة...";
+"Brew Steps" = "خطوات التحضير";
+"Add step" = "إضافة خطوة";
+"Add pour steps with water amount and time." = "أضف خطوات الصب مع كمية الماء والوقت.";
+"Description" = "الوصف";
+"Bloom / first pour" = "الزهرة / الصب الأول";
+"Time (sec)" = "الوقت (ث)";
+"Save Local Recipe" = "حفظ الوصفة محلياً";
+"Local Recipe" = "وصفة محلية";
+"Local Recipe • Shared to Community" = "وصفة محلية • منشورة في المجتمع";
+"Unknown roastery" = "محمصة غير معروفة";
+"View" = "عرض";
+"Untitled Recipe" = "وصفة بدون عنوان";
+
+/* Community share (local) */
+"Share to Community" = "مشاركة في المجتمع";
+"Shared to Community" = "تم النشر في المجتمع";
+"Share to Community?" = "المشاركة في المجتمع؟";
+"Remove from Community" = "إزالة من المجتمع";
+"Remove from Community?" = "إزالة من المجتمع؟";
+"Removed from Community" = "تمت الإزالة من المجتمع";
+"Remove" = "إزالة";
+"This recipe will be public in Community Recipes. Other users can see it and like it." = "ستكون هذه الوصفة عامة في المجتمع. يمكن للمستخدمين رؤيتها والإعجاب بها.";
+"This removes your recipe from the public Community feed. Your local copy stays in My Recipes." = "ستُزال وصفتك من المجتمع العام. نسختك المحلية تبقى في وصفاتي.";
+"This recipe is no longer visible in Community Recipes. You can share it again anytime." = "لم تعد هذه الوصفة ظاهرة في المجتمع. يمكنك مشاركتها مجدداً في أي وقت.";
+"Agree" = "موافق";
+"Cancel" = "إلغاء";
+"OK" = "حسناً";
+"Your local recipe is now public in Community Recipes." = "وصفتك المحلية أصبحت عامة في وصفات المجتمع.";
+"This recipe will be public in Community Recipes. Other users can see it and like it. To remove it, delete the recipe from My Recipes." = "ستكون هذه الوصفة عامة في المجتمع. لإزالتها، احذفها من وصفاتي.";
+"Community action failed" = "فشل إجراء المجتمع";
+"Missing local recipe." = "الوصفة المحلية غير موجودة.";
+
+/* Community feed */
+"Community Recipes" = "وصفات المجتمع";
+"Community Recipe" = "وصفة المجتمع";
+"Clear Filters" = "مسح الفلاتر";
+"No community recipes" = "لا توجد وصفات في المجتمع";
+"No matching recipes" = "لا توجد وصفات مطابقة";
+"Community recipes from anonymous users will appear here." = "ستظهر هنا وصفات المستخدمين في المجتمع.";
+"Try another search, method, or sorting filter." = "جرّب بحثاً أو طريقة أو ترتيباً مختلفاً.";
+"Search roastery, method, ratio" = "ابحث عن محمصة، طريقة، نسبة";
+"My Shared" = "مشاركاتي";
+"Sort" = "ترتيب";
+"Newest" = "الأحدث";
+"Most liked" = "الأكثر إعجاباً";
+
+/* Add community recipe */
+"Add Community Recipe" = "إضافة وصفة للمجتمع";
+"Publish a recipe to the anonymous community feed." = "انشر وصفة في خلاصة المجتمع.";
+"Example: Local roastery, Ethiopia Guji" = "مثال: محمصة محلية، إثيوبيا غوجي";
+"Roastery" = "المحمصة";
+"Example: Medium fine" = "مثال: متوسطة ناعمة";
+"Grind size" = "درجة الطحنة";
+"Brew method" = "طريقة التحضير";
+"Example: 1:15" = "مثال: 1:15";
+"Brew steps" = "خطوات التحضير";
+"Add your first pour step with water amount and time." = "أضف أول خطوة صب مع كمية الماء والوقت.";
+"Describe the pour" = "صف عملية الصب";
+"Saving..." = "جاري الحفظ...";
+"Saving recipe..." = "جاري حفظ الوصفة...";
+"Saved!" = "تم الحفظ!";
+"Could not save recipe" = "تعذّر حفظ الوصفة";
+
+/* Recipe details */
+"Recipe Details" = "تفاصيل الوصفة";
+"No brew steps added yet." = "لم تُضف خطوات تحضير بعد.";
+"Pour" = "صب";
+
+/* Brew methods (keep recognizable names) */
+"All" = "الكل";
+"V60" = "V60";
+"Chemex" = "كيمكس";
+"Espresso" = "إسبريسو";
+"Cold Brew" = "قهوة باردة";
+"AeroPress" = "إيروبريس";
+
+/* Legacy / older screens */
+" Water ml" = " ماء مل";
+" Coffee g" = " قهوة غ";
 "Water Calcuate" = "حساب الماء";
 "Coffee Clculate" = "حساب القهوة";
-"Ratio" = "المعدل";
-"of Woter"="من الماء";
+"of Woter" = "من الماء";
 "of Coffee" = "من القهوة";
-"Stop" = "ايقاف";
-"Pause" = "استئناف";
-"Start" = "ابدأ";
-"Select Timer" = "اختر الوقت";
-"Coffee Origin : " = "منشأ القهوة:";
-"Grind size :" = "حجم الطحنة : ";
+"of Water" = "من الماء";
+"Coffee Origin : " = "منشأ القهوة: ";
+"Grind size :" = "حجم الطحنة: ";
 "Temperature:" = "درجة الحرارة:";
-"Ratio:" = "المعدل:";
-"Water:" = "كمية الماء:";
+"Ratio:" = "النسبة:";
+"Water:" = "الماء:";
 "Choose Brew Type:" = "طريقة التحضير:";
 "Save" = "حفظ";
-" Coffee g" = "قرامات القهوة";
-" Water ml" = "قرامات الماء";
+"Coffe Grams:" = "غرام القهوة:";
+"Coffee Origin:" = "منشأ القهوة:";
+"More info:" = "معلومات أكثر:";
+"Grams Bean:" = "غرام البن:";
+"Temp:" = "الحرارة:";
+"Steps" = "الخطوات";
+"Time" = "الوقت";
+"Gram" = "الغرام";
+"Suggested recipes" = "وصفات مقترحة";
+"sec" = "ث";
+"Loading..." = "جاري التحميل...";
 
-"The ratio of ground coffee to water differs greatly between brew methods and personal taste. The ratios on this page are based on a mixture of consensus and official sources." = "تختلف نسبة البن المطحون إلى الماء اختلافًا كبيرًا بين طرق التحضير والذوق الشخصي. وتعتمد النسب الموجودة في هذه الصفحة على مزيج من الإجماع والمصادر الرسمية.";
-"But, there is no right way—so long as you enjoy your coffee and aren't consuming a dangerous amount!" = "لكن، لا توجد طريقة صحيحة، طالما أنك تستمتع بقهوتك ولا تستهلك كمية خطيرة!";
-"More info:" = "معلومات اضافية:";
-"Recipes" = "الوصفات";
-"Waznah" = "وزنة";
+/* PDF share */
+"Coffee Recipe" = "وصفة قهوة";
+"Shared from Waznah" = "مشاركة من وزنة";
+"Could not share recipe" = "تعذرت مشاركة الوصفة";
+"The recipe PDF could not be created. Please try again." = "تعذر إنشاء ملف PDF للوصفة. يرجى المحاولة مرة أخرى.";
 
+"Edit Recipe" = "تعديل الوصفة";
+"Save Changes" = "حفظ التغييرات";
+"Recipe updated" = "تم تحديث الوصفة";
+"Your local recipe was updated." = "تم تحديث وصفتك المحلية.";
+"Your changes were saved and the shared Community recipe was updated." = "تم حفظ التغييرات وتحديث الوصفة المشتركة في المجتمع.";
+"Update your saved recipe. Shared recipes sync to Community." = "حدّث وصفتك المحفوظة. الوصفات المشتركة تُحدَّث في المجتمع.";
+"Done" = "تم";
+"Scan to get Waznah" = "امسح للحصول على وزنة";
+
+/* Errors */
+"Firebase sign-in failed." = "تعذّر الاتصال بخوادمنا.";
+"Missing Firebase user." = "تعذّر التحقق من حسابك على خوادمنا.";
+"Firebase Anonymous Sign-In is disabled. Open Firebase Console > Authentication > Sign-in method > Anonymous and enable it." = "ميزات المجتمع غير متاحة مؤقتاً. يُرجى المحاولة لاحقاً.";
+"Firebase Auth internal error. Enable Anonymous sign-in and verify GoogleService-Info.plist." = "حدث خطأ أثناء الاتصال بخوادمنا. يُرجى المحاولة مرة أخرى.";
+"Firestore rules blocked this save. Deploy the new rules in firestore.rules or check the user is signed in." = "تعذّر الحفظ على خوادمنا. يُرجى المحاولة مرة أخرى.";

@@ -1,7 +1,195 @@
-/* 
-  Localizable.strings
-  Waznah
+/* Waznah — English (development language) */
 
-  Created by Anas Hamad on 10/10/23.
-  
-*/
+"Waznah" = "Waznah";
+"Brew" = "Brew";
+"My Recipes" = "My Recipes";
+"Community" = "Community";
+"Recipes" = "My Recipes";
+
+"Update required" = "Update required";
+"Please update Waznah to continue using the app." = "Please update Waznah to continue using the app.";
+"Your version: %@ • Required: %@" = "Your version: %@ • Required: %@";
+"Update Now" = "Update Now";
+"Checking for updates..." = "Checking for updates...";
+
+"Brew Calculator" = "Brew Calculator";
+"Calculate coffee or water by ratio." = "Calculate coffee or water by ratio.";
+"current ratio" = "current ratio";
+"Ratio Presets" = "Ratio Presets";
+"Need Water" = "Need Water";
+"Need Coffee" = "Need Coffee";
+"Coffee" = "Coffee";
+"Water" = "Water";
+"Water needed" = "Water needed";
+"Coffee needed" = "Coffee needed";
+"ml water" = "ml water";
+"g coffee" = "g coffee";
+"Ratio" = "Ratio";
+"Temp" = "Temp";
+"Grind" = "Grind";
+
+"Brew Timer" = "Brew Timer";
+"Timer is running" = "Timer is running";
+"Ready when you are" = "Ready when you are";
+"Select Timer" = "Select Timer";
+"Set Time" = "Set Time";
+"Changing time resets the current timer." = "Changing time resets the current timer.";
+"Start" = "Start";
+"Pause" = "Pause";
+"Stop" = "Stop";
+
+"The ratio of ground coffee to water differs greatly between brew methods and personal taste. The ratios on this page are based on a mixture of consensus and official sources." = "The ratio of ground coffee to water differs greatly between brew methods and personal taste. The ratios on this page are based on a mixture of consensus and official sources.";
+"But, there is no right way—so long as you enjoy your coffee and aren't consuming a dangerous amount!" = "But, there is no right way—so long as you enjoy your coffee and aren't consuming a dangerous amount!";
+"A Good Cup of Coffee" = "A Good Cup of Coffee";
+"Small habits that make every brew better." = "Small habits that make every brew better.";
+"Start with fresh beans and grind right before you brew." = "Start with fresh beans and grind right before you brew.";
+"Use clean water at the right temperature for your method." = "Use clean water at the right temperature for your method.";
+"Weigh your coffee and water — a steady ratio keeps every cup balanced." = "Weigh your coffee and water — a steady ratio keeps every cup balanced.";
+"Pour with care, then slow down and enjoy the moment." = "Pour with care, then slow down and enjoy the moment.";
+"Developer" = "Developer";
+"Water not divided in steps" = "Water not divided in steps";
+"You entered %@ ml of water, but it is not divided across brew steps. Add steps that total %@ ml." = "You entered %@ ml of water, but it is not divided across brew steps. Add steps that total %@ ml.";
+"Your brew steps total %@ ml, but the recipe water is %@ ml. Divide all %@ ml across the steps." = "Your brew steps total %@ ml, but the recipe water is %@ ml. Divide all %@ ml across the steps.";
+"Remaining: %@ ml" = "Remaining: %@ ml";
+"Over by %@ ml" = "Over by %@ ml";
+"Total: %@ ml" = "Total: %@ ml";
+"Left to divide: %@ ml" = "Left to divide: %@ ml";
+
+"Community Guidelines" = "Community Guidelines";
+"Share coffee recipes only. Do not post offensive, misleading, or unrelated content. Report recipes that violate these guidelines." = "Share coffee recipes only. Do not post offensive, misleading, or unrelated content. Report recipes that violate these guidelines.";
+"Legal" = "Legal";
+"Privacy Policy" = "Privacy Policy";
+"Account" = "Account";
+"Delete Account" = "Delete Account";
+"Delete account?" = "Delete account?";
+"This permanently deletes your cloud account, shared Community recipes, and synced data. Local recipes stay on this device but are unlinked from Community." = "This permanently deletes your cloud account, shared Community recipes, and synced data. Local recipes stay on this device but are unlinked from Community.";
+"Account deleted" = "Account deleted";
+"Your cloud account and shared data were removed." = "Your cloud account and shared data were removed.";
+"Account action failed" = "Account action failed";
+"Removes your Firebase account and all shared Community data." = "Removes your cloud account on our servers and all shared Community data.";
+"Report this recipe?" = "Report this recipe?";
+"Report" = "Report";
+"This sends the recipe to the developer for review. Misuse may lead to removal from Community." = "This sends the recipe to the developer for review. Misuse may lead to removal from Community.";
+"Report submitted" = "Report submitted";
+"Thank you. The developer will review this recipe." = "Thank you. The developer will review this recipe.";
+"Could not report recipe" = "Could not report recipe";
+"Report Recipe" = "Report Recipe";
+"Tell us why you are reporting this recipe." = "Tell us why you are reporting this recipe.";
+"At least %d characters required" = "At least %d characters required";
+"%d / 500" = "%d / 500";
+"Each account can report a recipe only once." = "Each account can report a recipe only once.";
+"Submit" = "Submit";
+"Already reported" = "Already reported";
+"You already reported this recipe. Each user can report a recipe only once." = "You already reported this recipe. Each user can report a recipe only once.";
+"You already reported this recipe." = "You already reported this recipe.";
+"Please write at least 10 characters explaining why you are reporting this recipe." = "Please write at least 10 characters explaining why you are reporting this recipe.";
+"Report reason must be 500 characters or less." = "Report reason must be 500 characters or less.";
+"Checking report..." = "Checking report...";
+"Firestore rules blocked this report. Publish the latest firestore.rules in Firebase Console." = "We couldn't send this report to our servers. Please try again later.";
+
+"No saved recipes" = "No saved recipes";
+"Save your favorite brew recipes here for quick access." = "Save your favorite brew recipes here for quick access.";
+"Add Recipe" = "Add Recipe";
+"Could not delete recipe" = "Could not delete recipe";
+"Add Local Recipe" = "Add Local Recipe";
+"Save a recipe on this device for quick access." = "Save a recipe on this device for quick access.";
+"Recipe Info" = "Recipe Info";
+"Roastery / Origin" = "Roastery / Origin";
+"Example: Ethiopia Guji" = "Example: Ethiopia Guji";
+"Coffee (g)" = "Coffee (g)";
+"Water (ml)" = "Water (ml)";
+"Temp (°C)" = "Temp (°C)";
+"Brew Method" = "Brew Method";
+"Notes" = "Notes";
+"Optional tasting notes, method details..." = "Optional tasting notes, method details...";
+"Brew Steps" = "Brew Steps";
+"Add step" = "Add step";
+"Add pour steps with water amount and time." = "Add pour steps with water amount and time.";
+"Description" = "Description";
+"Bloom / first pour" = "Bloom / first pour";
+"Time (sec)" = "Time (sec)";
+"Save Local Recipe" = "Save Local Recipe";
+"Local Recipe" = "Local Recipe";
+"Local Recipe • Shared to Community" = "Local Recipe • Shared to Community";
+"Unknown roastery" = "Unknown roastery";
+"View" = "View";
+"Untitled Recipe" = "Untitled Recipe";
+
+"Share to Community" = "Share to Community";
+"Shared to Community" = "Shared to Community";
+"Share to Community?" = "Share to Community?";
+"Remove from Community" = "Remove from Community";
+"Remove from Community?" = "Remove from Community?";
+"Removed from Community" = "Removed from Community";
+"Remove" = "Remove";
+"This recipe will be public in Community Recipes. Other users can see it and like it." = "This recipe will be public in Community Recipes. Other users can see it and like it.";
+"This removes your recipe from the public Community feed. Your local copy stays in My Recipes." = "This removes your recipe from the public Community feed. Your local copy stays in My Recipes.";
+"This recipe is no longer visible in Community Recipes. You can share it again anytime." = "This recipe is no longer visible in Community Recipes. You can share it again anytime.";
+"Agree" = "Agree";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Your local recipe is now public in Community Recipes." = "Your local recipe is now public in Community Recipes.";
+"This recipe will be public in Community Recipes. Other users can see it and like it. To remove it, delete the recipe from My Recipes." = "This recipe will be public in Community Recipes. Other users can see it and like it. To remove it, delete the recipe from My Recipes.";
+"Community action failed" = "Community action failed";
+"Missing local recipe." = "Missing local recipe.";
+
+"Community Recipes" = "Community Recipes";
+"Community Recipe" = "Community Recipe";
+"Clear Filters" = "Clear Filters";
+"No community recipes" = "No community recipes";
+"No matching recipes" = "No matching recipes";
+"Community recipes from anonymous users will appear here." = "Community recipes from anonymous users will appear here.";
+"Try another search, method, or sorting filter." = "Try another search, method, or sorting filter.";
+"Search roastery, method, ratio" = "Search roastery, method, ratio";
+"My Shared" = "My Shared";
+"Sort" = "Sort";
+"Newest" = "Newest";
+"Most liked" = "Most liked";
+
+"Add Community Recipe" = "Add Community Recipe";
+"Publish a recipe to the anonymous community feed." = "Publish a recipe to the anonymous community feed.";
+"Example: Local roastery, Ethiopia Guji" = "Example: Local roastery, Ethiopia Guji";
+"Roastery" = "Roastery";
+"Example: Medium fine" = "Example: Medium fine";
+"Grind size" = "Grind size";
+"Brew method" = "Brew method";
+"Example: 1:15" = "Example: 1:15";
+"Brew steps" = "Brew steps";
+"Add your first pour step with water amount and time." = "Add your first pour step with water amount and time.";
+"Describe the pour" = "Describe the pour";
+"Saving..." = "Saving...";
+"Saving recipe..." = "Saving recipe...";
+"Saved!" = "Saved!";
+"Could not save recipe" = "Could not save recipe";
+
+"Recipe Details" = "Recipe Details";
+"No brew steps added yet." = "No brew steps added yet.";
+"Pour" = "Pour";
+
+"All" = "All";
+"V60" = "V60";
+"Chemex" = "Chemex";
+"Espresso" = "Espresso";
+"Cold Brew" = "Cold Brew";
+"AeroPress" = "AeroPress";
+
+"Firebase sign-in failed." = "Could not connect to our servers.";
+"Missing Firebase user." = "Could not verify your account on our servers.";
+"Firebase Anonymous Sign-In is disabled. Open Firebase Console > Authentication > Sign-in method > Anonymous and enable it." = "Community features are temporarily unavailable. Please try again later.";
+"Firebase Auth internal error. Enable Anonymous sign-in and verify GoogleService-Info.plist." = "Something went wrong connecting to our servers. Please try again.";
+"Firestore rules blocked this save. Deploy the new rules in firestore.rules or check the user is signed in." = "We couldn't save to our servers. Please try again.";
+
+"Loading..." = "Loading...";
+"Coffee Recipe" = "Coffee Recipe";
+"Shared from Waznah" = "Shared from Waznah";
+"Could not share recipe" = "Could not share recipe";
+"The recipe PDF could not be created. Please try again." = "The recipe PDF could not be created. Please try again.";
+
+"Edit Recipe" = "Edit Recipe";
+"Save Changes" = "Save Changes";
+"Recipe updated" = "Recipe updated";
+"Your local recipe was updated." = "Your local recipe was updated.";
+"Your changes were saved and the shared Community recipe was updated." = "Your changes were saved and the shared Community recipe was updated.";
+"Update your saved recipe. Shared recipes sync to Community." = "Update your saved recipe. Shared recipes sync to Community.";
+"Done" = "Done";
+"Scan to get Waznah" = "Scan to get Waznah";

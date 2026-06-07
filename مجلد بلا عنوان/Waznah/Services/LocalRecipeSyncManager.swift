@@ -47,6 +47,16 @@ final class LocalRecipeSyncManager {
             }
         }
     }
+
+    func detachAllCloudLinks(in context: NSManagedObjectContext) {
+        guard let recipes = try? context.fetch(Recepie.all) else { return }
+
+        for recipe in recipes {
+            recipe.setValue(nil, forKey: "cloudRecipeId")
+        }
+
+        try? context.save()
+    }
     
     func pullRemoteRecipes(into context: NSManagedObjectContext, completion: ((Error?) -> Void)? = nil) {
         ensureAuthenticated { result in
@@ -108,7 +118,11 @@ final class LocalRecipeSyncManager {
             }
             
             guard let uid = result?.user.uid else {
-                completion(.failure(AuthServiceError.notSignedIn))
+                completion(.failure(NSError(
+                    domain: "Waznah.Sync",
+                    code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "Could not connect to our servers.".localized()]
+                )))
                 return
             }
             
@@ -148,6 +162,8 @@ final class LocalRecipeSyncManager {
         
         if let cloudRecipeId = recipe.value(forKey: "cloudRecipeId") as? String, !cloudRecipeId.isEmpty {
             payload["cloudRecipeId"] = cloudRecipeId
+        } else {
+            payload["cloudRecipeId"] = FieldValue.delete()
         }
         
         payload["createdAt"] = FieldValue.serverTimestamp()
@@ -197,5 +213,49 @@ extension Recepie {
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         request.fetchLimit = 1
         return try? context.fetch(request).first
+    }
+
+    var decodedSteps: [StepsAndTimes] {
+        if let stepsData = value(forKey: "stepsData") as? String,
+           let data = stepsData.data(using: .utf8),
+           let steps = try? JSONDecoder().decode([StepsAndTimes].self, from: data) {
+            return steps
+        }
+        return legacyStepsFromNotes
+    }
+
+    var notesWithoutLegacySteps: String {
+        let notes = more ?? ""
+        guard let range = notes.range(of: "Brew steps:") else { return notes }
+        return String(notes[..<range.lowerBound]).trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    var cloudRecipeIdValue: String? {
+        guard let value = value(forKey: "cloudRecipeId") as? String, !value.isEmpty else { return nil }
+        return value
+    }
+
+    private var legacyStepsFromNotes: [StepsAndTimes] {
+        let notes = more ?? ""
+        guard let range = notes.range(of: "Brew steps:") else { return [] }
+        return notes[range.upperBound...]
+            .split(separator: "\n")
+            .compactMap { Self.parseLegacyStep(String($0)) }
+    }
+
+    private static func parseLegacyStep(_ line: String) -> StepsAndTimes? {
+        let cleanedLine = line.replacingOccurrences(of: #"^\d+\.\s*"#, with: "", options: .regularExpression)
+        let parts = cleanedLine.components(separatedBy: " - ").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+        guard !parts.isEmpty else { return nil }
+        let step = parts[safe: 0] ?? ""
+        let water = (parts[safe: 1] ?? "").replacingOccurrences(of: "ml", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let time = (parts[safe: 2] ?? "").replacingOccurrences(of: "sec", with: "").trimmingCharacters(in: .whitespacesAndNewlines)
+        return StepsAndTimes(step: step, time: time, water: water)
+    }
+}
+
+private extension Array {
+    subscript(safe index: Index) -> Element? {
+        indices.contains(index) ? self[index] : nil
     }
 }

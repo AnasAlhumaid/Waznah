@@ -7,12 +7,9 @@
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Alow to save !!!</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>PoiretOne-Regular.ttf</string>
-		<string>Fontspring-DEMO-theseasons-reg.otf</string>
-	</array>
+	<key>WaznahAppStoreURL</key>
+	<string>https://apps.apple.com/sa/app/waznah-%D9%88%D8%B2%D9%86%D8%A9/id1609692144?l=ar</string>
+	<key>WaznahPrivacyPolicyURL</key>
+	<string>https://apps.apple.com/sa/app/waznah-%D9%88%D8%B2%D9%86%D8%A9/id1609692144?l=ar</string>
 </dict>
 </plist>
