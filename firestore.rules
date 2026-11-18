@@ -18,7 +18,27 @@ service cloud.firestore {
       return isSignedIn()
         && request.resource.data.ownerUid == request.auth.uid
         && request.resource.data.visibility == "public"
-        && request.resource.data.likeCount == 0;
+        && request.resource.data.likeCount == 0
+        && xbloomFieldsOk(request.resource.data);
+    }
+
+    // Official share page only. The id is often percent-encoded base64 (%2F, %3D);
+    // the stored string must match that form, so this does not decode it.
+    function isOfficialXBloomShareURL(value) {
+      return value is string
+        && value.size() > 0
+        && value.size() <= 800
+        && value.matches('^https://share-h5\\.xbloom\\.com/\\?((?:[^=&#]+=[^&#]*&)*)id=[^&#\\s]+((?:&[^=&#]+=[^&#]*)*)$');
+    }
+
+    function xbloomFieldOk(data, key) {
+      return !(key in data) || isOfficialXBloomShareURL(data[key]);
+    }
+
+    function xbloomFieldsOk(data) {
+      return xbloomFieldOk(data, 'xbloomURL')
+        && xbloomFieldOk(data, 'xbloomStudioURL')
+        && xbloomFieldOk(data, 'xbloomOriginalURL');
     }
 
     function onlyChangesLikeCount() {
@@ -36,7 +56,8 @@ service cloud.firestore {
         && request.resource.data.ownerUid == resource.data.ownerUid
         && request.resource.data.likeCount == resource.data.likeCount
         && request.resource.data.createdAt == resource.data.createdAt
-        && request.resource.data.visibility == resource.data.visibility;
+        && request.resource.data.visibility == resource.data.visibility
+        && xbloomFieldsOk(request.resource.data);
     }
 
     function createsOwnLike(uid) {

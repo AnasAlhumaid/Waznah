@@ -352,3 +352,14 @@
 "Open in xBloom" = "افتح في xBloom";
 "Opens this recipe in the xBloom app" = "يفتح هذه الوصفة في تطبيق xBloom";
 "xBloom" = "xBloom";
+"xBloom Studio" = "xBloom ستوديو";
+"xBloom Original" = "xBloom الأصلي";
+"Choose xBloom machine" = "اختر جهاز xBloom";
+"Studio or Original" = "ستوديو أو الأصلي";
+"Choose Studio or Original, then this page opens the xBloom app" = "اختر ستوديو أو الأصلي، وبعدها تفتح الصفحة تطبيق xBloom";
+"xBloom links" = "روابط xBloom";
+"Paste a share link from the xBloom app. Studio and Original use different grind settings, so each machine can have its own link." = "الصق رابط المشاركة من تطبيق xBloom. الطحنة تختلف بين ستوديو والأصلي، فكل جهاز له رابطه.";
+"xBloom Studio link" = "رابط xBloom ستوديو";
+"xBloom Original link" = "رابط xBloom الأصلي";
+"Check the xBloom link" = "تأكد من رابط xBloom";
+"That xBloom link must be an https://share-h5.xbloom.com/?id=… address." = "رابط xBloom لازم يكون بهالشكل: https://share-h5.xbloom.com/?id=…";

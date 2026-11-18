@@ -662,7 +662,11 @@ struct FeaturedRecipesSection: View {
             }
         }
         .sheet(item: $selected) { featured in
-            ApiRecepeiView(recepei: featured.recipe, firestore: firestore)
+            let server = firestore.fetchedData.first { $0.id == featured.id }
+            ApiRecepeiView(
+                recepei: featured.recipe.applyingServerXBloomLinks(from: server),
+                firestore: firestore
+            )
         }
     }
 }
@@ -986,6 +990,8 @@ struct RecipeDetailSheet: View {
     var cloudRecipeId: String? = nil
     /// Cloud recipe, when available, for crop details and source badge.
     var recipe: YourDataModelRes? = nil
+    /// Local recipes pass their links here. Cloud recipes use `recipe.xbloomLinks`.
+    var xbloomLinks: XBloomRecipeLinks = .empty
     var cloudActionTitle: String? = nil
     var cloudActionSystemImage = "icloud.and.arrow.up.fill"
     var cloudActionTint = Color(hex: "#86373E")
@@ -1008,6 +1014,10 @@ struct RecipeDetailSheet: View {
 
     private var journeySteps: [BrewJourneyStep] {
         brewJourneyRecipe.steps
+    }
+
+    private var resolvedXBloomLinks: XBloomRecipeLinks {
+        xbloomLinks.hasChoice ? xbloomLinks : (recipe?.xbloomLinks ?? .empty)
     }
     
     private var shareData: RecipeShareData {
@@ -1034,7 +1044,7 @@ struct RecipeDetailSheet: View {
                     heroCard
                     startBrewJourneyButton
                     cloudActionButton
-                    if let xbloom = recipe?.xbloomShareURL { OpenInXBloomButton(url: xbloom) }
+                    if resolvedXBloomLinks.hasChoice { OpenInXBloomButton(links: resolvedXBloomLinks) }
                     if let recipe, recipe.hasCropDetails { CropDetailsCard(recipe: recipe) }
                     metricsGrid
                     stepsSection

@@ -165,6 +165,18 @@ final class LocalRecipeSyncManager {
         } else {
             payload["cloudRecipeId"] = FieldValue.delete()
         }
+
+        // Store the share link exactly. Empty clears it so a removed link disappears on other devices.
+        if let studio = recipe.xbloomStudioURLValue {
+            payload["xbloomStudioURL"] = studio
+        } else {
+            payload["xbloomStudioURL"] = FieldValue.delete()
+        }
+        if let original = recipe.xbloomOriginalURLValue {
+            payload["xbloomOriginalURL"] = original
+        } else {
+            payload["xbloomOriginalURL"] = FieldValue.delete()
+        }
         
         payload["createdAt"] = FieldValue.serverTimestamp()
         return payload
@@ -194,6 +206,9 @@ final class LocalRecipeSyncManager {
         if let cloudRecipeId = data["cloudRecipeId"] as? String, !cloudRecipeId.isEmpty {
             recipe.setValue(cloudRecipeId, forKey: "cloudRecipeId")
         }
+
+        recipe.setValue(data["xbloomStudioURL"] as? String, forKey: "xbloomStudioURL")
+        recipe.setValue(data["xbloomOriginalURL"] as? String, forKey: "xbloomOriginalURL")
     }
 }
 
@@ -233,6 +248,15 @@ extension Recepie {
     var cloudRecipeIdValue: String? {
         guard let value = value(forKey: "cloudRecipeId") as? String, !value.isEmpty else { return nil }
         return value
+    }
+
+    /// Exact official share link, or nil. Invalid hosts are ignored so a bad sync can't open them.
+    var xbloomStudioURLValue: String? { XBloomShareLink.preserved(value(forKey: "xbloomStudioURL") as? String) }
+
+    var xbloomOriginalURLValue: String? { XBloomShareLink.preserved(value(forKey: "xbloomOriginalURL") as? String) }
+
+    var xbloomRecipeLinks: XBloomRecipeLinks {
+        XBloomRecipeLinks(studioURL: xbloomStudioURLValue, originalURL: xbloomOriginalURLValue, legacyURL: nil)
     }
 
     private var legacyStepsFromNotes: [StepsAndTimes] {

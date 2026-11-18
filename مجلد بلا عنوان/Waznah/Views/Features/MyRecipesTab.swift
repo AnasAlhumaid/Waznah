@@ -150,7 +150,9 @@ final class LocalRecipeDetailViewModel: ObservableObject {
             ratio: recepi.ratio ?? "",
             temp: recepi.temp ?? "",
             tool: recepi.tools ?? "V60",
-            steps: localSteps
+            steps: localSteps,
+            xbloomStudioURL: recepi.xbloomStudioURLValue,
+            xbloomOriginalURL: recepi.xbloomOriginalURLValue
         ) { [weak self] result in
             guard let self else { return }
             self.isPublishing = false
@@ -217,6 +219,8 @@ final class AddLocalRecipeViewModel: ObservableObject {
     @Published var ratio = ""
     @Published var water = "" { didSet { scheduleRatioUpdate() } }
     @Published var more = ""
+    @Published var xbloomStudio = ""
+    @Published var xbloomOriginal = ""
     @Published var brew = "V60"
     @Published var stepsAndTimes: [StepsAndTimes] = []
     @Published var isSaving = false
@@ -318,6 +322,8 @@ final class AddLocalRecipeViewModel: ObservableObject {
             temp = recepi.temp ?? ""
             brew = recepi.tools ?? "V60"
             more = recepi.notesWithoutLegacySteps
+            xbloomStudio = recepi.xbloomStudioURLValue ?? ""
+            xbloomOriginal = recepi.xbloomOriginalURLValue ?? ""
             stepsAndTimes = recepi.decodedSteps
             showDetails = !stepsAndTimes.isEmpty || !more.isEmpty
         } else {
@@ -417,6 +423,10 @@ final class AddLocalRecipeViewModel: ObservableObject {
     }
 
     func save(in context: NSManagedObjectContext, completion: @escaping (Result<SaveOutcome, Error>) -> Void) {
+        if let xbloomMessage = XBloomShareLink.rejectionMessage(studio: xbloomStudio, original: xbloomOriginal) {
+            completion(.failure(RecipeFormValidationError(message: xbloomMessage, alertTitle: "Check the xBloom link")))
+            return
+        }
         if let validationMessage = waterStepsValidationMessage() {
             completion(.failure(RecipeFormValidationError(message: validationMessage)))
             return
@@ -455,7 +465,9 @@ final class AddLocalRecipeViewModel: ObservableObject {
             ratio: ratio,
             temp: temp,
             tool: brew,
-            steps: validSteps
+            steps: validSteps,
+            xbloomStudioURL: XBloomShareLink.preserved(xbloomStudio),
+            xbloomOriginalURL: XBloomShareLink.preserved(xbloomOriginal)
         ) { [weak self] error in
             Task { @MainActor in
                 self?.isSaving = false
@@ -478,6 +490,8 @@ final class AddLocalRecipeViewModel: ObservableObject {
         recipe.tools = brew
         recipe.more = more.trimmingCharacters(in: .whitespacesAndNewlines)
         recipe.setValue(encodedStepsData, forKey: "stepsData")
+        recipe.setValue(XBloomShareLink.preserved(xbloomStudio), forKey: "xbloomStudioURL")
+        recipe.setValue(XBloomShareLink.preserved(xbloomOriginal), forKey: "xbloomOriginalURL")
     }
 
     private var validSteps: [StepsAndTimes] {
@@ -518,6 +532,7 @@ final class AddLocalRecipeViewModel: ObservableObject {
 
 struct RecipeFormValidationError: LocalizedError {
     let message: String
+    var alertTitle = "Water not divided in steps"
 
     var errorDescription: String? { message }
 }
@@ -650,6 +665,7 @@ struct RecipeView: View {
                 ? "Local Recipe • Shared to Community".localized()
                 : "Local Recipe".localized(),
             cloudRecipeId: viewModel.currentCloudRecipeId,
+            xbloomLinks: recepi.xbloomRecipeLinks,
             cloudActionTitle: viewModel.cloudActionTitle,
             cloudActionSystemImage: viewModel.cloudActionSystemImage,
             cloudActionTint: viewModel.cloudActionTint,
@@ -747,6 +763,7 @@ struct RecepieDetail: View {
                         header
                         brewMethodCard
                         recipeInfoCard
+                        xbloomCard
                         detailsToggle
                         if formVM.showDetails {
                             stepsCard
@@ -864,6 +881,36 @@ struct RecepieDetail: View {
             }
             .padding(.vertical, 2)
             }
+        }
+        .padding(16)
+        .waznahGlassCard(cornerRadius: 24)
+    }
+
+    private var xbloomCard: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            sectionTitle("xBloom links".localized(), icon: "link")
+            Text("Paste a share link from the xBloom app. Studio and Original use different grind settings, so each machine can have its own link.".localized())
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            LocalRecipeTextField(
+                title: "xBloom Studio link".localized(),
+                text: $formVM.xbloomStudio,
+                placeholder: "https://share-h5.xbloom.com/?id=",
+                icon: "link",
+                keyboardType: .URL,
+                disablesAutocorrection: true,
+                autocapitalization: .never
+            )
+            LocalRecipeTextField(
+                title: "xBloom Original link".localized(),
+                text: $formVM.xbloomOriginal,
+                placeholder: "https://share-h5.xbloom.com/?id=",
+                icon: "link",
+                keyboardType: .URL,
+                disablesAutocorrection: true,
+                autocapitalization: .never
+            )
         }
         .padding(16)
         .waznahGlassCard(cornerRadius: 24)
@@ -1033,8 +1080,8 @@ struct RecepieDetail: View {
                     onSaved?(outcome.didUpdateCommunity)
                     showSheet = false
                 case .failure(let error):
-                    if error is RecipeFormValidationError {
-                        saveAlertTitle = "Water not divided in steps".localized()
+                    if let formError = error as? RecipeFormValidationError {
+                        saveAlertTitle = formError.alertTitle.localized()
                     } else {
                         saveAlertTitle = "Could not save recipe".localized()
                     }
@@ -1073,6 +1120,8 @@ struct LocalRecipeTextField: View {
     let placeholder: String
     let icon: String
     var keyboardType: UIKeyboardType = .default
+    var disablesAutocorrection = false
+    var autocapitalization: TextInputAutocapitalization = .sentences
 
     private var usesNumericField: Bool {
         keyboardType == .decimalPad || keyboardType == .numberPad
@@ -1088,6 +1137,9 @@ struct LocalRecipeTextField: View {
                     TextField(placeholder, text: $text)
                         .font(.headline.weight(.semibold))
                         .foregroundColor(.primary)
+                        .keyboardType(keyboardType)
+                        .textInputAutocapitalization(autocapitalization)
+                        .autocorrectionDisabled(disablesAutocorrection)
                 }
             }
             .padding(.horizontal, 12)

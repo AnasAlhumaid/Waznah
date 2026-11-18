@@ -172,6 +172,8 @@ class FirestoreManager: ObservableObject {
         temp: String,
         tool: String,
         steps: [StepsAndTimes],
+        xbloomStudioURL: String? = nil,
+        xbloomOriginalURL: String? = nil,
         completion: @escaping (Result<String, Error>) -> Void
     ) {
         ensureSignedIn { result in
@@ -181,18 +183,23 @@ class FirestoreManager: ObservableObject {
                 
             case .success(let uid):
                 let recipeRef = self.publicRecipesCollection().document()
-                let recipeData = self.publicRecipePayload(
-                    documentID: recipeRef.documentID,
-                    ownerUid: uid,
-                    roastery: roastery,
-                    grain: grain,
-                    waterGrams: waterGrams,
-                    coffeeGrams: coffeeGrams,
-                    ratio: ratio,
-                    temp: temp,
-                    tool: tool,
-                    field3: self.stepDictionaries(from: steps),
-                    localRecipeId: localRecipeId
+                let recipeData = self.addingXBloomLinks(
+                    self.publicRecipePayload(
+                        documentID: recipeRef.documentID,
+                        ownerUid: uid,
+                        roastery: roastery,
+                        grain: grain,
+                        waterGrams: waterGrams,
+                        coffeeGrams: coffeeGrams,
+                        ratio: ratio,
+                        temp: temp,
+                        tool: tool,
+                        field3: self.stepDictionaries(from: steps),
+                        localRecipeId: localRecipeId
+                    ),
+                    studio: xbloomStudioURL,
+                    original: xbloomOriginalURL,
+                    deleteWhenMissing: false
                 )
                 
                 recipeRef.setData(recipeData, merge: false) { error in
@@ -217,6 +224,8 @@ class FirestoreManager: ObservableObject {
         temp: String,
         tool: String,
         steps: [StepsAndTimes],
+        xbloomStudioURL: String? = nil,
+        xbloomOriginalURL: String? = nil,
         completion: @escaping (Error?) -> Void
     ) {
         ensureSignedIn { result in
@@ -225,16 +234,21 @@ class FirestoreManager: ObservableObject {
                 completion(error)
 
             case .success:
-                let payload = self.publicRecipeUpdatePayload(
-                    roastery: roastery,
-                    grain: grain,
-                    waterGrams: waterGrams,
-                    coffeeGrams: coffeeGrams,
-                    ratio: ratio,
-                    temp: temp,
-                    tool: tool,
-                    field3: self.stepDictionaries(from: steps),
-                    localRecipeId: localRecipeId
+                let payload = self.addingXBloomLinks(
+                    self.publicRecipeUpdatePayload(
+                        roastery: roastery,
+                        grain: grain,
+                        waterGrams: waterGrams,
+                        coffeeGrams: coffeeGrams,
+                        ratio: ratio,
+                        temp: temp,
+                        tool: tool,
+                        field3: self.stepDictionaries(from: steps),
+                        localRecipeId: localRecipeId
+                    ),
+                    studio: xbloomStudioURL,
+                    original: xbloomOriginalURL,
+                    deleteWhenMissing: true
                 )
 
                 self.publicRecipesCollection().document(cloudRecipeId).setData(payload, merge: true) { error in
@@ -616,6 +630,27 @@ class FirestoreManager: ObservableObject {
             ),
             "updatedAt": FieldValue.serverTimestamp()
         ]
+    }
+
+    /// Writes official share links unchanged. Invalid or empty values are omitted on create
+    /// and removed on update, so a cleared link does not keep opening.
+    private func addingXBloomLinks(
+        _ payload: [String: Any],
+        studio: String?,
+        original: String?,
+        deleteWhenMissing: Bool
+    ) -> [String: Any] {
+        var payload = payload
+        func apply(_ key: String, _ value: String?) {
+            if let exact = XBloomShareLink.preserved(value) {
+                payload[key] = exact
+            } else if deleteWhenMissing {
+                payload[key] = FieldValue.delete()
+            }
+        }
+        apply("xbloomStudioURL", studio)
+        apply("xbloomOriginalURL", original)
+        return payload
     }
 
     private func stepDictionaries(from steps: [StepsAndTimes]) -> [[String: Any]] {
