@@ -3,6 +3,7 @@
 //  Waznah
 //
 
+import StoreKit
 import SwiftUI
 
 struct AppUpdateView: View {
@@ -68,7 +69,9 @@ struct AppUpdateView: View {
 struct AppLaunchView: View {
     @StateObject private var updateViewModel = AppUpdateViewModel()
     @StateObject private var deepLinkRouter = WaznahDeepLinkRouter.shared
+    @StateObject private var reviewCoordinator = AppReviewCoordinator.shared
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.requestReview) private var requestReview
     
     private var updateInfo: AppUpdateInfo? {
         switch updateViewModel.updateKind {
@@ -117,11 +120,35 @@ struct AppLaunchView: View {
         }
         .onChange(of: scenePhase) { phase in
             guard phase == .active else { return }
+            reviewCoordinator.noteBecameActive()
             Task {
                 await updateViewModel.checkForUpdate()
             }
         }
         .animation(.easeInOut(duration: 0.2), value: updateViewModel.updateKind)
         .animation(.easeInOut(duration: 0.2), value: updateViewModel.phase)
+        .onAppear {
+            reviewCoordinator.noteBecameActive()
+            reviewCoordinator.setLaunchGateVisible(updateViewModel.phase == .checking)
+            reviewCoordinator.setUpdateWallVisible(mustUpdate)
+        }
+        .onChange(of: updateViewModel.phase) { phase in
+            reviewCoordinator.setLaunchGateVisible(phase == .checking)
+        }
+        .onChange(of: mustUpdate) { blocked in
+            reviewCoordinator.setUpdateWallVisible(blocked)
+        }
+        .onChange(of: reviewCoordinator.nativeReviewRequestID) { _ in
+            guard reviewCoordinator.nativeReviewRequestID > 0 else { return }
+            requestReview()
+        }
+        .sheet(isPresented: $reviewCoordinator.isPresented) {
+            RateWaznahSheet(source: reviewCoordinator.presentationSource)
+                .waznahReviewSheetChrome()
+                .waznahTimeBasedColorScheme()
+                .appLanguageLayout()
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+        }
     }
 }

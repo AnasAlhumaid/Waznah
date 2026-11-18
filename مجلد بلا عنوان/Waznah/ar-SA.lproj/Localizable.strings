@@ -352,3 +352,35 @@
 "Open in xBloom" = "افتح في xBloom";
 "Opens this recipe in the xBloom app" = "يفتح هذه الوصفة في تطبيق xBloom";
 "xBloom" = "xBloom";
+
+/* Rate the app */
+"The app" = "التطبيق";
+"Rate the app" = "قيّم التطبيق";
+"A short review, or a private note." = "مراجعة قصيرة، أو ملاحظة خاصة.";
+"How are you enjoying Waznah?" = "كيف تجربتك مع وزنة؟";
+"A quiet moment after a good cup. No rewards — just an honest note." = "لحظة هادئة بعد فنجان جيد. بلا مكافآت — مجرد ملاحظة صادقة.";
+"Love it" = "أحبّها";
+"The cup hits the spot" = "الفنجان جاء على المزاج";
+"It's alright" = "جيدة";
+"Good enough for now" = "مناسبة في الوقت الحالي";
+"Could be better" = "تحتاج تحسين";
+"Something's off" = "في شيء ناقص";
+"Not now" = "ليس الآن";
+"That means a lot" = "هذا يسعدنا كثيراً";
+"If Apple shows a review card, a few words help other coffee people find Waznah." = "إذا ظهرت بطاقة التقييم من Apple، فبضع كلمات تساعد محبّي القهوة على إيجاد وزنة.";
+"A short review helps other coffee people find Waznah." = "مراجعة قصيرة تساعد محبّي القهوة على إيجاد وزنة.";
+"Thanks for brewing with Waznah." = "شكراً لتحضيرك القهوة مع وزنة.";
+"Glad it's in the routine." = "سعداء أنها أصبحت ضمن روتينك.";
+"Send a note" = "أرسل ملاحظة";
+"Thank you. We'll read it." = "شكراً لك. سنقرأها.";
+"This note stays with the developer." = "تبقى هذه الملاحظة عند المطوّر.";
+"Tell us what to improve" = "أخبرنا بما نستطيع تحسينه";
+"This note goes to the developer. It is not published as an App Store review." = "تصل هذه الملاحظة إلى المطوّر، ولا تُنشر كتقييم في App Store.";
+"What should we improve?" = "ما الذي نحسّنه؟";
+"Send feedback" = "إرسال الملاحظة";
+"Could not open Mail, so you can share the note instead." = "تعذّر فتح البريد. يمكنك مشاركة الملاحظة بدلاً من ذلك.";
+"Share your note" = "شارك ملاحظتك";
+"Write a review on the App Store" = "اكتب مراجعة في App Store";
+"Opens the App Store review page. Optional, and nothing is unlocked." = "يفتح صفحة المراجعة في App Store. الأمر اختياري، ولا يفتح شيئاً داخل التطبيق.";
+"Back" = "رجوع";
+"Feedback length %d of %d" = "%d من %d";

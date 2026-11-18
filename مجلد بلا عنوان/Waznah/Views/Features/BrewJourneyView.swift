@@ -98,6 +98,7 @@ final class BrewJourneyViewModel: ObservableObject {
     }
 
     func restart() {
+        WaznahEngagementCenter.brewJourneyRestarted?()
         endBackgroundSurfaces()
         isRunning = false
         elapsedTime = 0
@@ -193,6 +194,7 @@ final class BrewJourneyViewModel: ObservableObject {
     }
 
     private func completeJourney() {
+        guard !isComplete else { return }
         isRunning = false
         endBackgroundSurfaces()
         currentStepIndex = max(steps.count - 1, 0)
@@ -201,6 +203,7 @@ final class BrewJourneyViewModel: ObservableObject {
         withAnimation(.spring(response: 0.5, dampingFraction: 0.85)) {
             isComplete = true
         }
+        WaznahEngagementCenter.brewJourneyCompleted?()
     }
 }
 
@@ -248,10 +251,14 @@ struct BrewJourneyView: View {
             }
         }
         .onReceive(ticker) { _ in vm.tick() }
-        .onAppear { ringPulse = true }
+        .onAppear {
+            ringPulse = true
+            WaznahEngagementCenter.brewJourneyAppeared?()
+        }
         .onDisappear {
             UIApplication.shared.isIdleTimerDisabled = false
             vm.endBackgroundSurfaces()
+            WaznahEngagementCenter.brewJourneyDismissed?()
         }
         .alert("End brew journey?".localized(), isPresented: $showExitConfirmation) {
             Button("End".localized(), role: .destructive) { dismiss() }
