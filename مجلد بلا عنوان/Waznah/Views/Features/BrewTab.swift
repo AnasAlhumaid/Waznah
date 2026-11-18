@@ -38,6 +38,7 @@ final class BrewTimerViewModel: ObservableObject {
 
     func toggleTimer() {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        AppReviewCoordinator.shared.cancelPendingAutomaticPrompt()
         if elapsedTime >= selectedTime { elapsedTime = 0 }
         didFinish = false
         isRunning.toggle()
@@ -45,6 +46,7 @@ final class BrewTimerViewModel: ObservableObject {
 
     func resetTimer() {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        AppReviewCoordinator.shared.cancelPendingAutomaticPrompt()
         isRunning = false
         elapsedTime = 0
         didFinish = false
@@ -53,6 +55,7 @@ final class BrewTimerViewModel: ObservableObject {
 
     func selectQuickTimer(_ seconds: Int) {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        AppReviewCoordinator.shared.cancelPendingAutomaticPrompt()
         selectedTime = seconds
         elapsedTime = 0
         didFinish = false
@@ -68,6 +71,7 @@ final class BrewTimerViewModel: ObservableObject {
             didFinish = true
             endBackgroundSurfaces()
             UINotificationFeedbackGenerator().notificationOccurred(.success)
+            AppReviewCoordinator.shared.recordBrewTimerFinished()
         }
     }
 
@@ -186,6 +190,7 @@ private struct BrewInfoOverlay: View {
                         tipsSection
                         communitySection
                         legalSection
+                        rateSection
                         developerSection
                         accountSection
                     }
@@ -287,6 +292,51 @@ private struct BrewInfoOverlay: View {
                         .font(.subheadline.weight(.medium))
                 }
             }
+        }
+    }
+
+    private var rateSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Divider().opacity(0.35)
+
+            Text("The app".localized())
+                .font(.caption.weight(.bold))
+                .foregroundColor(.secondary)
+                .textCase(.uppercase)
+
+            Button {
+                onClose()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    AppReviewCoordinator.shared.presentFromSettings()
+                }
+            } label: {
+                HStack(alignment: .center, spacing: 12) {
+                    Image(systemName: "heart.fill")
+                        .font(.body.weight(.semibold))
+                        .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
+                        .frame(width: 28, height: 28)
+                        .accessibilityHidden(true)
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Rate the app".localized())
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundColor(.primary)
+                        Text("A short review, or a private note.".localized())
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+
+                    Spacer(minLength: 8)
+
+                    Image(systemName: "chevron.forward")
+                        .font(.caption.weight(.semibold))
+                        .foregroundColor(.secondary)
+                        .flipsForRightToLeftLayoutDirection(true)
+                        .accessibilityHidden(true)
+                }
+            }
+            .buttonStyle(.plain)
         }
     }
 

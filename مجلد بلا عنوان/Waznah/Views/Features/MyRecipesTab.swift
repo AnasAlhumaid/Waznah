@@ -1027,11 +1027,15 @@ struct RecepieDetail: View {
     private var saveButton: some View {
         Button {
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            let createdNewRecipe = !formVM.isEditing
             formVM.save(in: viewContext) { result in
                 switch result {
                 case .success(let outcome):
                     onSaved?(outcome.didUpdateCommunity)
                     showSheet = false
+                    if createdNewRecipe {
+                        AppReviewCoordinator.shared.recordRecipeSaved()
+                    }
                 case .failure(let error):
                     if error is RecipeFormValidationError {
                         saveAlertTitle = "Water not divided in steps".localized()

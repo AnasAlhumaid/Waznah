@@ -313,3 +313,35 @@
 "Open in xBloom" = "Open in xBloom";
 "Opens this recipe in the xBloom app" = "Opens this recipe in the xBloom app";
 "xBloom" = "xBloom";
+
+/* Rate the app */
+"The app" = "The app";
+"Rate the app" = "Rate the app";
+"A short review, or a private note." = "A short review, or a private note.";
+"How are you enjoying Waznah?" = "How are you enjoying Waznah?";
+"A quiet moment after a good cup. No rewards — just an honest note." = "A quiet moment after a good cup. No rewards — just an honest note.";
+"Love it" = "Love it";
+"The cup hits the spot" = "The cup hits the spot";
+"It's alright" = "It's alright";
+"Good enough for now" = "Good enough for now";
+"Could be better" = "Could be better";
+"Something's off" = "Something's off";
+"Not now" = "Not now";
+"That means a lot" = "That means a lot";
+"If Apple shows a review card, a few words help other coffee people find Waznah." = "If Apple shows a review card, a few words help other coffee people find Waznah.";
+"A short review helps other coffee people find Waznah." = "A short review helps other coffee people find Waznah.";
+"Thanks for brewing with Waznah." = "Thanks for brewing with Waznah.";
+"Glad it's in the routine." = "Glad it's in the routine.";
+"Send a note" = "Send a note";
+"Thank you. We'll read it." = "Thank you. We'll read it.";
+"This note stays with the developer." = "This note stays with the developer.";
+"Tell us what to improve" = "Tell us what to improve";
+"This note goes to the developer. It is not published as an App Store review." = "This note goes to the developer. It is not published as an App Store review.";
+"What should we improve?" = "What should we improve?";
+"Send feedback" = "Send feedback";
+"Could not open Mail, so you can share the note instead." = "Could not open Mail, so you can share the note instead.";
+"Share your note" = "Share your note";
+"Write a review on the App Store" = "Write a review on the App Store";
+"Opens the App Store review page. Optional, and nothing is unlocked." = "Opens the App Store review page. Optional, and nothing is unlocked.";
+"Back" = "Back";
+"Feedback length %d of %d" = "%d of %d";

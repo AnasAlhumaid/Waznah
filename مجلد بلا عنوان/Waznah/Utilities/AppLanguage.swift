@@ -55,3 +55,12 @@ extension Error {
         return message
     }
 }
+
+/// Optional hooks the main app registers. The App Clip leaves them empty, so a
+/// finished brew there does not ask for a review.
+enum WaznahEngagementCenter {
+    static var brewJourneyAppeared: (() -> Void)?
+    static var brewJourneyCompleted: (() -> Void)?
+    static var brewJourneyRestarted: (() -> Void)?
+    static var brewJourneyDismissed: (() -> Void)?
+}

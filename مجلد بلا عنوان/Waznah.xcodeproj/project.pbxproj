@@ -62,6 +62,9 @@
 		D8UPD022FCEA73400F02674 /* AppUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8UPD012FCEA73400F02674 /* AppUpdateManager.swift */; };
 		D8UPD042FCEA73400F02674 /* AppUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8UPD032FCEA73400F02674 /* AppUpdateViewModel.swift */; };
 		D8UPD062FCEA73400F02674 /* AppUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8UPD052FCEA73400F02674 /* AppUpdateView.swift */; };
+		D8A7E1022FCEA74100F02674 /* AppReviewPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7E1012FCEA74100F02674 /* AppReviewPolicy.swift */; };
+		D8A7E2022FCEA74100F02674 /* AppReviewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7E2012FCEA74100F02674 /* AppReviewCoordinator.swift */; };
+		D8A7E3022FCEA74100F02674 /* RateWaznahSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A7E3012FCEA74100F02674 /* RateWaznahSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +156,9 @@
 		D8UPD012FCEA73400F02674 /* AppUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateManager.swift; sourceTree = "<group>"; };
 		D8UPD032FCEA73400F02674 /* AppUpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateViewModel.swift; sourceTree = "<group>"; };
 		D8UPD052FCEA73400F02674 /* AppUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateView.swift; sourceTree = "<group>"; };
+		D8A7E1012FCEA74100F02674 /* AppReviewPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewPolicy.swift; sourceTree = "<group>"; };
+		D8A7E2012FCEA74100F02674 /* AppReviewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewCoordinator.swift; sourceTree = "<group>"; };
+		D8A7E3012FCEA74100F02674 /* RateWaznahSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateWaznahSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -268,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				D8SYNC012FCEA73200F02674 /* LocalRecipeSyncManager.swift */,
+				D8A7E2012FCEA74100F02674 /* AppReviewCoordinator.swift */,
 				D8UPD012FCEA73400F02674 /* AppUpdateManager.swift */,
 				D8PDF012FCEA73600F02674 /* RecipeShareData.swift */,
 				D8PDF032FCEA73600F02674 /* RecipePDFExporter.swift */,
@@ -301,6 +308,7 @@
 			children = (
 				D8FEAT012FCEA73800F02674 /* Features */,
 				D8UPD052FCEA73400F02674 /* AppUpdateView.swift */,
+				D8A7E3012FCEA74100F02674 /* RateWaznahSheet.swift */,
 				D8PDF052FCEA73600F02674 /* RecipePDFDocumentView.swift */,
 				D8PDF072FCEA73600F02674 /* ShareSheet.swift */,
 				D8FBC57C28EC358700D871AA /* BlurView.swift */,
@@ -331,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				D8LANG012FCEA73500F02674 /* AppLanguage.swift */,
+				D8A7E1012FCEA74100F02674 /* AppReviewPolicy.swift */,
 				D8TIME012FCEA73700F02674 /* AppTimeAppearance.swift */,
 			);
 			path = Utilities;
@@ -577,6 +586,9 @@
 				D8UPD042FCEA73400F02674 /* AppUpdateViewModel.swift in Sources */,
 				D8UPD062FCEA73400F02674 /* AppUpdateView.swift in Sources */,
 				D8LANG022FCEA73500F02674 /* AppLanguage.swift in Sources */,
+				D8A7E1022FCEA74100F02674 /* AppReviewPolicy.swift in Sources */,
+				D8A7E2022FCEA74100F02674 /* AppReviewCoordinator.swift in Sources */,
+				D8A7E3022FCEA74100F02674 /* RateWaznahSheet.swift in Sources */,
 				D8TIME022FCEA73700F02674 /* AppTimeAppearance.swift in Sources */,
 				D8PDF022FCEA73600F02674 /* RecipeShareData.swift in Sources */,
 				D8PDF042FCEA73600F02674 /* RecipePDFExporter.swift in Sources */,
