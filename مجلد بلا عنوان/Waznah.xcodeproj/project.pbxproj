@@ -114,6 +114,7 @@
 		D89D22382A71FBA900C49742 /* Model+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Model+Extention.swift"; sourceTree = "<group>"; };
 		D8A46EEC279879B20074E62E /* Waznah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Waznah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A46EF9279879B20074E62E /* Waznah.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Waznah.xcdatamodel; sourceTree = "<group>"; };
+		D8XBLM012FCEA74100F02674 /* Waznah 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Waznah 2.xcdatamodel"; sourceTree = "<group>"; };
 		D8A46EFB279879B80074E62E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8A46F00279879B80074E62E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8ARLOC2FCEA73500F02674 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1138,8 +1139,9 @@
 			isa = XCVersionGroup;
 			children = (
 				D8A46EF9279879B20074E62E /* Waznah.xcdatamodel */,
+				D8XBLM012FCEA74100F02674 /* Waznah 2.xcdatamodel */,
 			);
-			currentVersion = D8A46EF9279879B20074E62E /* Waznah.xcdatamodel */;
+			currentVersion = D8XBLM012FCEA74100F02674 /* Waznah 2.xcdatamodel */;
 			path = Waznah.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

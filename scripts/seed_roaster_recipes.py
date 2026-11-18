@@ -5,6 +5,11 @@ Uses the Firestore REST API with your gcloud credentials (IAM, so security
 rules don't apply). Document IDs are fixed, so re-running updates in place
 instead of creating duplicates.
 
+xBloom share links are fields on these same recipe documents
+(`xbloomStudioURL`, `xbloomOriginalURL`), not Remote Config. Paste them in
+`XBLOOM` below and re-run with --write. The app reads them on the next fetch,
+including bag-QR and App Clip opens, with no app release.
+
     gcloud auth login            # with the account that owns waznah-60781
     python3 scripts/seed_roaster_recipes.py            # dry run
     python3 scripts/seed_roaster_recipes.py --write    # upload
@@ -14,6 +19,7 @@ import json
 import re
 import subprocess
 import sys
+import urllib.parse
 import urllib.request
 
 PROJECT = "waznah-60781"
@@ -74,6 +80,28 @@ META = {
     "waznah-camelstep-ethiopia-anasora-v60": ("إثيوبيا أناسورا", CAMEL, "إثيوبيا · قوجي", "كاربونيك · هيرلوم", "زبيب، فراولة، كاجو، زهور", "waznah"),
 }
 
+# Official xBloom share links (https://share-h5.xbloom.com/?id=…).
+# Create the recipe in the xBloom app, tap share, and paste the link here.
+# Studio and Original are separate because their grind settings differ.
+# Leave a side as "" to clear that link. Omit a recipe id to leave its stored
+# links untouched, so a console edit is not wiped by the next seed.
+#
+# Keep percent-encoding exactly. The id is base64, so "/" and "=" arrive as
+# %2F and %3D. Decoding or quoting them again makes the page fail.
+# Real example (Christopher Feran — do not attach it to another crop):
+#   https://share-h5.xbloom.com/?id=9EvH9mTldI3NaCM1NJX%2FCw%3D%3D
+XBLOOM = {
+    # "sulalat-alraheeq-v60": {
+    #     "studio": "https://share-h5.xbloom.com/?id=9EvH9mTldI3NaCM1NJX%2FCw%3D%3D",
+    #     "original": "",
+    # },
+}
+
+SAMPLE_XBLOOM = "https://share-h5.xbloom.com/?id=9EvH9mTldI3NaCM1NJX%2FCw%3D%3D"
+XBLOOM_RE = re.compile(
+    r"^https://share-h5\.xbloom\.com/\?((?:[^=&#]+=[^&#]*&)*)id=[^&#\s]+((?:&[^=&#]+=[^&#]*)*)$"
+)
+
 
 def keywords(*values):
     """Mirror FirestoreManager.searchKeywords: lowercase, split on non-alphanumerics, unique."""
@@ -89,6 +117,35 @@ def keywords(*values):
 
 def s(v):
     return {"stringValue": str(v)}
+
+
+def preserved_xbloom(raw):
+    """Return the link unchanged, or '' when it is blank. Reject anything else.
+
+    urllib.parse.quote/unquote would turn %2F into / or %252F. Neither loads.
+    """
+    raw = (raw or "").strip()
+    if not raw:
+        return ""
+    parsed = urllib.parse.urlparse(raw)
+    if parsed.scheme != "https" or (parsed.hostname or "").lower() != "share-h5.xbloom.com":
+        raise SystemExit(f"xBloom link host must be https://share-h5.xbloom.com/?id=… : {raw}")
+    if parsed.path not in ("", "/"):
+        raise SystemExit(f"xBloom link must not have a path: {raw}")
+    if not XBLOOM_RE.match(raw):
+        raise SystemExit(f"xBloom link must look like https://share-h5.xbloom.com/?id=… : {raw}")
+    return raw
+
+
+def check_sample_link():
+    exact = preserved_xbloom(SAMPLE_XBLOOM)
+    if exact != SAMPLE_XBLOOM or "%2F" not in exact or "%3D" not in exact:
+        raise SystemExit("sample xBloom link was rewritten")
+    if "%252F" in exact or "%253D" in exact:
+        raise SystemExit("sample xBloom link was double-encoded")
+    dumped = json.dumps({"stringValue": exact})
+    if SAMPLE_XBLOOM not in dumped or "%252F" in dumped:
+        raise SystemExit("JSON changed the sample xBloom link")
 
 
 def document(doc_id, roastery, tool, coffee, water, ratio, temp, grind, steps):
@@ -122,13 +179,36 @@ def document(doc_id, roastery, tool, coffee, water, ratio, temp, grind, steps):
     return fields
 
 
+def apply_xbloom(doc_id, fields):
+    """Fields to add, and field paths that should be deleted (in the mask, absent from fields)."""
+    links = XBLOOM.get(doc_id)
+    if not links:
+        return
+    for side, field in (("studio", "xbloomStudioURL"), ("original", "xbloomOriginalURL")):
+        if side not in links:
+            continue
+        exact = preserved_xbloom(links[side])
+        if exact:
+            fields[field] = s(exact)
+        else:
+            fields.pop(field, None)
+            # Caller adds `field` to the update mask so Firestore deletes it.
+
+
 def main():
+    check_sample_link()
     write = "--write" in sys.argv
     writes = []
     for doc_id, roastery, tool, coffee, water, ratio, temp, grind, steps in RECIPES:
         fields = document(doc_id, roastery, tool, coffee, water, ratio, temp, grind, steps)
         # likeCount is left out of the update mask so re-runs keep existing likes.
         mask = [k for k in fields if k != "likeCount"]
+        links = XBLOOM.get(doc_id) or {}
+        apply_xbloom(doc_id, fields)
+        for side, field in (("studio", "xbloomStudioURL"), ("original", "xbloomOriginalURL")):
+            if side in links and field not in mask:
+                # Present in the mask and absent from fields deletes a cleared link.
+                mask.append(field)
         writes.append({
             "update": {"name": f"projects/{PROJECT}/databases/(default)/documents/recipes/{doc_id}", "fields": fields},
             "updateMask": {"fieldPaths": mask},

@@ -162,8 +162,13 @@ struct YourDataModelRes: Codable, Hashable, Identifiable {
     var tastingNotes: String? = nil
     /// "official" (roaster's own recipe), "waznah" (Waznah suggestion) or nil (community).
     var source: String? = nil
-    /// Official xBloom share link (share-h5.xbloom.com/?id=…) that opens the recipe in the xBloom app.
+    /// Older single xBloom share link. Still read so existing documents keep working.
+    /// Device links below take over when either of them is set.
     var xbloomURL: String? = nil
+    /// Official share link for xBloom Studio (`https://share-h5.xbloom.com/?id=…`).
+    var xbloomStudioURL: String? = nil
+    /// Official share link for xBloom Original. Grind settings differ from Studio.
+    var xbloomOriginalURL: String? = nil
 
     static func == (lhs: YourDataModelRes, rhs: YourDataModelRes) -> Bool {
         lhs.rostery == rhs.rostery &&
@@ -185,13 +190,163 @@ struct YourDataModelRes: Codable, Hashable, Identifiable {
         lhs.process == rhs.process &&
         lhs.tastingNotes == rhs.tastingNotes &&
         lhs.source == rhs.source &&
-        lhs.xbloomURL == rhs.xbloomURL
+        lhs.xbloomURL == rhs.xbloomURL &&
+        lhs.xbloomStudioURL == rhs.xbloomStudioURL &&
+        lhs.xbloomOriginalURL == rhs.xbloomOriginalURL
     }
 
     private enum CodingKeys: String, CodingKey {
         case id, rostery, grain, waterGrams, coffeeGrams, ratio, temp, tool
         case field3, ownerUid, likeCount, searchKeywords, localRecipeId
-        case crop, roaster, origin, process, tastingNotes, source, xbloomURL
+        case crop, roaster, origin, process, tastingNotes, source
+        case xbloomURL, xbloomStudioURL, xbloomOriginalURL
+    }
+}
+
+// MARK: - xBloom share links
+
+enum XBloomDevice: String, Hashable, Identifiable {
+    case studio
+    case original
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .studio: return "xBloom Studio".localized()
+        case .original: return "xBloom Original".localized()
+        }
+    }
+}
+
+struct XBloomDeviceLink: Identifiable, Hashable {
+    let device: XBloomDevice?
+    /// Open this. Built so the percent-encoded id is unchanged.
+    let url: URL
+    /// The stored share link, character for character.
+    let exact: String
+
+    var id: String { (device?.rawValue ?? "legacy") + ":" + exact }
+}
+
+struct XBloomRecipeLinks: Hashable {
+    var studioURL: String?
+    var originalURL: String?
+    /// Pre-device field. Used only when neither Studio nor Original is set.
+    var legacyURL: String?
+
+    static let empty = XBloomRecipeLinks()
+
+    var choices: [XBloomDeviceLink] {
+        var items: [XBloomDeviceLink] = []
+        if let link = XBloomShareLink.link(from: studioURL) {
+            items.append(XBloomDeviceLink(device: .studio, url: link.url, exact: link.exact))
+        }
+        if let link = XBloomShareLink.link(from: originalURL) {
+            items.append(XBloomDeviceLink(device: .original, url: link.url, exact: link.exact))
+        }
+        if items.isEmpty, let link = XBloomShareLink.link(from: legacyURL) {
+            items.append(XBloomDeviceLink(device: nil, url: link.url, exact: link.exact))
+        }
+        return items
+    }
+
+    var hasChoice: Bool { !choices.isEmpty }
+}
+
+/// Official xBloom share pages only. The id is often percent-encoded base64
+/// (`%2F` for `/`, `%3D` for `=`). Decoding or re-encoding that id breaks the page,
+/// so a valid link is returned exactly as it was stored.
+enum XBloomShareLink {
+    static let host = "share-h5.xbloom.com"
+
+    /// Trimmed original string when `raw` is an official share link. Empty and invalid values are nil.
+    static func preserved(_ raw: String?) -> String? {
+        guard let trimmed = raw?.trimmingCharacters(in: .whitespacesAndNewlines), !trimmed.isEmpty else { return nil }
+        guard isOfficialShareLink(trimmed) else { return nil }
+        return trimmed
+    }
+
+    /// URL for SFSafariViewController. Nil when the link is missing, unofficial, or Foundation would rewrite the id.
+    static func link(from raw: String?) -> (url: URL, exact: String)? {
+        guard let exact = preserved(raw) else { return nil }
+        guard let url = urlKeepingEncodedQuery(exact) else { return nil }
+        return (url, exact)
+    }
+
+    static func rejectionMessage(studio: String, original: String) -> String? {
+        let invalid = [studio, original].contains { value in
+            let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
+            return !trimmed.isEmpty && preserved(trimmed) == nil
+        }
+        guard invalid else { return nil }
+        return "That xBloom link must be an https://share-h5.xbloom.com/?id=… address.".localized()
+    }
+
+    private static func isOfficialShareLink(_ exact: String) -> Bool {
+        // Parse the string by hand. URLComponents.query decodes `%2F` and `%3D`,
+        // and writing those items back double-encodes them (`%252F`).
+        let scheme = "https://"
+        guard exact.hasPrefix(scheme) else { return false }
+        let rest = exact.dropFirst(scheme.count)
+        guard !rest.contains("@"),
+              let boundary = rest.firstIndex(where: { $0 == "/" || $0 == "?" })
+        else { return false }
+        guard String(rest[..<boundary]) == host, !exact.contains("#") else { return false }
+        let afterHost = rest[boundary...]
+        if afterHost.hasPrefix("/") {
+            let pathAndQuery = afterHost.dropFirst()
+            guard pathAndQuery.hasPrefix("?") else { return false }
+        } else if !afterHost.hasPrefix("?") {
+            return false
+        }
+        guard let query = rawQuery(of: exact) else { return false }
+        return hasNonEmptyID(query)
+    }
+
+    private static func urlKeepingEncodedQuery(_ exact: String) -> URL? {
+        if let url = URL(string: exact), queryMatches(url, exact: exact) {
+            return url
+        }
+        guard let query = rawQuery(of: exact) else { return nil }
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = host
+        components.percentEncodedPath = "/"
+        // Already-encoded query. Assigning `queryItems` would decode `%2F`/`%3D` and encode them again.
+        components.percentEncodedQuery = query
+        guard let url = components.url, queryMatches(url, exact: exact) else { return nil }
+        return url
+    }
+
+    private static func queryMatches(_ url: URL, exact: String) -> Bool {
+        guard let expected = rawQuery(of: exact) else { return false }
+        if rawQuery(of: url.absoluteString) == expected { return true }
+        if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+           components.percentEncodedQuery == expected {
+            return true
+        }
+        return false
+    }
+
+    private static func rawQuery(of urlString: String) -> String? {
+        guard let queryStart = urlString.firstIndex(of: "?") else { return nil }
+        let rest = urlString[urlString.index(after: queryStart)...]
+        let query = rest.split(separator: "#", maxSplits: 1, omittingEmptySubsequences: false).first.map(String.init) ?? ""
+        return query.isEmpty ? nil : query
+    }
+
+    private static func hasNonEmptyID(_ query: String) -> Bool {
+        for part in query.split(separator: "&", omittingEmptySubsequences: false) {
+            let piece = String(part)
+            guard let separator = piece.firstIndex(of: "=") else { continue }
+            let name = String(piece[..<separator])
+            let value = String(piece[piece.index(after: separator)...])
+            if name == "id", !value.isEmpty, value.rangeOfCharacter(from: .whitespacesAndNewlines) == nil {
+                return true
+            }
+        }
+        return false
     }
 }
 
@@ -240,12 +395,20 @@ extension YourDataModelRes {
         return parts.isEmpty ? nil : parts.joined(separator: " · ")
     }
 
-    /// Only official xBloom https links are honoured, so a recipe can't open arbitrary URLs.
-    var xbloomShareURL: URL? {
-        guard let raw = Self.clean(xbloomURL), let url = URL(string: raw),
-              url.scheme == "https", let host = url.host?.lowercased(),
-              host == "xbloom.com" || host.hasSuffix(".xbloom.com") else { return nil }
-        return url
+    var xbloomLinks: XBloomRecipeLinks {
+        XBloomRecipeLinks(studioURL: xbloomStudioURL, originalURL: xbloomOriginalURL, legacyURL: xbloomURL)
+    }
+
+    /// Roaster picks are bundled, but their xBloom links live on the Firestore document
+    /// so they can change without an app release. Server values replace bundled ones,
+    /// including clearing a link by deleting the field.
+    func applyingServerXBloomLinks(from server: YourDataModelRes?) -> YourDataModelRes {
+        guard let server else { return self }
+        var copy = self
+        copy.xbloomURL = server.xbloomURL
+        copy.xbloomStudioURL = server.xbloomStudioURL
+        copy.xbloomOriginalURL = server.xbloomOriginalURL
+        return copy
     }
 
     var hasCropDetails: Bool {

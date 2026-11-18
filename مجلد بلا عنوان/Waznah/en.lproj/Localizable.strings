@@ -313,3 +313,14 @@
 "Open in xBloom" = "Open in xBloom";
 "Opens this recipe in the xBloom app" = "Opens this recipe in the xBloom app";
 "xBloom" = "xBloom";
+"xBloom Studio" = "xBloom Studio";
+"xBloom Original" = "xBloom Original";
+"Choose xBloom machine" = "Choose xBloom machine";
+"Studio or Original" = "Studio or Original";
+"Choose Studio or Original, then this page opens the xBloom app" = "Choose Studio or Original, then this page opens the xBloom app";
+"xBloom links" = "xBloom links";
+"Paste a share link from the xBloom app. Studio and Original use different grind settings, so each machine can have its own link." = "Paste a share link from the xBloom app. Studio and Original use different grind settings, so each machine can have its own link.";
+"xBloom Studio link" = "xBloom Studio link";
+"xBloom Original link" = "xBloom Original link";
+"Check the xBloom link" = "Check the xBloom link";
+"That xBloom link must be an https://share-h5.xbloom.com/?id=… address." = "That xBloom link must be an https://share-h5.xbloom.com/?id=… address.";

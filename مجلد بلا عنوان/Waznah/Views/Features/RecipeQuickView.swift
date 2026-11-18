@@ -5,6 +5,7 @@
 //  so the experience is the same whether or not Waznah is installed.
 //
 
+import SafariServices
 import StoreKit
 import SwiftUI
 
@@ -42,7 +43,7 @@ struct RecipeQuickView: View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 18) {
                 hero
-                if let xbloom = recipe.xbloomShareURL { OpenInXBloomButton(url: xbloom) }
+                if recipe.xbloomLinks.hasChoice { OpenInXBloomButton(links: recipe.xbloomLinks) }
                 if recipe.hasCropDetails { CropDetailsCard(recipe: recipe) }
                 metrics
                 if !journey.steps.isEmpty { stepsList }
@@ -290,34 +291,150 @@ struct CropDetailsCard: View {
     }
 }
 
-/// "Open in xBloom" — hands the recipe to the official xBloom app via its share link.
+/// "Open in xBloom" — opens the official share page in Safari. That page offers the xBloom app.
+/// Universal Links do not work for share-h5.xbloom.com, so this does not try to open the app directly.
 struct OpenInXBloomButton: View {
-    @Environment(\.openURL) private var openURL
-    let url: URL
+    let links: XBloomRecipeLinks
+    @State private var safariURL: URL?
+    @State private var showDevicePicker = false
+
+    private var choices: [XBloomDeviceLink] { links.choices }
 
     var body: some View {
-        Button {
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-            openURL(url)
-        } label: {
-            HStack(spacing: 8) {
-                Image("xBloom")
-                    .resizable()
-                    .renderingMode(.template)
-                    .scaledToFit()
-                    .frame(width: 22, height: 22)
-                Text("Open in xBloom".localized())
-                    .font(.headline)
-                Spacer(minLength: 0)
-                Image(systemName: "arrow.up.forward.app")
-                    .font(.subheadline.weight(.semibold))
+        if !choices.isEmpty {
+            Button(action: open) {
+                HStack(spacing: 8) {
+                    Image("xBloom")
+                        .resizable()
+                        .renderingMode(.template)
+                        .scaledToFit()
+                        .frame(width: 22, height: 22)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Open in xBloom".localized())
+                            .font(.headline)
+                        if let caption = deviceCaption {
+                            Text(caption)
+                                .font(.caption)
+                                .foregroundColor(.white.opacity(0.75))
+                        }
+                    }
+                    Spacer(minLength: 0)
+                    Image(systemName: "arrow.up.forward.app")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 14)
+                .foregroundColor(.white)
+                .background(Color(hex: "#2B2B2B"))
+                .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 14)
-            .foregroundColor(.white)
-            .background(Color(hex: "#2B2B2B"))
-            .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+            .accessibilityHint(accessibilityHint)
+            .confirmationDialog("Choose xBloom machine".localized(), isPresented: $showDevicePicker, titleVisibility: .visible) {
+                ForEach(choices) { choice in
+                    Button(choice.device?.title ?? "Open in xBloom".localized()) {
+                        safariURL = choice.url
+                    }
+                }
+                Button("Cancel".localized(), role: .cancel) {}
+            }
+            .background(XBloomSafariPresenter(url: $safariURL))
         }
-        .accessibilityHint("Opens this recipe in the xBloom app".localized())
+    }
+
+    private var deviceCaption: String? {
+        if choices.count > 1 { return "Studio or Original".localized() }
+        return choices.first?.device?.title
+    }
+
+    private var accessibilityHint: String {
+        choices.count > 1
+            ? "Choose Studio or Original, then this page opens the xBloom app".localized()
+            : "Opens this recipe in the xBloom app".localized()
+    }
+
+    private func open() {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        guard let only = choices.first else { return }
+        if choices.count == 1 {
+            safariURL = only.url
+        } else {
+            showDevicePicker = true
+        }
+    }
+}
+
+/// Presents SFSafariViewController on the visible screen, including when that screen is already a sheet.
+private struct XBloomSafariPresenter: UIViewControllerRepresentable {
+    @Binding var url: URL?
+
+    func makeCoordinator() -> Coordinator { Coordinator(url: $url) }
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        let controller = UIViewController()
+        controller.view.backgroundColor = .clear
+        controller.view.isUserInteractionEnabled = false
+        return controller
+    }
+
+    func updateUIViewController(_ controller: UIViewController, context: Context) {
+        context.coordinator.url = $url
+        let exact = url?.absoluteString
+        guard context.coordinator.scheduledExact != exact else { return }
+        context.coordinator.scheduledExact = exact
+        let requested = url
+        DispatchQueue.main.async {
+            context.coordinator.sync(requested: requested)
+        }
+    }
+
+    final class Coordinator: NSObject, SFSafariViewControllerDelegate {
+        var url: Binding<URL?>
+        var scheduledExact: String?
+        private weak var safari: SFSafariViewController?
+        private var attempts = 0
+
+        init(url: Binding<URL?>) { self.url = url }
+
+        func sync(requested: URL?) {
+            guard requested?.absoluteString == url.wrappedValue?.absoluteString else { return }
+            if let requested {
+                guard safari == nil else { return }
+                guard let host = Self.topViewController() else {
+                    attempts += 1
+                    guard attempts < 8 else { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                        self?.sync(requested: requested)
+                    }
+                    return
+                }
+                attempts = 0
+                let page = SFSafariViewController(url: requested)
+                page.dismissButtonStyle = .close
+                page.preferredControlTintColor = UIColor(red: 134 / 255, green: 55 / 255, blue: 62 / 255, alpha: 1)
+                page.delegate = self
+                safari = page
+                host.present(page, animated: true)
+            } else if let safari {
+                self.safari = nil
+                safari.dismiss(animated: true)
+            }
+        }
+
+        func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+            safari = nil
+            scheduledExact = nil
+            attempts = 0
+            url.wrappedValue = nil
+        }
+
+        private static func topViewController() -> UIViewController? {
+            let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+            let window = scenes.flatMap(\.windows).first(where: \.isKeyWindow) ?? scenes.flatMap(\.windows).first
+            var top = window?.rootViewController
+            while let presented = top?.presentedViewController {
+                top = presented
+            }
+            return top
+        }
     }
 }
