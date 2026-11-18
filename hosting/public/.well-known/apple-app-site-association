@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["NQUCPJVZ5U.com.AnasHamad.Waznah"],
+        "paths": ["/r/*", "/open", "/open/*"]
+      }
+    ]
+  },
+  "appclips": {
+    "apps": ["NQUCPJVZ5U.com.AnasHamad.Waznah.Clip"]
+  }
+}

@@ -14,11 +14,13 @@ final class CommunityRecipesViewModel: ObservableObject {
     @Published var selectedMethod = "All"
     @Published var selectedSort: CloudRecipeSort = .newest
     @Published var showMineOnly = false
+    /// nil = all sources.
+    @Published var selectedSource: RecipeSource?
 
     let firestore: FirestoreManager
     private var firestoreSubscription: AnyCancellable?
 
-    private let methodFilters = ["All", "V60", "Chemex", "Espresso", "Cold Brew", "AeroPress"]
+    private let methodFilters = ["All", "V60", "Chemex", "xBloom", "Espresso", "Cold Brew", "AeroPress"]
     var methodFilterOptions: [String] { methodFilters }
 
     init(firestore: FirestoreManager) {
@@ -38,10 +40,14 @@ final class CommunityRecipesViewModel: ObservableObject {
         if showMineOnly {
             recipes = recipes.filter { $0.ownerUid == firestore.currentUserID }
         }
+        if let selectedSource {
+            recipes = recipes.filter { $0.recipeSource == selectedSource }
+        }
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         if !query.isEmpty {
             recipes = recipes.filter { recipe in
-                [recipe.rostery, recipe.grain, recipe.waterGrams, recipe.coffeeGrams, recipe.ratio, recipe.temp, recipe.tool]
+                [recipe.rostery, recipe.crop, recipe.roaster, recipe.origin, recipe.process, recipe.tastingNotes,
+                 recipe.grain, recipe.waterGrams, recipe.coffeeGrams, recipe.ratio, recipe.temp, recipe.tool]
                     .compactMap { $0?.lowercased() }
                     .joined(separator: " ")
                     .contains(query)
@@ -72,11 +78,18 @@ final class CommunityRecipesViewModel: ObservableObject {
         }
     }
 
+    /// Bundled roaster recipes, shown while the user isn't searching their own shares.
+    var featuredRecipes: [FeaturedRecipe] {
+        guard searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, !showMineOnly else { return [] }
+        return FeaturedRecipes.all.filter { selectedMethod == "All" || $0.recipe.tool == selectedMethod }
+    }
+
     func clearFilters() {
         searchText = ""
         selectedMethod = "All"
         selectedSort = .newest
         showMineOnly = false
+        selectedSource = nil
     }
 }
 
@@ -92,32 +105,52 @@ struct RecepeiScreenApi: View {
 
     var body: some View {
         NavigationStack {
-            Group {
+            VStack(spacing: 0) {
+                // Keep search & filters visible so an empty result can be fixed in place.
+                if !viewModel.firestore.fetchedData.isEmpty {
+                    discoveryControls
+                }
+
                 if viewModel.displayedRecipes.isEmpty {
-                    RecipeEmptyState(
-                        systemImage: "cup.and.saucer.fill",
-                        title: viewModel.emptyTitle,
-                        message: viewModel.emptyMessage,
-                        buttonTitle: viewModel.firestore.fetchedData.isEmpty ? nil : "Clear Filters".localized()
-                    ) {
-                        viewModel.clearFilters()
+                    if !viewModel.firestore.isloading {
+                        RecipeEmptyState(
+                            systemImage: viewModel.firestore.fetchedData.isEmpty ? "cup.and.saucer.fill" : "magnifyingglass",
+                            title: viewModel.emptyTitle,
+                            message: viewModel.emptyMessage,
+                            buttonTitle: viewModel.firestore.fetchedData.isEmpty ? "Refresh".localized() : "Clear Filters".localized()
+                        ) {
+                            if viewModel.firestore.fetchedData.isEmpty {
+                                viewModel.refresh()
+                            } else {
+                                viewModel.clearFilters()
+                            }
+                        }
+                        .transition(.opacity)
+                    } else {
+                        Spacer()
                     }
                 } else {
-                    VStack(spacing: 0) {
-                        discoveryControls
-
-                        List {
-                            ForEach(viewModel.displayedRecipes) { rec in
-                                RecepeiCardApiN(vm: viewModel.firestore, recepi: rec)
-                            }
-                            WaznahTabBarListSpacer()
+                    List {
+                        if !viewModel.featuredRecipes.isEmpty {
+                            FeaturedRecipesSection(recipes: viewModel.featuredRecipes, firestore: viewModel.firestore)
+                                .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 8, trailing: 0))
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
                         }
-                        .listStyle(.plain)
-                        .scrollContentBackground(.hidden)
-                        .refreshable { viewModel.refresh() }
+                        ForEach(viewModel.displayedRecipes) { rec in
+                            RecepeiCardApiN(vm: viewModel.firestore, recepi: rec)
+                                // Set on the row itself; newer iOS ignores these when nested inside the card.
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
+                        }
+                        WaznahTabBarListSpacer()
                     }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
+                    .refreshable { viewModel.refresh() }
                 }
             }
+            .animation(.easeOut(duration: 0.2), value: viewModel.displayedRecipes.isEmpty)
             .waznahScreenBackdrop()
             .overlay {
                 if viewModel.firestore.isloading {
@@ -163,6 +196,19 @@ struct RecepeiScreenApi: View {
                         isSelected: viewModel.showMineOnly
                     ) {
                         viewModel.showMineOnly.toggle()
+                    }
+                }
+            }
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    CloudFilterChip(title: "All Sources".localized(), isSelected: viewModel.selectedSource == nil) {
+                        viewModel.selectedSource = nil
+                    }
+                    ForEach(RecipeSource.allCases) { source in
+                        CloudFilterChip(title: source.title, isSelected: viewModel.selectedSource == source) {
+                            viewModel.selectedSource = viewModel.selectedSource == source ? nil : source
+                        }
                     }
                 }
             }
@@ -226,7 +272,9 @@ struct RecepeiCardApiN: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             PolishedRecipePreviewCard(
-                roastery: recepi.rostery ?? "Unknown roastery".localized(),
+                roastery: recepi.displayTitle,
+                subtitle: recepi.displaySubtitle,
+                source: recepi.recipeSource == .community ? nil : recepi.recipeSource,
                 method: recepi.tool ?? "V60",
                 coffee: recepi.coffeeGrams ?? "-",
                 water: recepi.waterGrams ?? "-",
@@ -234,7 +282,8 @@ struct RecepeiCardApiN: View {
                 temperature: recepi.temp ?? "-",
                 grain: recepi.grain ?? "",
                 actionTitle: "View".localized(),
-                showsDisclosure: false
+                showsDisclosure: false,
+                titleTrailingClearance: 64
             ) {
                 showSheet = true
             }
@@ -437,6 +486,8 @@ struct RecipeMetricPill: View {
 struct PolishedRecipePreviewCard: View {
     @Environment(\.colorScheme) private var colorScheme
     let roastery: String
+    var subtitle: String? = nil
+    var source: RecipeSource? = nil
     let method: String
     let coffee: String
     let water: String
@@ -445,6 +496,8 @@ struct PolishedRecipePreviewCard: View {
     let grain: String
     let actionTitle: String
     var showsDisclosure = true
+    /// Space kept clear at the title's trailing edge for an overlaid control (e.g. the like button).
+    var titleTrailingClearance: CGFloat = 0
     let action: () -> Void
     
     var body: some View {
@@ -466,11 +519,28 @@ struct PolishedRecipePreviewCard: View {
                             .font(.title3.weight(.bold))
                             .foregroundColor(.primary)
                             .lineLimit(1)
+                            // Only the title line shares space with the overlaid like button.
+                            .padding(.trailing, titleTrailingClearance)
+
+                        if let subtitle {
+                            Text(subtitle)
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                                .lineLimit(1)
+                                .padding(.trailing, titleTrailingClearance)
+                        }
                         
-                        Label(method, systemImage: "mug.fill")
-                            .font(.subheadline.weight(.semibold))
-                            .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
-                            .lineLimit(1)
+                        HStack(spacing: 6) {
+                            HStack(spacing: 4) {
+                                Image(systemName: "mug.fill")
+                                Text(method)
+                            }
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
+                                .lineLimit(1)
+                                .fixedSize()
+                            if let source { RecipeSourceBadge(source: source).fixedSize() }
+                        }
                         
                         if !grain.isEmpty {
                             Text("\("Grind".localized()): \(grain)")
@@ -480,7 +550,8 @@ struct PolishedRecipePreviewCard: View {
                         }
                     }
                     
-                    Spacer()
+                    
+                    Spacer(minLength: 0)
                     
                     if showsDisclosure {
                         Image(systemName: "chevron.right.circle.fill")
@@ -552,6 +623,98 @@ struct PolishedRecipeMetric: View {
     }
 }
 
+// MARK: - Roaster Picks
+
+struct FeaturedRecipesSection: View {
+    @Environment(\.colorScheme) private var colorScheme
+    let recipes: [FeaturedRecipe]
+    let firestore: FirestoreManager
+    @State private var selected: FeaturedRecipe?
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 6) {
+                Image(systemName: "sparkles")
+                    .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
+                Text("Roaster Picks".localized())
+                    .font(.headline)
+                Spacer()
+                Text("\(recipes.count)")
+                    .font(.caption.weight(.semibold))
+                    .foregroundColor(.secondary)
+            }
+            .padding(.horizontal, 18)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(recipes) { featured in
+                        Button {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            selected = featured
+                        } label: {
+                            FeaturedRecipeCard(featured: featured)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.horizontal, 18)
+                .padding(.vertical, 4)
+            }
+        }
+        .sheet(item: $selected) { featured in
+            ApiRecepeiView(recepei: featured.recipe, firestore: firestore)
+        }
+    }
+}
+
+private struct FeaturedRecipeCard: View {
+    @Environment(\.colorScheme) private var colorScheme
+    let featured: FeaturedRecipe
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top) {
+                Image(featured.recipe.tool == "Cold Brew" ? "Clod Brew" : (featured.recipe.tool ?? "V60"))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 38, height: 38)
+                Spacer()
+                Text(featured.roaster.localized())
+                    .font(.caption2.weight(.bold))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(WaznahCapsuleBadgeBackground())
+                    .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
+                    .clipShape(Capsule())
+            }
+
+            Text(featured.crop.localized())
+                .font(.headline)
+                .lineLimit(1)
+            Text(featured.origin.localized())
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .lineLimit(1)
+            Text(featured.tastingNotes.localized())
+                .font(.caption2)
+                .foregroundColor(.secondary)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Spacer(minLength: 0)
+
+            Text("\(featured.recipe.tool ?? "") · \(featured.recipe.coffeeGrams ?? "")g · \(featured.recipe.ratio ?? "") · \(featured.recipe.temp ?? "")°")
+                .font(.caption2.weight(.semibold))
+                .monospacedDigit()
+                .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
+                .lineLimit(1)
+        }
+        .padding(14)
+        .frame(width: 190, height: 178, alignment: .leading)
+        .background { WaznahRecipeCardBackground() }
+    }
+}
+
 struct RecipeEmptyState: View {
     @Environment(\.colorScheme) private var colorScheme
     let systemImage: String
@@ -559,6 +722,7 @@ struct RecipeEmptyState: View {
     let message: String
     let buttonTitle: String?
     let action: (() -> Void)?
+    @State private var appeared = false
     
     var body: some View {
         VStack(spacing: 14) {
@@ -593,6 +757,12 @@ struct RecipeEmptyState: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
+        .padding(.bottom, WaznahTabBarLayout.contentClearance / 2)
+        .scaleEffect(appeared ? 1 : 0.96)
+        .opacity(appeared ? 1 : 0)
+        .onAppear {
+            withAnimation(.spring(response: 0.45, dampingFraction: 0.85)) { appeared = true }
+        }
     }
 }
 
@@ -619,7 +789,7 @@ struct ApiRecepeiView: View {
 
     var body: some View {
         RecipeDetailSheet(
-            roastery: recepei.rostery ?? "Unknown roastery".localized(),
+            roastery: recepei.displayTitle,
             method: recepei.tool ?? "V60",
             coffee: recepei.coffeeGrams ?? "-",
             water: recepei.waterGrams ?? "-",
@@ -629,6 +799,8 @@ struct ApiRecepeiView: View {
             notes: "",
             steps: recepei.field3 ?? [],
             sourceLabel: "Community Recipe".localized(),
+            cloudRecipeId: recepei.id,
+            recipe: recepei,
             onReport: canReport ? { beginReportFlow() } : nil
         )
         .sheet(isPresented: $showReportSheet) {
@@ -799,6 +971,7 @@ private struct RecipeReportSheet: View {
 struct RecipeDetailSheet: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
+    @State private var showBrewJourney = false
     
     let roastery: String
     let method: String
@@ -810,6 +983,9 @@ struct RecipeDetailSheet: View {
     let notes: String
     let steps: [StepsAndTimes]
     let sourceLabel: String
+    var cloudRecipeId: String? = nil
+    /// Cloud recipe, when available, for crop details and source badge.
+    var recipe: YourDataModelRes? = nil
     var cloudActionTitle: String? = nil
     var cloudActionSystemImage = "icloud.and.arrow.up.fill"
     var cloudActionTint = Color(hex: "#86373E")
@@ -820,6 +996,18 @@ struct RecipeDetailSheet: View {
     
     private var methodImageName: String {
         method == "Cold Brew" ? "Clod Brew" : method
+    }
+
+    private var brewJourneyRecipe: BrewJourneyRecipe {
+        BrewJourneyRecipe(
+            title: roastery.isEmpty ? "Untitled Recipe".localized() : roastery,
+            method: method,
+            rawSteps: steps
+        )
+    }
+
+    private var journeySteps: [BrewJourneyStep] {
+        brewJourneyRecipe.steps
     }
     
     private var shareData: RecipeShareData {
@@ -833,7 +1021,8 @@ struct RecipeDetailSheet: View {
             grind: grind,
             notes: notes,
             steps: steps,
-            sourceLabel: sourceLabel
+            sourceLabel: sourceLabel,
+            cloudRecipeId: cloudRecipeId
         )
     }
     
@@ -843,7 +1032,10 @@ struct RecipeDetailSheet: View {
                 VStack(spacing: 18) {
                     pageTopButtons
                     heroCard
+                    startBrewJourneyButton
                     cloudActionButton
+                    if let xbloom = recipe?.xbloomShareURL { OpenInXBloomButton(url: xbloom) }
+                    if let recipe, recipe.hasCropDetails { CropDetailsCard(recipe: recipe) }
                     metricsGrid
                     stepsSection
                     notesSection
@@ -861,6 +1053,9 @@ struct RecipeDetailSheet: View {
         .navigationViewStyle(.stack)
         .background(Color.clear)
         .waznahAmbientNavigation()
+        .fullScreenCover(isPresented: $showBrewJourney) {
+            BrewJourneyView(recipe: brewJourneyRecipe)
+        }
     }
     
     private var pageTopButtons: some View {
@@ -903,11 +1098,22 @@ struct RecipeDetailSheet: View {
                     .font(.largeTitle.weight(.bold))
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
+
+                if let subtitle = recipe?.displaySubtitle {
+                    Text(subtitle)
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                }
                 
                 HStack(spacing: 8) {
                     Label(method, systemImage: "mug.fill")
-                    Text("•")
-                    Text(sourceLabel)
+                    if let source = recipe?.recipeSource, source != .community {
+                        RecipeSourceBadge(source: source)
+                    } else {
+                        Text("•")
+                        Text(sourceLabel)
+                    }
                 }
                 .font(.subheadline.weight(.semibold))
                 .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
@@ -916,6 +1122,34 @@ struct RecipeDetailSheet: View {
         .frame(maxWidth: .infinity)
         .padding(22)
         .waznahGlassCard(cornerRadius: 32)
+    }
+    
+    @ViewBuilder
+    private var startBrewJourneyButton: some View {
+        if !journeySteps.isEmpty {
+            Button {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                showBrewJourney = true
+            } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: "play.circle.fill")
+                    Text("Start Brew Journey".localized())
+                        .font(.headline)
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(
+                    LinearGradient(
+                        colors: [Color(hex: "#86373E"), Color(hex: "#BF8A6E")],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+                .foregroundColor(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                .shadow(color: Color(hex: "#86373E").opacity(0.2), radius: 14, x: 0, y: 8)
+            }
+        }
     }
     
     @ViewBuilder
@@ -962,8 +1196,14 @@ struct RecipeDetailSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Brew Steps".localized())
                 .font(.title3.weight(.bold))
+
+            if !journeySteps.isEmpty {
+                Text("Zero your scale once. Pour to each target — no need to re-zero.".localized())
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
             
-            if steps.isEmpty {
+            if journeySteps.isEmpty {
                 Text("No brew steps added yet.".localized())
                     .font(.subheadline)
                     .foregroundColor(.secondary)
@@ -972,7 +1212,7 @@ struct RecipeDetailSheet: View {
                     .background(WaznahInsetSurfaceBackground())
                     .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
             } else {
-                ForEach(Array(steps.enumerated()), id: \.element) { index, step in
+                ForEach(Array(journeySteps.enumerated()), id: \.element) { index, journeyStep in
                     HStack(alignment: .top, spacing: 12) {
                         Text("\(index + 1)")
                             .font(.headline)
@@ -982,12 +1222,29 @@ struct RecipeDetailSheet: View {
                             .clipShape(Circle())
                         
                         VStack(alignment: .leading, spacing: 6) {
-                            Text(step.step.isEmpty ? "Pour".localized() : step.step)
+                            Text(journeyStep.title.isEmpty ? "Pour".localized() : journeyStep.title)
                                 .font(.headline)
+
+                            Text(
+                                String(
+                                    format: "Pour to %@ ml".localized(),
+                                    BrewJourneyBuilder.formatVolume(journeyStep.targetTotalML)
+                                )
+                            )
+                            .font(.subheadline.weight(.bold))
+                            .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
                             
                             HStack(spacing: 14) {
-                                Label("\(step.water) ml", systemImage: "drop.fill")
-                                Label("\(step.time) sec", systemImage: "timer")
+                                Label(
+                                    String(
+                                        format: "+%@ ml".localized(),
+                                        BrewJourneyBuilder.formatVolume(journeyStep.pourAmountML)
+                                    ),
+                                    systemImage: "drop.fill"
+                                )
+                                if journeyStep.hasTimer {
+                                    Label("\(journeyStep.durationSeconds) sec", systemImage: "timer")
+                                }
                             }
                             .font(.caption.weight(.semibold))
                             .foregroundColor(.secondary)

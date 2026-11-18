@@ -16,6 +16,7 @@ struct RecipeShareData {
     let notes: String
     let steps: [StepsAndTimes]
     let sourceLabel: String
+    var cloudRecipeId: String? = nil
     
     var methodImageName: String {
         method == "Cold Brew" ? "Clod Brew" : method
@@ -24,6 +25,14 @@ struct RecipeShareData {
     var displayRoastery: String {
         let trimmed = roastery.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmed.isEmpty ? "Untitled Recipe".localized() : trimmed
+    }
+
+    /// QR / share link — recipe deep link when published to Community, otherwise App Store.
+    var shareURLString: String {
+        if let cloudRecipeId, !cloudRecipeId.isEmpty {
+            return WaznahDeepLink.recipeURL(recipeId: cloudRecipeId)
+        }
+        return AppUpdateManager.appStoreShareURLString
     }
     
     var pdfFileName: String {

@@ -7,9 +7,17 @@
 
 import SwiftUI
 
+private struct DeepLinkRequest: Identifiable {
+    let id = UUID()
+    let recipeId: String
+    let startBrew: Bool
+}
+
 struct TapViewHome: View {
+    @EnvironmentObject private var deepLinkRouter: WaznahDeepLinkRouter
     @StateObject private var firestoreManager = FirestoreManager()
     @State private var selected: Tab = .house
+    @State private var deepLinkRequest: DeepLinkRequest?
 
     var body: some View {
         ZStack {
@@ -27,6 +35,47 @@ struct TapViewHome: View {
             .ignoresSafeArea(.keyboard)
         }
         .waznahScreenBackdrop()
+        .onAppear { processDeepLinkIfNeeded() }
+        .onChange(of: deepLinkRouter.pending) { _ in
+            processDeepLinkIfNeeded()
+        }
+        .fullScreenCover(item: $deepLinkRequest) { request in
+            DeepLinkRecipeLoader(
+                recipeId: request.recipeId,
+                startBrew: request.startBrew,
+                firestore: firestoreManager,
+                onDismiss: { deepLinkRequest = nil }
+            )
+        }
+    }
+
+    private func processDeepLinkIfNeeded() {
+        guard let destination = deepLinkRouter.consumePending() else { return }
+
+        switch destination {
+        case .openApp:
+            selected = .house
+        case let .recipe(id, startBrew):
+            selected = .bag
+            let request = DeepLinkRequest(recipeId: id, startBrew: startBrew)
+            // A sheet that's already open would block the cover, so close it first.
+            if dismissPresentedScreens() {
+                deepLinkRequest = nil
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) { deepLinkRequest = request }
+            } else {
+                deepLinkRequest = request
+            }
+        }
+    }
+
+    /// Dismisses any sheet/cover on top of the tab view; returns true if something was dismissed.
+    private func dismissPresentedScreens() -> Bool {
+        let root = UIApplication.shared.connectedScenes
+            .compactMap { ($0 as? UIWindowScene)?.windows.first(where: \.isKeyWindow)?.rootViewController }
+            .first
+        guard let root, root.presentedViewController != nil else { return false }
+        root.dismiss(animated: false)
+        return true
     }
 
     @ViewBuilder
@@ -39,12 +88,6 @@ struct TapViewHome: View {
         case .bag:
             RecepeiScreenApi(firestore: firestoreManager)
         }
-    }
-}
-
-struct TapView_Previews: PreviewProvider {
-    static var previews: some View {
-        TapViewHome()
     }
 }
 
@@ -118,5 +161,12 @@ struct CustomTabView: View {
             .padding(.horizontal, WaznahTabBarLayout.horizontalPadding)
             .padding(.bottom, WaznahTabBarLayout.bottomPadding)
         }
+    }
+}
+
+struct TapView_Previews: PreviewProvider {
+    static var previews: some View {
+        TapViewHome()
+            .environmentObject(WaznahDeepLinkRouter.shared)
     }
 }

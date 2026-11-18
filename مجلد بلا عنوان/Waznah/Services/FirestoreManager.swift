@@ -83,6 +83,55 @@ class FirestoreManager: ObservableObject {
     deinit {
         recipesListener?.remove()
     }
+
+    func fetchRecipe(recipeId: String, completion: @escaping (Result<YourDataModelRes, Error>) -> Void) {
+        let trimmedId = recipeId.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedId.isEmpty else {
+            completion(.failure(NSError(domain: "Waznah", code: 404, userInfo: [
+                NSLocalizedDescriptionKey: "Recipe not found".localized()
+            ])))
+            return
+        }
+
+        ensureSignedIn { result in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async { completion(.failure(error)) }
+
+            case .success(let uid):
+                self.publicRecipesCollection().document(trimmedId).getDocument { snapshot, error in
+                    if let error {
+                        DispatchQueue.main.async { completion(.failure(error)) }
+                        return
+                    }
+
+                    guard let snapshot, snapshot.exists, var data = snapshot.data() else {
+                        DispatchQueue.main.async {
+                            completion(.failure(NSError(domain: "Waznah", code: 404, userInfo: [
+                                NSLocalizedDescriptionKey: "Recipe not found".localized()
+                            ])))
+                        }
+                        return
+                    }
+
+                    do {
+                        data.removeValue(forKey: "createdAt")
+                        data.removeValue(forKey: "updatedAt")
+                        let jsonData = try JSONSerialization.data(withJSONObject: data)
+                        var model = try JSONDecoder().decode(YourDataModelRes.self, from: jsonData)
+                        model.id = snapshot.documentID
+
+                        self.recipeLikeDocument(recipeId: trimmedId, uid: uid).getDocument { likeSnapshot, _ in
+                            model.isLikedByCurrentUser = likeSnapshot?.exists == true
+                            DispatchQueue.main.async { completion(.success(model)) }
+                        }
+                    } catch {
+                        DispatchQueue.main.async { completion(.failure(error)) }
+                    }
+                }
+            }
+        }
+    }
     
     func createRecipe(data: YourDataModel, completion: @escaping (Error?) -> Void) {
         ensureSignedIn { result in

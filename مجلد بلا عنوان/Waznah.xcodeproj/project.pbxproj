@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,15 +15,28 @@
 		D88A18992A70C63700D5CE6E /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A18982A70C63700D5CE6E /* HalfSheet.swift */; };
 		D88A189B2A71C8BF00D5CE6E /* TapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88A189A2A71C8BF00D5CE6E /* TapView.swift */; };
 		D88F0E252FCEA73000F02674 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D88F0E242FCEA73000F02674 /* GoogleService-Info.plist */; };
-		D89553BB2FD5A9BA00C2E6EE /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = D8UPD072FCEA73400F02674 /* FirebaseRemoteConfig */; };
+		D89003702FDA05DF001E26C1 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = D8UPD072FCEA73400F02674 /* FirebaseRemoteConfig */; };
 		D89D22342A71FA0900C49742 /* CoreDataProvidor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89D22332A71FA0900C49742 /* CoreDataProvidor.swift */; };
 		D89D22362A71FAF600C49742 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89D22352A71FAF600C49742 /* Model.swift */; };
 		D89D22392A71FBA900C49742 /* Model+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89D22382A71FBA900C49742 /* Model+Extention.swift */; };
 		D8A46EFA279879B20074E62E /* Waznah.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8A46EF8279879B20074E62E /* Waznah.xcdatamodeld */; };
 		D8A46EFC279879B80074E62E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A46EFB279879B80074E62E /* Assets.xcassets */; };
+		D8BLAC022FCEA73A00F02674 /* BrewLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BLAC012FCEA73A00F02674 /* BrewLiveActivity.swift */; };
 		D8BREW022FCEA73800F02674 /* BrewTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BREW012FCEA73800F02674 /* BrewTab.swift */; };
+		D8BTAT022FCEA73A00F02674 /* BrewTimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BTAT012FCEA73A00F02674 /* BrewTimerAttributes.swift */; };
+		D8CL00002FCEA73B00F02674 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8RCMD012FCEA73800F02674 /* RecipeModels.swift */; };
+		D8CL00012FCEA73B00F02674 /* BrewJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8JRNY012FCEA73900F02674 /* BrewJourneyView.swift */; };
+		D8CL00022FCEA73B00F02674 /* BrewLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BLAC012FCEA73A00F02674 /* BrewLiveActivity.swift */; };
+		D8CL00032FCEA73B00F02674 /* BrewTimerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BTAT012FCEA73A00F02674 /* BrewTimerAttributes.swift */; };
+		D8CL00042FCEA73B00F02674 /* AppTimeAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8TIME012FCEA73700F02674 /* AppTimeAppearance.swift */; };
+		D8CL00052FCEA73B00F02674 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8LANG012FCEA73500F02674 /* AppLanguage.swift */; };
+		D8CL00062FCEA73B00F02674 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC57C28EC358700D871AA /* BlurView.swift */; };
+		D8CL00072FCEA73B00F02674 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D88F0E242FCEA73000F02674 /* GoogleService-Info.plist */; };
+		D8CL00082FCEA73B00F02674 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8F7C4A52B2D60B900ED9348 /* Localizable.strings */; };
 		D8COMM022FCEA73800F02674 /* CommunityTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8COMM012FCEA73800F02674 /* CommunityTab.swift */; };
+		D8D771C9307F49FA00AD61B5 /* WaznahClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = D8D771A7307F49F900AD61B5 /* WaznahClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D8DCBB3E2B2D81170082DC6F /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DCBB3D2B2D81170082DC6F /* Alerts.swift */; };
+		D8DLNK022FCEA73A00F02674 /* WaznahDeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DLNK012FCEA73A00F02674 /* WaznahDeepLink.swift */; };
 		D8E96BE62B54D88600E93590 /* AlertCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E96BE52B54D88500E93590 /* AlertCustom.swift */; };
 		D8F7C4A32B2D60B900ED9348 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8F7C4A52B2D60B900ED9348 /* Localizable.strings */; };
 		D8FBC57D28EC358700D871AA /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC57C28EC358700D871AA /* BlurView.swift */; };
@@ -32,7 +45,9 @@
 		D8FBC58328EC4F8C00D871AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8FBC58228EC4F8C00D871AA /* LaunchScreen.storyboard */; };
 		D8FBC58528EC5FCD00D871AA /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC58428EC5FCD00D871AA /* TimerModel.swift */; };
 		D8FBC58928EC60F000D871AA /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FBC58828EC60F000D871AA /* Home.swift */; };
+		D8FEAT022FCEA73A00F02674 /* FeaturedRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FEAT012FCEA73A00F02674 /* FeaturedRecipes.swift */; };
 		D8FIRE022FCEA73800F02674 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FIRE012FCEA73800F02674 /* FirestoreManager.swift */; };
+		D8JRNY022FCEA73900F02674 /* BrewJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8JRNY012FCEA73900F02674 /* BrewJourneyView.swift */; };
 		D8LANG022FCEA73500F02674 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8LANG012FCEA73500F02674 /* AppLanguage.swift */; };
 		D8MYRC022FCEA73800F02674 /* MyRecipesTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8MYRC012FCEA73800F02674 /* MyRecipesTab.swift */; };
 		D8PDF022FCEA73600F02674 /* RecipeShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8PDF012FCEA73600F02674 /* RecipeShareData.swift */; };
@@ -40,12 +55,52 @@
 		D8PDF062FCEA73600F02674 /* RecipePDFDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8PDF052FCEA73600F02674 /* RecipePDFDocumentView.swift */; };
 		D8PDF082FCEA73600F02674 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8PDF072FCEA73600F02674 /* ShareSheet.swift */; };
 		D8RCMD022FCEA73800F02674 /* RecipeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8RCMD012FCEA73800F02674 /* RecipeModels.swift */; };
+		D8RQV0022FCEA73C00F02674 /* RecipeQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8RQV0012FCEA73C00F02674 /* RecipeQuickView.swift */; };
+		D8RQV0032FCEA73C00F02674 /* RecipeQuickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8RQV0012FCEA73C00F02674 /* RecipeQuickView.swift */; };
 		D8SYNC022FCEA73200F02674 /* LocalRecipeSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8SYNC012FCEA73200F02674 /* LocalRecipeSyncManager.swift */; };
 		D8TIME022FCEA73700F02674 /* AppTimeAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8TIME012FCEA73700F02674 /* AppTimeAppearance.swift */; };
 		D8UPD022FCEA73400F02674 /* AppUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8UPD012FCEA73400F02674 /* AppUpdateManager.swift */; };
 		D8UPD042FCEA73400F02674 /* AppUpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8UPD032FCEA73400F02674 /* AppUpdateViewModel.swift */; };
 		D8UPD062FCEA73400F02674 /* AppUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8UPD052FCEA73400F02674 /* AppUpdateView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D8D771B6307F49FA00AD61B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8A46EE4279879B10074E62E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8D771A6307F49F900AD61B5;
+			remoteInfo = WaznahClip;
+		};
+		D8D771C0307F49FA00AD61B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8A46EE4279879B10074E62E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8D771A6307F49F900AD61B5;
+			remoteInfo = WaznahClip;
+		};
+		D8D771C7307F49FA00AD61B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8A46EE4279879B10074E62E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8D771A6307F49F900AD61B5;
+			remoteInfo = WaznahClip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D8D771CA307F49FA00AD61B5 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				D8D771C9307F49FA00AD61B5 /* WaznahClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D83C6F6B2B1C37D1008E0FAE /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
@@ -63,9 +118,15 @@
 		D8A46F00279879B80074E62E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8ARLOC2FCEA73500F02674 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D8BF222C29A1871F0051611C /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		D8BLAC012FCEA73A00F02674 /* BrewLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewLiveActivity.swift; sourceTree = "<group>"; };
 		D8BREW012FCEA73800F02674 /* BrewTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewTab.swift; sourceTree = "<group>"; };
+		D8BTAT012FCEA73A00F02674 /* BrewTimerAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewTimerAttributes.swift; sourceTree = "<group>"; };
 		D8COMM012FCEA73800F02674 /* CommunityTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTab.swift; sourceTree = "<group>"; };
+		D8D771A7307F49F900AD61B5 /* WaznahClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaznahClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8D771B5307F49FA00AD61B5 /* WaznahClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaznahClipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8D771BF307F49FA00AD61B5 /* WaznahClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WaznahClipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8DCBB3D2B2D81170082DC6F /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		D8DLNK012FCEA73A00F02674 /* WaznahDeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaznahDeepLink.swift; sourceTree = "<group>"; };
 		D8E96BE52B54D88500E93590 /* AlertCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCustom.swift; sourceTree = "<group>"; };
 		D8E98CE227B72013008DF014 /* Waznah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Waznah.entitlements; sourceTree = "<group>"; };
 		D8ENLOC2FCEA73500F02674 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -76,7 +137,9 @@
 		D8FBC58228EC4F8C00D871AA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8FBC58428EC5FCD00D871AA /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
 		D8FBC58828EC60F000D871AA /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		D8FEAT012FCEA73A00F02674 /* FeaturedRecipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedRecipes.swift; sourceTree = "<group>"; };
 		D8FIRE012FCEA73800F02674 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		D8JRNY012FCEA73900F02674 /* BrewJourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewJourneyView.swift; sourceTree = "<group>"; };
 		D8LANG012FCEA73500F02674 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
 		D8MYRC012FCEA73800F02674 /* MyRecipesTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecipesTab.swift; sourceTree = "<group>"; };
 		D8PDF012FCEA73600F02674 /* RecipeShareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeShareData.swift; sourceTree = "<group>"; };
@@ -84,6 +147,7 @@
 		D8PDF052FCEA73600F02674 /* RecipePDFDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipePDFDocumentView.swift; sourceTree = "<group>"; };
 		D8PDF072FCEA73600F02674 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		D8RCMD012FCEA73800F02674 /* RecipeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModels.swift; sourceTree = "<group>"; };
+		D8RQV0012FCEA73C00F02674 /* RecipeQuickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeQuickView.swift; sourceTree = "<group>"; };
 		D8SYNC012FCEA73200F02674 /* LocalRecipeSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRecipeSyncManager.swift; sourceTree = "<group>"; };
 		D8TIME012FCEA73700F02674 /* AppTimeAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTimeAppearance.swift; sourceTree = "<group>"; };
 		D8UPD012FCEA73400F02674 /* AppUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateManager.swift; sourceTree = "<group>"; };
@@ -91,15 +155,52 @@
 		D8UPD052FCEA73400F02674 /* AppUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D8D771D1307F49FA00AD61B5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D8D771A6307F49F900AD61B5 /* WaznahClip */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D8D771A8307F49F900AD61B5 /* WaznahClip */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D8D771D1307F49FA00AD61B5 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WaznahClip; sourceTree = "<group>"; };
+		D8D771B8307F49FA00AD61B5 /* WaznahClipTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WaznahClipTests; sourceTree = "<group>"; };
+		D8D771C2307F49FA00AD61B5 /* WaznahClipUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = WaznahClipUITests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		D8A46EE9279879B10074E62E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D89553BB2FD5A9BA00C2E6EE /* FirebaseRemoteConfig in Frameworks */,
+				D89003702FDA05DF001E26C1 /* FirebaseRemoteConfig in Frameworks */,
 				D8728B552AFFB663004876CF /* FirebaseAuth in Frameworks */,
 				D8728B5B2AFFB663004876CF /* FirebaseFirestore in Frameworks */,
 				D84A68132AF766340060AED0 /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D771A4307F49F900AD61B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D771B2307F49FA00AD61B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D771BC307F49FA00AD61B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +213,7 @@
 				D89D22332A71FA0900C49742 /* CoreDataProvidor.swift */,
 				D89D22352A71FAF600C49742 /* Model.swift */,
 				D89D22382A71FBA900C49742 /* Model+Extention.swift */,
+				D8FEAT012FCEA73A00F02674 /* FeaturedRecipes.swift */,
 				D8RCMD012FCEA73800F02674 /* RecipeModels.swift */,
 			);
 			path = Model;
@@ -121,6 +223,9 @@
 			isa = PBXGroup;
 			children = (
 				D8A46EEE279879B20074E62E /* Waznah */,
+				D8D771A8307F49F900AD61B5 /* WaznahClip */,
+				D8D771B8307F49FA00AD61B5 /* WaznahClipTests */,
+				D8D771C2307F49FA00AD61B5 /* WaznahClipUITests */,
 				D8A46EED279879B20074E62E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,6 +234,9 @@
 			isa = PBXGroup;
 			children = (
 				D8A46EEC279879B20074E62E /* Waznah.app */,
+				D8D771A7307F49F900AD61B5 /* WaznahClip.app */,
+				D8D771B5307F49FA00AD61B5 /* WaznahClipTests.xctest */,
+				D8D771BF307F49FA00AD61B5 /* WaznahClipUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,6 +272,9 @@
 				D8PDF012FCEA73600F02674 /* RecipeShareData.swift */,
 				D8PDF032FCEA73600F02674 /* RecipePDFExporter.swift */,
 				D8FIRE012FCEA73800F02674 /* FirestoreManager.swift */,
+				D8BLAC012FCEA73A00F02674 /* BrewLiveActivity.swift */,
+				D8BTAT012FCEA73A00F02674 /* BrewTimerAttributes.swift */,
+				D8DLNK012FCEA73A00F02674 /* WaznahDeepLink.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -208,6 +319,8 @@
 			isa = PBXGroup;
 			children = (
 				D8BREW012FCEA73800F02674 /* BrewTab.swift */,
+				D8RQV0012FCEA73C00F02674 /* RecipeQuickView.swift */,
+				D8JRNY012FCEA73900F02674 /* BrewJourneyView.swift */,
 				D8MYRC012FCEA73800F02674 /* MyRecipesTab.swift */,
 				D8COMM012FCEA73800F02674 /* CommunityTab.swift */,
 			);
@@ -234,10 +347,12 @@
 				D8A46EE9279879B10074E62E /* Frameworks */,
 				D8A46EEA279879B10074E62E /* Resources */,
 				D8GRPCFIX2AFFE7C1004876CF /* Fix Firebase gRPC Bundle IDs */,
+				D8D771CA307F49FA00AD61B5 /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D8D771C8307F49FA00AD61B5 /* PBXTargetDependency */,
 			);
 			name = Waznah;
 			packageProductDependencies = (
@@ -250,6 +365,74 @@
 			productReference = D8A46EEC279879B20074E62E /* Waznah.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D8D771A6307F49F900AD61B5 /* WaznahClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8D771D2307F49FA00AD61B5 /* Build configuration list for PBXNativeTarget "WaznahClip" */;
+			buildPhases = (
+				D8D771A3307F49F900AD61B5 /* Sources */,
+				D8D771A4307F49F900AD61B5 /* Frameworks */,
+				D8D771A5307F49F900AD61B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D8D771A8307F49F900AD61B5 /* WaznahClip */,
+			);
+			name = WaznahClip;
+			packageProductDependencies = (
+			);
+			productName = WaznahClip;
+			productReference = D8D771A7307F49F900AD61B5 /* WaznahClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
+		D8D771B4307F49FA00AD61B5 /* WaznahClipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8D771D3307F49FA00AD61B5 /* Build configuration list for PBXNativeTarget "WaznahClipTests" */;
+			buildPhases = (
+				D8D771B1307F49FA00AD61B5 /* Sources */,
+				D8D771B2307F49FA00AD61B5 /* Frameworks */,
+				D8D771B3307F49FA00AD61B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D8D771B7307F49FA00AD61B5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D8D771B8307F49FA00AD61B5 /* WaznahClipTests */,
+			);
+			name = WaznahClipTests;
+			packageProductDependencies = (
+			);
+			productName = WaznahClipTests;
+			productReference = D8D771B5307F49FA00AD61B5 /* WaznahClipTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D8D771BE307F49FA00AD61B5 /* WaznahClipUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8D771D4307F49FA00AD61B5 /* Build configuration list for PBXNativeTarget "WaznahClipUITests" */;
+			buildPhases = (
+				D8D771BB307F49FA00AD61B5 /* Sources */,
+				D8D771BC307F49FA00AD61B5 /* Frameworks */,
+				D8D771BD307F49FA00AD61B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D8D771C1307F49FA00AD61B5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D8D771C2307F49FA00AD61B5 /* WaznahClipUITests */,
+			);
+			name = WaznahClipUITests;
+			packageProductDependencies = (
+			);
+			productName = WaznahClipUITests;
+			productReference = D8D771BF307F49FA00AD61B5 /* WaznahClipUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -257,11 +440,22 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 2650;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					D8A46EEB279879B10074E62E = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					D8D771A6307F49F900AD61B5 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					D8D771B4307F49FA00AD61B5 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = D8D771A6307F49F900AD61B5;
+					};
+					D8D771BE307F49FA00AD61B5 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = D8D771A6307F49F900AD61B5;
 					};
 				};
 			};
@@ -285,6 +479,9 @@
 			projectRoot = "";
 			targets = (
 				D8A46EEB279879B10074E62E /* Waznah */,
+				D8D771A6307F49F900AD61B5 /* WaznahClip */,
+				D8D771B4307F49FA00AD61B5 /* WaznahClipTests */,
+				D8D771BE307F49FA00AD61B5 /* WaznahClipUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -298,6 +495,29 @@
 				D8FBC58328EC4F8C00D871AA /* LaunchScreen.storyboard in Resources */,
 				D88F0E252FCEA73000F02674 /* GoogleService-Info.plist in Resources */,
 				D8A46EFC279879B80074E62E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D771A5307F49F900AD61B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8CL00072FCEA73B00F02674 /* GoogleService-Info.plist in Resources */,
+				D8CL00082FCEA73B00F02674 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D771B3307F49FA00AD61B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D771BD307F49FA00AD61B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,11 +546,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8RQV0022FCEA73C00F02674 /* RecipeQuickView.swift in Sources */,
 				D88A189B2A71C8BF00D5CE6E /* TapView.swift in Sources */,
 				D8BREW022FCEA73800F02674 /* BrewTab.swift in Sources */,
+				D8JRNY022FCEA73900F02674 /* BrewJourneyView.swift in Sources */,
 				D8MYRC022FCEA73800F02674 /* MyRecipesTab.swift in Sources */,
 				D8COMM022FCEA73800F02674 /* CommunityTab.swift in Sources */,
 				D8FIRE022FCEA73800F02674 /* FirestoreManager.swift in Sources */,
+				D8BLAC022FCEA73A00F02674 /* BrewLiveActivity.swift in Sources */,
+				D8BTAT022FCEA73A00F02674 /* BrewTimerAttributes.swift in Sources */,
+				D8DLNK022FCEA73A00F02674 /* WaznahDeepLink.swift in Sources */,
+				D8FEAT022FCEA73A00F02674 /* FeaturedRecipes.swift in Sources */,
 				D8RCMD022FCEA73800F02674 /* RecipeModels.swift in Sources */,
 				D84A68152AF766930060AED0 /* LottieAnimation.swift in Sources */,
 				D8FBC57F28EC491900D871AA /* Main.swift in Sources */,
@@ -359,7 +585,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D8D771A3307F49F900AD61B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8RQV0032FCEA73C00F02674 /* RecipeQuickView.swift in Sources */,
+				D8CL00002FCEA73B00F02674 /* RecipeModels.swift in Sources */,
+				D8CL00012FCEA73B00F02674 /* BrewJourneyView.swift in Sources */,
+				D8CL00022FCEA73B00F02674 /* BrewLiveActivity.swift in Sources */,
+				D8CL00032FCEA73B00F02674 /* BrewTimerAttributes.swift in Sources */,
+				D8CL00042FCEA73B00F02674 /* AppTimeAppearance.swift in Sources */,
+				D8CL00052FCEA73B00F02674 /* AppLanguage.swift in Sources */,
+				D8CL00062FCEA73B00F02674 /* BlurView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D771B1307F49FA00AD61B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D771BB307F49FA00AD61B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D8D771B7307F49FA00AD61B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8D771A6307F49F900AD61B5 /* WaznahClip */;
+			targetProxy = D8D771B6307F49FA00AD61B5 /* PBXContainerItemProxy */;
+		};
+		D8D771C1307F49FA00AD61B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8D771A6307F49F900AD61B5 /* WaznahClip */;
+			targetProxy = D8D771C0307F49FA00AD61B5 /* PBXContainerItemProxy */;
+		};
+		D8D771C8307F49FA00AD61B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8D771A6307F49F900AD61B5 /* WaznahClip */;
+			targetProxy = D8D771C7307F49FA00AD61B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D8F7C4A52B2D60B900ED9348 /* Localizable.strings */ = {
@@ -508,7 +781,7 @@
 				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = Waznah/Waznah.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = NQUCPJVZ5U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Waznah/Info.plist;
@@ -523,9 +796,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				SWIFT_VERSION = 5.0;
@@ -542,7 +819,7 @@
 				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = Waznah/Waznah.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = NQUCPJVZ5U;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Waznah/Info.plist;
@@ -557,13 +834,210 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_ENABLE_EXPLICIT_MODULES = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		D8D771CB307F49FA00AD61B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = WaznahClip/WaznahClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = NQUCPJVZ5U;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WaznahClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Waznah;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = NO;
+				MARKETING_VERSION = 3.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D8D771CC307F49FA00AD61B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = WaznahClip/WaznahClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = NQUCPJVZ5U;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WaznahClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Waznah;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = NO;
+				MARKETING_VERSION = 3.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		D8D771CD307F49FA00AD61B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NQUCPJVZ5U;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah.WaznahClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WaznahClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WaznahClip";
+			};
+			name = Debug;
+		};
+		D8D771CE307F49FA00AD61B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NQUCPJVZ5U;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah.WaznahClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WaznahClip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WaznahClip";
+			};
+			name = Release;
+		};
+		D8D771CF307F49FA00AD61B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NQUCPJVZ5U;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah.WaznahClipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WaznahClip;
+			};
+			name = Debug;
+		};
+		D8D771D0307F49FA00AD61B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NQUCPJVZ5U;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AnasHamad.Waznah.WaznahClipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WaznahClip;
 			};
 			name = Release;
 		};
@@ -584,6 +1058,33 @@
 			buildConfigurations = (
 				D8A46F04279879B80074E62E /* Debug */,
 				D8A46F05279879B80074E62E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8D771D2307F49FA00AD61B5 /* Build configuration list for PBXNativeTarget "WaznahClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8D771CB307F49FA00AD61B5 /* Debug */,
+				D8D771CC307F49FA00AD61B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8D771D3307F49FA00AD61B5 /* Build configuration list for PBXNativeTarget "WaznahClipTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8D771CD307F49FA00AD61B5 /* Debug */,
+				D8D771CE307F49FA00AD61B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8D771D4307F49FA00AD61B5 /* Build configuration list for PBXNativeTarget "WaznahClipUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8D771CF307F49FA00AD61B5 /* Debug */,
+				D8D771D0307F49FA00AD61B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

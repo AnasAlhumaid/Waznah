@@ -226,9 +226,129 @@
 "Done" = "تم";
 "Scan to get Waznah" = "امسح للحصول على وزنة";
 
+"Brew Journey" = "التقطير";
+"Start Brew Journey" = "ابدأ التقطير";
+"Pour to %@ ml" = "صب حتى %@ مل";
+"+%@ ml this step" = "+%@ مل في هذه الخطوة";
+"+%@ ml" = "+%@ مل";
+"Step %d of %d" = "الخطوة %d من %d";
+"Zero your scale once. Pour to each target — no need to re-zero." = "صفّر الميزان مرة واحدة. صب حتى كل هدف — لا حاجة لإعادة الصفر.";
+"Scale target" = "هدف الميزان";
+"Step timer" = "مؤقت الخطوة";
+"Running" = "يعمل";
+"Ready" = "جاهز";
+"Resume" = "متابعة";
+"Timer complete — go to next step" = "انتهى المؤقت — انتقل للخطوة التالية";
+"No timer for this step" = "لا مؤقت لهذه الخطوة";
+"Previous" = "السابق";
+"Next step" = "الخطوة التالية";
+"Finish brew" = "إنهاء التقطير";
+"Coming up" = "القادم";
+"Brew complete!" = "اكتمل التقطير!";
+"Enjoy your cup. You followed every step." = "استمتع بفنجانك. اتبعت كل الخطوات.";
+"Total poured: %@ ml" = "إجمالي الصب: %@ مل";
+"End brew journey?" = "إنهاء التقطير؟";
+"Your brew progress will be lost." = "سيفقد تقدمك في التقطير.";
+"End" = "إنهاء";
+"Continue" = "متابعة";
+"Close" = "إغلاق";
+"Begin Journey" = "ابدأ التقطير";
+"%d steps • %@ ml total" = "%d خطوات • %@ مل إجمالي";
+"Next step starts automatically" = "الخطوة التالية تبدأ تلقائياً";
+"Last step — almost done" = "الخطوة الأخيرة — أوشكت على الانتهاء";
+"Enjoy your cup." = "استمتع بفنجانك.";
+"of %@" = "من %@";
+"Total brew time: %@" = "مدة التقطير: %@";
+"Loading recipe..." = "جاري تحميل الوصفة...";
+"Recipe not found" = "الوصفة غير موجودة";
+"Scan to open recipe" = "امسح لفتح الوصفة";
+
 /* Errors */
 "Firebase sign-in failed." = "تعذّر الاتصال بخوادمنا.";
 "Missing Firebase user." = "تعذّر التحقق من حسابك على خوادمنا.";
 "Firebase Anonymous Sign-In is disabled. Open Firebase Console > Authentication > Sign-in method > Anonymous and enable it." = "ميزات المجتمع غير متاحة مؤقتاً. يُرجى المحاولة لاحقاً.";
 "Firebase Auth internal error. Enable Anonymous sign-in and verify GoogleService-Info.plist." = "حدث خطأ أثناء الاتصال بخوادمنا. يُرجى المحاولة مرة أخرى.";
 "Firestore rules blocked this save. Deploy the new rules in firestore.rules or check the user is signed in." = "تعذّر الحفظ على خوادمنا. يُرجى المحاولة مرة أخرى.";
+
+/* Brew journey, timer & Live Activity */
+"Refresh" = "تحديث";
+"Next" = "التالي";
+"Finish" = "إنهاء";
+"Brew Again" = "حضّر مرة ثانية";
+"How did it taste?" = "كيف كان الطعم؟";
+"Sour" = "حامض";
+"Balanced" = "متوازن";
+"Bitter" = "مُر";
+"Weak" = "خفيف";
+"Set" = "ضبط";
+"Paused" = "متوقف مؤقتاً";
+"Brewing…" = "جاري التحضير…";
+"Brew is ready ☕️" = "قهوتك جاهزة ☕️";
+"Your brew is ready. Enjoy your cup! ☕️" = "قهوتك جاهزة، بالعافية! ☕️";
+"%@ ml · %d steps" = "%@ مل · %d خطوات";
+"Under-extracted: grind finer or use hotter water next time." = "الاستخلاص ناقص: نعّم الطحنة أو استخدم ماء أسخن المرة الجاية.";
+"Nailed it — keep this recipe as is." = "ممتاز — خلّ الوصفة مثل ما هي.";
+"Over-extracted: grind coarser or use slightly cooler water." = "الاستخلاص زايد: خشّن الطحنة أو استخدم ماء أبرد شوي.";
+"Too light: use more coffee (a tighter ratio, e.g. 1:15)." = "القهوة خفيفة: زد كمية البن (نسبة أقل مثل 1:15).";
+
+/* Roaster Picks */
+"Roaster Picks" = "مختارات المحامص";
+"Sulalat" = "سلالات";
+"Al Raheeq" = "الرحيق";
+"Halo Beriti" = "هالو بريتي";
+"Chelchele" = "شلشلي";
+"Tico Pepe" = "تيكو بيبي";
+"El Tirra" = "إل تيرا";
+"Saudi Arabia · Jazan" = "السعودية · جازان";
+"Ethiopia · Guji" = "إثيوبيا · قوجي";
+"Ethiopia · Yirgacheffe" = "إثيوبيا · يرقاتشيفي";
+"Colombia · Tolima" = "كولومبيا · توليما";
+"Costa Rica · San José" = "كوستاريكا · سان خوسيه";
+"Blackcurrant, cherry, lavender" = "كشمش أسود، كرز، لافندر";
+"Red berry, mango, orange, lavender" = "توت أحمر، مانجو، برتقال، لافندر";
+"Cherry, peach, jasmine" = "كرز، خوخ، ياسمين";
+"Tropical fruit, grape, orange blossom" = "فواكه استوائية، عنب، زهر البرتقال";
+"Blueberry, cherry, red grape" = "توت أزرق، كرز، عنب أحمر";
+"Bloom" = "الترطيب (Bloom)";
+"Pour over the whole bed" = "صب على كامل القهوة";
+"Pour around the center" = "صب حول المركز";
+"Pour on the edges" = "صب على الأطراف";
+"Pour in the center" = "صب في المنتصف";
+"Medium-fine" = "متوسط ناعم";
+"Medium" = "متوسط";
+
+/* Simplified add recipe */
+"First pour" = "الصبّة الأولى";
+"Second pour" = "الصبّة الثانية";
+"Final pour" = "الصبّة الأخيرة";
+"Steps & notes (optional)" = "الخطوات والملاحظات (اختياري)";
+"Skip this, or start from a ready pour plan and tweak it." = "تقدر تتخطاها، أو تبدأ بخطة صب جاهزة وتعدّل عليها.";
+"Use pour template" = "استخدم خطة صب جاهزة";
+"Fix last step to match total" = "عدّل آخر خطوة لتطابق الكمية";
+"Step %d" = "الخطوة %d";
+
+/* App Clip */
+"Scan a coffee bag" = "امسح كيس القهوة";
+"Scan the Waznah code on your coffee bag to see its recipe." = "امسح رمز وزنة على كيس القهوة عشان تشوف وصفته.";
+"Something went wrong" = "صار خطأ";
+"Try Again" = "حاول مرة ثانية";
+"This code doesn't point to a Waznah recipe." = "هذا الرمز ما يشير لوصفة في وزنة.";
+"Start Brewing" = "ابدأ التحضير";
+"App configuration is missing." = "إعدادات التطبيق ناقصة.";
+"Could not connect. Please try again." = "تعذّر الاتصال، حاول مرة ثانية.";
+"Save recipes & more in the full Waznah app" = "احفظ وصفاتك وأكثر في تطبيق وزنة الكامل";
+"View full recipe" = "عرض الوصفة كاملة";
+
+/* Recipe source & crop details */
+"Official" = "رسمية";
+"Waznah Pick" = "مقترح وزنة";
+"All Sources" = "كل المصادر";
+"About the Crop" = "عن المحصول";
+"Origin" = "الأصل";
+"Process" = "المعالجة";
+"Tasting Notes" = "الطعم";
+
+/* xBloom */
+"Open in xBloom" = "افتح في xBloom";
+"Opens this recipe in the xBloom app" = "يفتح هذه الوصفة في تطبيق xBloom";
+"xBloom" = "xBloom";

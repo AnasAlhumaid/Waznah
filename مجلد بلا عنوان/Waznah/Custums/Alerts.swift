@@ -10,22 +10,22 @@ import SwiftUI
 
 struct LoadingAlert: View {
     var body: some View {
-        ZStack {
-            Blur(radius: 20, opaque: true)
+        // Compact, fixed-size card only — no full-screen layer, so it never takes over the page.
+        VStack(spacing: 12) {
+            ProgressView()
+                .controlSize(.large)
+                .tint(Color(hex: "#86373E"))
 
-            VStack {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .black))
-                    .scaleEffect(2.0) // Adjust the scale as needed
-
-                Text("Loading...".localized())
-                    .foregroundColor(.black)
-                    .padding(.top, 8)
-            }
-            .padding()
-            .background(.ultraThinMaterial)
-            .cornerRadius(10)
+            Text("Loading...".localized())
+                .font(.subheadline.weight(.semibold))
+                .foregroundColor(.secondary)
         }
+        .frame(width: 132, height: 112)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .shadow(color: .black.opacity(0.12), radius: 18, x: 0, y: 8)
+        .fixedSize()
+        .transition(.opacity)
+        .accessibilityElement(children: .combine)
     }
 }
 

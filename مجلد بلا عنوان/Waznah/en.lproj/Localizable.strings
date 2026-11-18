@@ -193,3 +193,123 @@
 "Update your saved recipe. Shared recipes sync to Community." = "Update your saved recipe. Shared recipes sync to Community.";
 "Done" = "Done";
 "Scan to get Waznah" = "Scan to get Waznah";
+
+"Brew Journey" = "Brew Journey";
+"Start Brew Journey" = "Start Brew Journey";
+"Pour to %@ ml" = "Pour to %@ ml";
+"+%@ ml this step" = "+%@ ml this step";
+"+%@ ml" = "+%@ ml";
+"Step %d of %d" = "Step %d of %d";
+"Zero your scale once. Pour to each target — no need to re-zero." = "Zero your scale once. Pour to each target — no need to re-zero.";
+"Scale target" = "Scale target";
+"Step timer" = "Step timer";
+"Running" = "Running";
+"Ready" = "Ready";
+"Resume" = "Resume";
+"Timer complete — go to next step" = "Timer complete — go to next step";
+"No timer for this step" = "No timer for this step";
+"Previous" = "Previous";
+"Next step" = "Next step";
+"Finish brew" = "Finish brew";
+"Coming up" = "Coming up";
+"Brew complete!" = "Brew complete!";
+"Enjoy your cup. You followed every step." = "Enjoy your cup. You followed every step.";
+"Total poured: %@ ml" = "Total poured: %@ ml";
+"End brew journey?" = "End brew journey?";
+"Your brew progress will be lost." = "Your brew progress will be lost.";
+"End" = "End";
+"Continue" = "Continue";
+"Close" = "Close";
+"Begin Journey" = "Begin Journey";
+"%d steps • %@ ml total" = "%d steps • %@ ml total";
+"Next step starts automatically" = "Next step starts automatically";
+"Last step — almost done" = "Last step — almost done";
+"Enjoy your cup." = "Enjoy your cup.";
+"of %@" = "of %@";
+"Total brew time: %@" = "Total brew time: %@";
+"Loading recipe..." = "Loading recipe...";
+"Recipe not found" = "Recipe not found";
+"Scan to open recipe" = "Scan to open recipe";
+
+/* Brew journey, timer & Live Activity */
+"Refresh" = "Refresh";
+"Next" = "Next";
+"Finish" = "Finish";
+"Brew Again" = "Brew Again";
+"How did it taste?" = "How did it taste?";
+"Sour" = "Sour";
+"Balanced" = "Balanced";
+"Bitter" = "Bitter";
+"Weak" = "Weak";
+"Set" = "Set";
+"Paused" = "Paused";
+"Brewing…" = "Brewing…";
+"Brew is ready ☕️" = "Brew is ready ☕️";
+"Your brew is ready. Enjoy your cup! ☕️" = "Your brew is ready. Enjoy your cup! ☕️";
+"%@ ml · %d steps" = "%@ ml · %d steps";
+"Under-extracted: grind finer or use hotter water next time." = "Under-extracted: grind finer or use hotter water next time.";
+"Nailed it — keep this recipe as is." = "Nailed it — keep this recipe as is.";
+"Over-extracted: grind coarser or use slightly cooler water." = "Over-extracted: grind coarser or use slightly cooler water.";
+"Too light: use more coffee (a tighter ratio, e.g. 1:15)." = "Too light: use more coffee (a tighter ratio, e.g. 1:15).";
+
+/* Roaster Picks */
+"Roaster Picks" = "Roaster Picks";
+"Sulalat" = "Sulalat";
+"Al Raheeq" = "Al Raheeq";
+"Halo Beriti" = "Halo Beriti";
+"Chelchele" = "Chelchele";
+"Tico Pepe" = "Tico Pepe";
+"El Tirra" = "El Tirra";
+"Saudi Arabia · Jazan" = "Saudi Arabia · Jazan";
+"Ethiopia · Guji" = "Ethiopia · Guji";
+"Ethiopia · Yirgacheffe" = "Ethiopia · Yirgacheffe";
+"Colombia · Tolima" = "Colombia · Tolima";
+"Costa Rica · San José" = "Costa Rica · San José";
+"Blackcurrant, cherry, lavender" = "Blackcurrant, cherry, lavender";
+"Red berry, mango, orange, lavender" = "Red berry, mango, orange, lavender";
+"Cherry, peach, jasmine" = "Cherry, peach, jasmine";
+"Tropical fruit, grape, orange blossom" = "Tropical fruit, grape, orange blossom";
+"Blueberry, cherry, red grape" = "Blueberry, cherry, red grape";
+"Bloom" = "Bloom";
+"Pour over the whole bed" = "Pour over the whole bed";
+"Pour around the center" = "Pour around the center";
+"Pour on the edges" = "Pour on the edges";
+"Pour in the center" = "Pour in the center";
+"Medium-fine" = "Medium-fine";
+"Medium" = "Medium";
+
+/* Simplified add recipe */
+"First pour" = "First pour";
+"Second pour" = "Second pour";
+"Final pour" = "Final pour";
+"Steps & notes (optional)" = "Steps & notes (optional)";
+"Skip this, or start from a ready pour plan and tweak it." = "Skip this, or start from a ready pour plan and tweak it.";
+"Use pour template" = "Use pour template";
+"Fix last step to match total" = "Fix last step to match total";
+"Step %d" = "Step %d";
+
+/* App Clip */
+"Scan a coffee bag" = "Scan a coffee bag";
+"Scan the Waznah code on your coffee bag to see its recipe." = "Scan the Waznah code on your coffee bag to see its recipe.";
+"Something went wrong" = "Something went wrong";
+"Try Again" = "Try Again";
+"This code doesn't point to a Waznah recipe." = "This code doesn't point to a Waznah recipe.";
+"Start Brewing" = "Start Brewing";
+"App configuration is missing." = "App configuration is missing.";
+"Could not connect. Please try again." = "Could not connect. Please try again.";
+"Save recipes & more in the full Waznah app" = "Save recipes & more in the full Waznah app";
+"View full recipe" = "View full recipe";
+
+/* Recipe source & crop details */
+"Official" = "Official";
+"Waznah Pick" = "Waznah Pick";
+"All Sources" = "All Sources";
+"About the Crop" = "About the Crop";
+"Origin" = "Origin";
+"Process" = "Process";
+"Tasting Notes" = "Tasting Notes";
+
+/* xBloom */
+"Open in xBloom" = "Open in xBloom";
+"Opens this recipe in the xBloom app" = "Opens this recipe in the xBloom app";
+"xBloom" = "xBloom";

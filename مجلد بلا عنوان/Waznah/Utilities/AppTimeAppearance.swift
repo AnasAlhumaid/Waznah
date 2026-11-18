@@ -6,6 +6,10 @@
 import SwiftUI
 import UIKit
 
+func getCurrentTime() -> Date {
+    return Date()
+}
+
 // MARK: - Time-based appearance (6 AM day / 6 PM evening)
 
 enum WaznahAppearanceOverride: String {

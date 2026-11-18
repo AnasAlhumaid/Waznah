@@ -16,8 +16,18 @@ final class BrewTabViewModel: ObservableObject {
 final class BrewTimerViewModel: ObservableObject {
     @Published var selectedTime = 150
     @Published var elapsedTime = 0
-    @Published var isRunning = false
+    @Published var isRunning = false {
+        didSet {
+            guard isRunning != oldValue else { return }
+            runAnchor = isRunning ? Date().addingTimeInterval(-Double(elapsedTime)) : nil
+            syncBackgroundSurfaces()
+        }
+    }
+    @Published private(set) var didFinish = false
     @Published var showPicker = false
+
+    /// Wall-clock start so the timer stays accurate when the app is backgrounded or the screen locks.
+    private var runAnchor: Date?
 
     var progress: CGFloat {
         guard selectedTime > 0 else { return 0 }
@@ -29,6 +39,7 @@ final class BrewTimerViewModel: ObservableObject {
     func toggleTimer() {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         if elapsedTime >= selectedTime { elapsedTime = 0 }
+        didFinish = false
         isRunning.toggle()
     }
 
@@ -36,22 +47,52 @@ final class BrewTimerViewModel: ObservableObject {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         isRunning = false
         elapsedTime = 0
+        didFinish = false
+        endBackgroundSurfaces()
     }
 
     func selectQuickTimer(_ seconds: Int) {
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         selectedTime = seconds
         elapsedTime = 0
+        didFinish = false
         isRunning = false
+        endBackgroundSurfaces()
     }
 
     func tick() {
-        guard isRunning else { return }
-        if elapsedTime < selectedTime { elapsedTime += 1 }
+        guard isRunning, let runAnchor else { return }
+        elapsedTime = min(Int(Date().timeIntervalSince(runAnchor)), selectedTime)
         if elapsedTime >= selectedTime {
             isRunning = false
+            didFinish = true
+            endBackgroundSurfaces()
             UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
+    }
+
+    /// Keeps the Lock Screen Live Activity and the "done" notification in step with the timer.
+    private func syncBackgroundSurfaces() {
+        guard elapsedTime < selectedTime else { return }
+        if isRunning {
+            BrewTimerNotifier.schedule(after: remainingTime, title: "Brew Timer".localized())
+        } else {
+            BrewTimerNotifier.cancel()
+        }
+        BrewLiveActivityController.shared.startOrUpdate(.init(
+            title: "Brew Timer".localized(),
+            method: "Waznah".localized(),
+            remainingSeconds: remainingTime,
+            totalSeconds: selectedTime,
+            isRunning: isRunning,
+            headline: isRunning ? "Brewing…".localized() : "Paused".localized(),
+            detail: String(format: "of %@".localized(), timeFormatted(selectedTime))
+        ))
+    }
+
+    private func endBackgroundSurfaces() {
+        BrewTimerNotifier.cancel()
+        BrewLiveActivityController.shared.end()
     }
 
     func timeFormatted(_ totalSeconds: Int) -> String {
@@ -550,15 +591,22 @@ struct RatioPreset: Identifiable {
 }
 
 class CalcViewModel: ObservableObject {
-    @Published var value = "" {
-        didSet { update() }
-    }
-    @Published var ratio = "15" {
-        didSet { update() }
-    }
+    // Plain @Published inputs: changing a *second* published value from their didSet while the
+    // TextField is mid-edit made the field drop/hide typed characters. `result` is now derived.
+    @Published var value = ""
+    @Published var ratio = "15"
     @Published var mode: CalculationMode = .water
-    @Published var result: Double = 0.0
     @Published var selectedPreset: String?
+
+    var result: Double {
+        let amount = parsed(value)
+        let ratioValue = parsedRatio
+        guard amount > 0, ratioValue > 0 else { return 0 }
+        switch mode {
+        case .water: return amount * ratioValue
+        case .coffee: return amount / ratioValue
+        }
+    }
     
     var formattedResult: String {
         guard result.isFinite, result > 0 else { return "0" }
@@ -569,22 +617,8 @@ class CalcViewModel: ObservableObject {
         parsedRatio.cleanString
     }
     
-    func update() {
-        let amount = parsed(value)
-        let ratioValue = parsedRatio
-        
-        guard amount > 0, ratioValue > 0 else {
-            result = 0
-            return
-        }
-        
-        switch mode {
-        case .water:
-            result = amount * ratioValue
-        case .coffee:
-            result = amount / ratioValue
-        }
-    }
+    /// Kept for call sites; the result is computed on read, so nothing to store.
+    func update() {}
     
     func applyPreset(_ preset: RatioPreset) {
         selectedPreset = preset.name
@@ -597,7 +631,7 @@ class CalcViewModel: ObservableObject {
     }
     
     private func parsed(_ text: String) -> Double {
-        let normalized = text
+        let normalized = text.westernDigits
             .replacingOccurrences(of: ",", with: ".")
             .filter { "0123456789.".contains($0) }
         return Double(normalized) ?? 0
@@ -616,9 +650,8 @@ struct CalculatorInputCard: View {
                 .font(.caption.weight(.bold))
                 .foregroundColor(.secondary)
             
-            TextField(placeholder, text: $value)
-                .keyboardType(.decimalPad)
-                .font(.headline.weight(.semibold))
+            // UIKit-backed: the SwiftUI TextField intermittently showed the placeholder over typed digits.
+            WaznahNumericTextField(text: $value, placeholder: placeholder)
                 .padding(.horizontal, 12)
                 .frame(height: 48)
                 .background(WaznahInsetSurfaceBackground())
@@ -653,7 +686,7 @@ struct BrewTimerView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Brew Timer".localized()).font(.title3.weight(.bold)).lineLimit(1)
-                    Text(vm.isRunning ? "Timer is running".localized() : "Ready when you are".localized())
+                    Text(vm.didFinish ? "Brew is ready ☕️".localized() : vm.isRunning ? "Timer is running".localized() : "Ready when you are".localized())
                         .font(.caption).foregroundColor(.secondary).lineLimit(1)
                 }
                 Spacer()
@@ -661,7 +694,7 @@ struct BrewTimerView: View {
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     vm.showPicker = true
                 } label: {
-                    Label("Set", systemImage: "slider.horizontal.3")
+                    Label("Set".localized(), systemImage: "slider.horizontal.3")
                         .font(.caption.weight(.bold))
                         .padding(.horizontal, 12)
                         .padding(.vertical, 8)
@@ -686,7 +719,7 @@ struct BrewTimerView: View {
                     Text(vm.timeFormatted(vm.remainingTime))
                         .font(.system(size: 42, weight: .bold, design: .rounded))
                         .monospacedDigit()
-                    Text("of \(vm.timeFormatted(vm.selectedTime))")
+                    Text(String(format: "of %@".localized(), vm.timeFormatted(vm.selectedTime)))
                         .font(.caption).foregroundColor(.secondary)
                     if vm.elapsedTime > 0 {
                         Text("\(Int(vm.progress * 100))%")
@@ -695,12 +728,16 @@ struct BrewTimerView: View {
                     }
                 }
             }
+            .environment(\.layoutDirection, .leftToRight)
             .frame(width: 190, height: 190)
             .padding(.vertical, 4)
 
             HStack(spacing: 12) {
                 Button { vm.toggleTimer() } label: {
-                    Label(vm.isRunning ? "Pause".localized() : "Start".localized(), systemImage: vm.isRunning ? "pause.fill" : "play.fill")
+                    Label(
+                        vm.isRunning ? "Pause".localized() : (vm.elapsedTime > 0 && !vm.didFinish ? "Resume".localized() : "Start".localized()),
+                        systemImage: vm.isRunning ? "pause.fill" : "play.fill"
+                    )
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 14)
@@ -728,6 +765,10 @@ struct BrewTimerView: View {
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 18)
         .onReceive(ticker) { _ in vm.tick() }
+        .onChange(of: vm.isRunning) { running in
+            UIApplication.shared.isIdleTimerDisabled = running
+        }
+        .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
         .sheet(isPresented: $vm.showPicker) {
             TimerPickerSheet(selectedTime: $vm.selectedTime, elapsedTime: $vm.elapsedTime, isRunning: $vm.isRunning)
                 .presentationDetents([.medium])
@@ -787,6 +828,8 @@ struct TimerPickerSheet: View {
         .onChange(of: selectedTime) { _ in
             elapsedTime = 0
             isRunning = false
+            BrewTimerNotifier.cancel()
+            BrewLiveActivityController.shared.end()
         }
     }
 

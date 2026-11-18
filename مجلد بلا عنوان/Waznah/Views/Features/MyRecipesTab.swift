@@ -209,16 +209,83 @@ final class LocalRecipeDetailViewModel: ObservableObject {
 @MainActor
 final class AddLocalRecipeViewModel: ObservableObject {
     @Published var origin = ""
-    @Published var grind = ""
+    /// Coffee dose in grams (named `grind` for Core Data compatibility).
+    // Ratio is recomputed on the next run loop: writing another @Published value synchronously
+    // inside a TextField edit made the field drop/hide what was typed.
+    @Published var grind = "" { didSet { scheduleRatioUpdate() } }
     @Published var temp = ""
     @Published var ratio = ""
-    @Published var water = ""
+    @Published var water = "" { didSet { scheduleRatioUpdate() } }
     @Published var more = ""
     @Published var brew = "V60"
     @Published var stepsAndTimes: [StepsAndTimes] = []
     @Published var isSaving = false
+    @Published var showDetails = false
 
-    let brewOptions = ["V60", "Chemex", "Espresso", "Cold Brew", "AeroPress"]
+    let brewOptions = ["V60", "Chemex", "xBloom", "Espresso", "Cold Brew", "AeroPress"]
+
+    /// Starting point per method so a new recipe is one tap away from savable.
+    private struct MethodDefaults {
+        let coffee: String
+        let water: String
+        let temp: String
+    }
+
+    private static let methodDefaults: [String: MethodDefaults] = [
+        "V60": .init(coffee: "15", water: "250", temp: "93"),
+        "Chemex": .init(coffee: "20", water: "320", temp: "94"),
+        "xBloom": .init(coffee: "15", water: "240", temp: "93"),
+        "Espresso": .init(coffee: "18", water: "36", temp: "93"),
+        "Cold Brew": .init(coffee: "80", water: "800", temp: "20"),
+        "AeroPress": .init(coffee: "15", water: "220", temp: "85")
+    ]
+
+    /// Fill coffee / water / temp from the method, without overwriting values the user typed.
+    func selectMethod(_ method: String) {
+        let previous = Self.methodDefaults[brew]
+        brew = method
+        guard let defaults = Self.methodDefaults[method] else { return }
+        if grind.isEmpty || grind == previous?.coffee { grind = defaults.coffee }
+        if water.isEmpty || water == previous?.water { water = defaults.water }
+        if temp.isEmpty || temp == previous?.temp { temp = defaults.temp }
+    }
+
+    private func scheduleRatioUpdate() {
+        DispatchQueue.main.async { [weak self] in self?.recomputeRatio() }
+    }
+
+    /// Ratio is derived from coffee and water, so the user never has to type it.
+    private func recomputeRatio() {
+        guard let coffee = Self.parseVolume(grind), coffee > 0,
+              let waterML = Self.parseVolume(water), waterML > 0 else { return }
+        ratio = "1:" + Self.formatVolume((waterML / coffee * 10).rounded() / 10)
+    }
+
+    /// Bloom (2× coffee) + three equal pours that add up exactly to the recipe water.
+    func generateSteps() {
+        guard let total = Self.parseVolume(water), total > 0 else { return }
+        let coffee = Self.parseVolume(grind) ?? total / 16
+        let bloom = min((coffee * 2).rounded(), total)
+        let rest = total - bloom
+        let pour = (rest / 3).rounded(.down)
+        let last = rest - pour * 2
+
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        stepsAndTimes = [
+            StepsAndTimes(step: "Bloom".localized(), time: "40", water: Self.formatVolume(bloom)),
+            StepsAndTimes(step: "First pour".localized(), time: "30", water: Self.formatVolume(pour)),
+            StepsAndTimes(step: "Second pour".localized(), time: "30", water: Self.formatVolume(pour)),
+            StepsAndTimes(step: "Final pour".localized(), time: "45", water: Self.formatVolume(last))
+        ].filter { (Self.parseVolume($0.water) ?? 0) > 0 }
+        showDetails = true
+    }
+
+    /// Puts whatever water is left (or over) into the last step.
+    func balanceLastStep() {
+        guard let unassigned = unassignedWaterML, let lastIndex = stepsAndTimes.indices.last else { return }
+        let current = stepWaterML(at: lastIndex)
+        stepsAndTimes[lastIndex].water = Self.formatVolume(max(current + unassigned, 0))
+    }
 
     private let editingRecipe: Recepie?
     private let cloudManager: FirestoreManager
@@ -252,15 +319,18 @@ final class AddLocalRecipeViewModel: ObservableObject {
             brew = recepi.tools ?? "V60"
             more = recepi.notesWithoutLegacySteps
             stepsAndTimes = recepi.decodedSteps
+            showDetails = !stepsAndTimes.isEmpty || !more.isEmpty
+        } else {
+            selectMethod("V60")
+            recomputeRatio()
         }
     }
 
+    /// Only the essentials are required; ratio is computed and temp/steps/notes are optional.
     var canSubmit: Bool {
         !origin.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-        !grind.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-        !water.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-        !ratio.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
-        !temp.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        (Self.parseVolume(grind) ?? 0) > 0 &&
+        (Self.parseVolume(water) ?? 0) > 0
     }
 
     var brewImageName: String { brew == "Cold Brew" ? "Clod Brew" : brew }
@@ -325,12 +395,9 @@ final class AddLocalRecipeViewModel: ObservableObject {
         let stepsTotal = stepWaters.reduce(0, +)
         let totalLabel = Self.formatVolume(totalWater)
 
+        // Steps are optional: a recipe without pours is still valid.
         if stepWaters.isEmpty || stepsTotal == 0 {
-            return String(
-                format: "You entered %@ ml of water, but it is not divided across brew steps. Add steps that total %@ ml.".localized(),
-                totalLabel,
-                totalLabel
-            )
+            return nil
         }
 
         if abs(stepsTotal - totalWater) > 0.05 {
@@ -428,7 +495,7 @@ final class AddLocalRecipeViewModel: ObservableObject {
     }
 
     private static func parseVolume(_ value: String) -> Double? {
-        let normalized = value
+        let normalized = value.westernDigits
             .replacingOccurrences(of: ",", with: ".")
             .replacingOccurrences(of: "ml", with: "", options: .caseInsensitive)
             .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -582,6 +649,7 @@ struct RecipeView: View {
             sourceLabel: viewModel.isSharedToCommunity
                 ? "Local Recipe • Shared to Community".localized()
                 : "Local Recipe".localized(),
+            cloudRecipeId: viewModel.currentCloudRecipeId,
             cloudActionTitle: viewModel.cloudActionTitle,
             cloudActionSystemImage: viewModel.cloudActionSystemImage,
             cloudActionTint: viewModel.cloudActionTint,
@@ -675,14 +743,20 @@ struct RecepieDetail: View {
             ZStack {
                 WaznahScreenBackground()
                 ScrollView(showsIndicators: false) {
-                    VStack(spacing: 20) {
+                    VStack(spacing: 16) {
                         header
-                        recipeInfoCard
                         brewMethodCard
-                        stepsCard
-                        notesCard
+                        recipeInfoCard
+                        detailsToggle
+                        if formVM.showDetails {
+                            stepsCard
+                                .transition(.opacity.combined(with: .move(edge: .top)))
+                            notesCard
+                                .transition(.opacity.combined(with: .move(edge: .top)))
+                        }
                         saveButton
                     }
+                    .animation(.spring(response: 0.35, dampingFraction: 0.9), value: formVM.showDetails)
                     .padding(.horizontal, 20)
                     .padding(.top, 18)
                     .padding(.bottom, 32)
@@ -703,9 +777,6 @@ struct RecepieDetail: View {
         }
         .navigationViewStyle(.stack)
         .waznahAmbientNavigation()
-        .onAppear {
-            if formVM.stepsAndTimes.isEmpty { formVM.addStep() }
-        }
         .alert(saveAlertTitle, isPresented: $showSaveError) {
             Button("OK".localized(), role: .cancel) { }
         } message: {
@@ -714,33 +785,48 @@ struct RecepieDetail: View {
     }
 
     private var header: some View {
-        VStack(spacing: 12) {
+        HStack(spacing: 14) {
             ZStack {
-                WaznahHeroCircleBackground().frame(width: 92, height: 92)
-                Image(formVM.brewImageName).resizable().scaledToFit().frame(width: 66, height: 66)
+                WaznahHeroCircleBackground().frame(width: 60, height: 60)
+                Image(formVM.brewImageName).resizable().scaledToFit().frame(width: 42, height: 42)
             }
-            VStack(spacing: 6) {
-                Text(formVM.formTitle).font(.largeTitle.weight(.bold)).multilineTextAlignment(.center)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(formVM.formTitle).font(.title2.weight(.bold))
                 Text(formVM.formSubtitle)
-                    .font(.subheadline).foregroundColor(.secondary).multilineTextAlignment(.center)
+                    .font(.footnote).foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
+            Spacer(minLength: 0)
         }
-        .frame(maxWidth: .infinity)
-        .padding(22)
-        .waznahGlassCard(cornerRadius: 32)
     }
 
     private var recipeInfoCard: some View {
         VStack(alignment: .leading, spacing: 16) {
-            sectionTitle("Recipe Info".localized(), icon: "mug.fill")
             LocalRecipeTextField(title: "Roastery / Origin".localized(), text: $formVM.origin, placeholder: "Example: Ethiopia Guji".localized(), icon: "pin.fill")
             HStack(spacing: 12) {
                 LocalRecipeTextField(title: "Coffee (g)".localized(), text: $formVM.grind, placeholder: "18", icon: "circle.hexagongrid", keyboardType: .decimalPad)
                 LocalRecipeTextField(title: "Water (ml)".localized(), text: $formVM.water, placeholder: "270", icon: "drop.fill", keyboardType: .decimalPad)
             }
             HStack(spacing: 12) {
-                LocalRecipeTextField(title: "Ratio".localized(), text: $formVM.ratio, placeholder: "1:15", icon: "percent")
                 LocalRecipeTextField(title: "Temp (°C)".localized(), text: $formVM.temp, placeholder: "94", icon: "thermometer.medium", keyboardType: .decimalPad)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Ratio".localized())
+                        .font(.caption.weight(.semibold))
+                        .foregroundColor(.secondary)
+                    HStack(spacing: 6) {
+                        Image(systemName: "wand.and.stars")
+                        Text(formVM.ratio.isEmpty ? "—" : formVM.ratio)
+                            .monospacedDigit()
+                        Spacer(minLength: 0)
+                    }
+                    .font(.headline)
+                    .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
+                    .padding(.horizontal, 12)
+                    .frame(height: 48)
+                    .background(WaznahBrandColors.accent(for: colorScheme).opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                }
+                .accessibilityElement(children: .combine)
             }
         }
         .padding(16)
@@ -750,18 +836,19 @@ struct RecepieDetail: View {
     private var brewMethodCard: some View {
         VStack(alignment: .leading, spacing: 14) {
             sectionTitle("Brew Method".localized(), icon: "slider.horizontal.3")
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+            ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
                 ForEach(formVM.brewOptions, id: \.self) { option in
                     Button {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                        formVM.brew = option
+                        withAnimation(.easeOut(duration: 0.2)) { formVM.selectMethod(option) }
                     } label: {
-                        HStack(spacing: 8) {
-                            Image(option == "Cold Brew" ? "Clod Brew" : option).resizable().scaledToFit().frame(width: 24, height: 24)
+                        VStack(spacing: 6) {
+                            Image(option == "Cold Brew" ? "Clod Brew" : option).resizable().scaledToFit().frame(width: 34, height: 34)
                             Text(option.localized()).font(.caption.weight(.semibold)).lineLimit(1)
-                            Spacer(minLength: 0)
                         }
-                        .padding(12)
+                        .frame(width: 84)
+                        .padding(.vertical, 12)
                         .background {
                             if formVM.brew == option {
                                 WaznahBrandColors.accent(for: colorScheme).opacity(0.14)
@@ -775,9 +862,38 @@ struct RecepieDetail: View {
                     .buttonStyle(.plain)
                 }
             }
+            .padding(.vertical, 2)
+            }
         }
         .padding(16)
         .waznahGlassCard(cornerRadius: 24)
+    }
+
+    private var detailsToggle: some View {
+        Button {
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            formVM.showDetails.toggle()
+        } label: {
+            HStack {
+                Label("Steps & notes (optional)".localized(), systemImage: "list.number")
+                    .font(.subheadline.weight(.semibold))
+                Spacer()
+                if !formVM.stepsAndTimes.isEmpty {
+                    Text("\(formVM.stepsAndTimes.count)")
+                        .font(.caption.weight(.bold))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(WaznahBrandColors.accent(for: colorScheme).opacity(0.14))
+                        .clipShape(Capsule())
+                }
+                Image(systemName: "chevron.down")
+                    .rotationEffect(.degrees(formVM.showDetails ? 180 : 0))
+            }
+            .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
+            .padding(16)
+            .waznahGlassCard(cornerRadius: 20)
+        }
+        .buttonStyle(.plain)
     }
 
     private var notesCard: some View {
@@ -811,18 +927,36 @@ struct RecepieDetail: View {
             }
 
             if formVM.stepsAndTimes.isEmpty {
-                Text("Add pour steps with water amount and time.".localized())
-                    .font(.footnote).foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(14)
-                    .background(WaznahInsetSurfaceBackground())
-                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Skip this, or start from a ready pour plan and tweak it.".localized())
+                        .font(.footnote).foregroundColor(.secondary)
+                    Button { formVM.generateSteps() } label: {
+                        Label("Use pour template".localized(), systemImage: "wand.and.stars")
+                            .font(.subheadline.weight(.semibold))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .background(WaznahBrandColors.accent(for: colorScheme).opacity(0.14))
+                            .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
+                            .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                    }
+                    .disabled(formVM.totalRecipeWaterML == nil)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(14)
+                .background(WaznahInsetSurfaceBackground())
+                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            } else if let unassigned = formVM.unassignedWaterML, abs(unassigned) > 0.05 {
+                Button { formVM.balanceLastStep() } label: {
+                    Label("Fix last step to match total".localized(), systemImage: "equal.circle.fill")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundColor(WaznahBrandColors.accent(for: colorScheme))
+                }
             }
             VStack(spacing: 12) {
                 ForEach(formVM.stepsAndTimes.indices, id: \.self) { index in
                     VStack(alignment: .leading, spacing: 10) {
                         HStack {
-                            Text("Step \(index + 1)").font(.subheadline.weight(.bold))
+                            Text(String(format: "Step %d".localized(), index + 1)).font(.subheadline.weight(.bold))
                             Spacer()
                             if let remaining = formVM.remainingWaterDisplay(afterStep: index) {
                                 Text(remaining.text)

@@ -1,0 +1,9 @@
+{
+  "ios_update_enabled": false,
+  "ios_minimum_version": "2.2",
+  "ios_latest_version": "2.3",
+  "ios_update_title": "Update Waznah",
+  "ios_update_message": "Please update Waznah to continue using the app.",
+  "ios_force_update": true,
+  "ios_app_store_url": "https://apps.apple.com/app/idYOUR_APP_ID"
+}

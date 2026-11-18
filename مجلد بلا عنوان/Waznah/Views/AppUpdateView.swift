@@ -67,6 +67,7 @@ struct AppUpdateView: View {
 
 struct AppLaunchView: View {
     @StateObject private var updateViewModel = AppUpdateViewModel()
+    @StateObject private var deepLinkRouter = WaznahDeepLinkRouter.shared
     @Environment(\.scenePhase) private var scenePhase
     
     private var updateInfo: AppUpdateInfo? {
@@ -103,6 +104,14 @@ struct AppLaunchView: View {
             }
         }
         .appLanguageLayout()
+        .environmentObject(deepLinkRouter)
+        .onOpenURL { url in
+            deepLinkRouter.handle(url: url)
+        }
+        // Camera QR scans of App Clip URLs arrive as a browsing-web activity, not via onOpenURL.
+        .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
+            if let url = activity.webpageURL { deepLinkRouter.handle(url: url) }
+        }
         .task {
             await updateViewModel.checkForUpdate()
         }

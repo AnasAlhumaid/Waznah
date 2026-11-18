@@ -18,3 +18,10 @@ DerivedData/
 
 # Firebase (contains API keys — add locally per machine)
 GoogleService-Info.plist
+
+# Private business docs and large marketing assets (kept local)
+ملفات المشروع/
+marketing/
+
+# Firebase CLI cache
+hosting/.firebase/

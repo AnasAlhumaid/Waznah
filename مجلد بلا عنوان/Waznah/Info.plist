@@ -9,7 +9,22 @@
 	</dict>
 	<key>WaznahAppStoreURL</key>
 	<string>https://apps.apple.com/sa/app/waznah-%D9%88%D8%B2%D9%86%D8%A9/id1609692144?l=ar</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
+	<key>WaznahDeepLinkBaseURL</key>
+	<string>https://waznah-60781.web.app</string>
 	<key>WaznahPrivacyPolicyURL</key>
 	<string>https://apps.apple.com/sa/app/waznah-%D9%88%D8%B2%D9%86%D8%A9/id1609692144?l=ar</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.AnasHamad.Waznah</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>waznah</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

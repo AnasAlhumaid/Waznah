@@ -124,7 +124,7 @@ struct RecipePDFDocumentView: View {
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(brand)
                 
-                ForEach(Array(data.steps.enumerated()), id: \.offset) { index, step in
+                ForEach(Array(BrewJourneyBuilder.build(from: data.steps).enumerated()), id: \.element) { index, journeyStep in
                     HStack(alignment: .top, spacing: 12) {
                         Text("\(index + 1)")
                             .font(.system(size: 14, weight: .bold))
@@ -134,12 +134,29 @@ struct RecipePDFDocumentView: View {
                             .clipShape(Circle())
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(step.step.isEmpty ? "Pour".localized() : step.step)
+                            Text(journeyStep.title.isEmpty ? "Pour".localized() : journeyStep.title)
                                 .font(.system(size: 15, weight: .semibold))
+
+                            Text(
+                                String(
+                                    format: "Pour to %@ ml".localized(),
+                                    BrewJourneyBuilder.formatVolume(journeyStep.targetTotalML)
+                                )
+                            )
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(brand)
                             
                             HStack(spacing: 16) {
-                                Label("\(step.water) ml", systemImage: "drop.fill")
-                                Label("\(step.time) \("sec".localized())", systemImage: "timer")
+                                Label(
+                                    String(
+                                        format: "+%@ ml".localized(),
+                                        BrewJourneyBuilder.formatVolume(journeyStep.pourAmountML)
+                                    ),
+                                    systemImage: "drop.fill"
+                                )
+                                if journeyStep.hasTimer {
+                                    Label("\(journeyStep.durationSeconds) \("sec".localized())", systemImage: "timer")
+                                }
                             }
                             .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.secondary)
@@ -181,7 +198,7 @@ struct RecipePDFDocumentView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Shared from Waznah".localized())
                     .font(.system(size: 13, weight: .bold))
-                Text("Scan to get Waznah".localized())
+                Text(data.cloudRecipeId == nil ? "Scan to get Waznah".localized() : "Scan to open recipe".localized())
                     .font(.system(size: 11, weight: .medium))
                     .opacity(0.92)
             }
@@ -199,7 +216,7 @@ struct RecipePDFDocumentView: View {
     @ViewBuilder
     private var pdfQRCode: some View {
         if let qrImage = QRCodeGenerator.makeImage(
-            from: AppUpdateManager.appStoreShareURLString,
+            from: data.shareURLString,
             length: 240
         ) {
             Image(uiImage: qrImage)
